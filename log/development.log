@@ -1,0 +1,1750 @@
+Started GET "/" for ::1 at 2026-01-27 16:35:05 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BlogApp'*/[0m
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (1.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (1.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (1.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.4ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (1.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 1.4ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 93.1ms | GC: 9.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 96.2ms | GC: 9.3ms)
+Completed 200 OK in 169ms (Views: 61.3ms | ActiveRecord: 57.8ms (10 queries, 0 cached) | GC: 9.3ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--ba11c08c08ce6f36da8fc555931f10a6d0453bb3/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:35:05 +0200
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--ba11c08c08ce6f36da8fc555931f10a6d0453bb3", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='BlogApp',controller='redirect'*/[0m
+[36m  Disk Storage (0.4ms) [0m[34mGenerated URL for file at key: a7cfapb2bu5bynb4csj82dnem8su (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNDo0MDowNS44MzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--5937ed8516b1ce1d86291bb2ece760bea3ee523d/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNDo0MDowNS44MzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--5937ed8516b1ce1d86291bb2ece760bea3ee523d/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png
+Completed 302 Found in 31ms (ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNDo0MDowNS44MzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--5937ed8516b1ce1d86291bb2ece760bea3ee523d/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:35:05 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 200 OK in 14ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/posts/1/comments/5/like" for ::1 at 2026-01-27 16:35:09 +0200
+Processing by CommentsController#like as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_id"=>"1", "id"=>"5"}
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = 5 LIMIT 1 /*action='like',application='BlogApp',controller='comments'*/[0m
+  ↳ app/controllers/comments_controller.rb:17:in `like'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='like',application='BlogApp',controller='comments'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mCommentReaction Load (0.2ms)[0m  [1m[34mSELECT "comment_reactions".* FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 AND "comment_reactions"."account_id" = 3 LIMIT 1 /*action='like',application='BlogApp',controller='comments'*/[0m
+  ↳ app/controllers/comments_controller.rb:19:in `like'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='like',application='BlogApp',controller='comments'*/[0m
+  ↳ app/controllers/comments_controller.rb:22:in `like'
+  [1m[36mCommentReaction Destroy (2.1ms)[0m  [1m[31mDELETE FROM "comment_reactions" WHERE "comment_reactions"."id" = 12 /*action='like',application='BlogApp',controller='comments'*/[0m
+  ↳ app/controllers/comments_controller.rb:22:in `like'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*action='like',application='BlogApp',controller='comments'*/[0m
+  ↳ app/controllers/comments_controller.rb:22:in `like'
+Redirected to http://localhost:3000/
+Completed 302 Found in 28ms (ActiveRecord: 4.1ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:35:09 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 8.3ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | GC: 0.8ms)
+Completed 200 OK in 23ms (Views: 6.0ms | ActiveRecord: 2.6ms (10 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNDo0MDowNS44MzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--5937ed8516b1ce1d86291bb2ece760bea3ee523d/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:35:09 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 14ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started POST "/posts/1/like" for ::1 at 2026-01-27 16:35:10 +0200
+Processing by PostsController#like as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = 1 LIMIT 1 /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:54:in `set_post'
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."account_id" = 3 AND "reactions"."post_id" = 1 LIMIT 1 /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:40:in `like'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:43:in `like'
+  [1m[36mReaction Destroy (0.6ms)[0m  [1m[31mDELETE FROM "reactions" WHERE "reactions"."id" = 21 /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:43:in `like'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:43:in `like'
+Redirected to http://localhost:3000/
+Completed 302 Found in 25ms (ActiveRecord: 2.1ms (4 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:35:10 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 7.6ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | GC: 0.2ms)
+Completed 200 OK in 23ms (Views: 5.3ms | ActiveRecord: 2.7ms (10 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNDo0MDowNS44MzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--5937ed8516b1ce1d86291bb2ece760bea3ee523d/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:35:10 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 14ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:42:14 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (2.8ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (1.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (1.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.9ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (2.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.6ms | GC: 0.1ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 45.8ms | GC: 5.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 46.2ms | GC: 5.3ms)
+Completed 200 OK in 103ms (Views: 32.3ms | ActiveRecord: 35.1ms (10 queries, 0 cached) | GC: 5.5ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--ba11c08c08ce6f36da8fc555931f10a6d0453bb3/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:42:14 +0200
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--ba11c08c08ce6f36da8fc555931f10a6d0453bb3", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='BlogApp',controller='redirect'*/[0m
+[36m  Disk Storage (1.0ms) [0m[34mGenerated URL for file at key: a7cfapb2bu5bynb4csj82dnem8su (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNDo0NzoxNC42NDZaIiwicHVyIjoiYmxvYl9rZXkifX0=--16fd594274a975b1b318a757b00f85a9c74fdc08/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNDo0NzoxNC42NDZaIiwicHVyIjoiYmxvYl9rZXkifX0=--16fd594274a975b1b318a757b00f85a9c74fdc08/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png
+Completed 302 Found in 32ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNDo0NzoxNC42NDZaIiwicHVyIjoiYmxvYl9rZXkifX0=--16fd594274a975b1b318a757b00f85a9c74fdc08/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:42:14 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 200 OK in 15ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:47:49 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 60.0ms | GC: 3.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 61.5ms | GC: 3.7ms)
+Completed 500 Internal Server Error in 178ms (ActiveRecord: 120.8ms (10 queries, 0 cached) | GC: 4.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `account_signed_in?' for an instance of #<Class:0x000000011f11fe70>):
+
+Causes:
+NoMethodError (undefined method `account_signed_in?' for an instance of #<Class:0x000000011f11fe70>)
+    25:     <nav>
+    26:     <%= link_to "Головна", root_path, class: "nav-link" %>
+    27:     
+    28:     <% if account_signed_in? %>
+    29:       <%= link_to "Мій профіль", my_profile_path, class: "nav-link profile-button" %>
+    30:       <%= button_to "Вийти", destroy_account_session_path, method: :delete %>
+    31:     <% end %>
+  
+app/views/layouts/application.html.erb:28
+Started GET "/" for ::1 at 2026-01-27 16:48:19 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (1.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.4ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 21.8ms | GC: 10.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 24.8ms | GC: 11.2ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 4.5ms (10 queries, 0 cached) | GC: 11.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `account_signed_in?' for an instance of #<Class:0x000000011f11fe70>):
+
+Causes:
+NoMethodError (undefined method `account_signed_in?' for an instance of #<Class:0x000000011f11fe70>)
+    25:     <nav>
+    26:     <%= link_to "Головна", root_path, class: "nav-link" %>
+    27:     
+    28:     <% if account_signed_in? %>
+    29:       <%= link_to "Мій профіль", my_profile_path, class: "nav-link profile-button" %>
+    30:       <%= button_to "Вийти", destroy_account_session_path, method: :delete %>
+    31:     <% end %>
+  
+app/views/layouts/application.html.erb:28
+Started GET "/" for ::1 at 2026-01-27 16:49:28 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 51.7ms | GC: 4.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 52.2ms | GC: 4.4ms)
+Completed 500 Internal Server Error in 77ms (ActiveRecord: 32.9ms (10 queries, 0 cached) | GC: 4.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_signed_in?' for an instance of #<Class:0x000000011ed1f460>):
+
+Causes:
+NoMethodError (undefined method `user_signed_in?' for an instance of #<Class:0x000000011ed1f460>)
+    25:     <nav>
+    26:     <%= link_to "Головна", root_path, class: "nav-link" %>
+    27:     
+    28:     <% if user_signed_in? %>
+    29:       <%= link_to "Мій профіль", my_profile_path, class: "nav-link profile-button" %>
+    30:       <%= button_to "Вийти", destroy_user_session_path, method: :delete %>
+    31:     <% end %>
+  
+app/views/layouts/application.html.erb:28
+Started GET "/" for ::1 at 2026-01-27 16:49:51 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 46.7ms | GC: 1.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 47.1ms | GC: 1.4ms)
+Completed 500 Internal Server Error in 75ms (ActiveRecord: 35.2ms (10 queries, 0 cached) | GC: 2.2ms)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Blog App" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Blog App">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  </head>
+  <body>
+    <nav>
+    <%= link_to "Головна", root_path, class: "nav-link" %>
+    
+    <% if user_signed_in? %>
+      <%= link_to "Мій профіль", my_profile_post_path(current_account), class: "nav-link" %>
+      <%= link_to "Вийти", logout_path, data: { turbo_method: :delete }, class: "nav-link link-danger" %>
+  </nav>
+    <%= yield %>
+  </body>
+</html>
+
+):
+
+Causes:
+ActiveSupport::SyntaxErrorProxy (/Users/artem/sharaga/three_musketeers/app/views/layouts/application.html.erb:37: syntax error, unexpected end-of-input, expecting `end' or dummy end
+          end
+             ^
+)
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title><%= content_for(:title) || "Blog App" %></title>
+5:        <meta name="viewport" content="width=device-width,initial-scale=1">
+6:        <meta name="apple-mobile-web-app-capable" content="yes">
+7:        <meta name="application-name" content="Blog App">
+8:        <meta name="mobile-web-app-capable" content="yes">
+9:        <%= csrf_meta_tags %>
+10:        <%= csp_meta_tag %>
+11:    
+12:        <%= yield :head %>
+13:    
+14:        <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+15:        <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+16:    
+17:        <link rel="icon" href="/icon.png" type="image/png">
+18:        <link rel="icon" href="/icon.svg" type="image/svg+xml">
+19:        <link rel="apple-touch-icon" href="/icon.png">
+20:    
+21:        <%# Includes all stylesheet files in app/assets/stylesheets %>
+22:        <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+23:      </head>
+24:      <body>
+25:        <nav>
+26:        <%= link_to "Головна", root_path, class: "nav-link" %>
+27:        
+28:        <% if user_signed_in? %>
+29:          <%= link_to "Мій профіль", my_profile_post_path(current_account), class: "nav-link" %>
+30:          <%= link_to "Вийти", logout_path, data: { turbo_method: :delete }, class: "nav-link link-danger" %>
+31:      </nav>
+32:        <%= yield %>
+33:      </body>
+34:    </html>
+  
+app/views/layouts/application.html.erb:37: syntax error, unexpected end-of-input, expecting `end' or dummy end
+Started GET "/" for ::1 at 2026-01-27 16:50:39 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 48.6ms | GC: 2.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 49.3ms | GC: 3.1ms)
+Completed 500 Internal Server Error in 75ms (ActiveRecord: 31.0ms (10 queries, 0 cached) | GC: 3.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_signed_in?' for an instance of #<Class:0x000000011efdbeb0>):
+
+Causes:
+NoMethodError (undefined method `user_signed_in?' for an instance of #<Class:0x000000011efdbeb0>)
+    25:     <nav>
+    26:     <%= link_to "Головна", root_path, class: "nav-link" %>
+    27:     
+    28:     <% if user_signed_in? %>
+    29:       <%= link_to "Мій профіль", my_profile_path, class: "nav-link profile-button" %>
+    30:       <%= button_to "Вийти", destroy_user_session_path, method: :delete %>
+    31:     <% end %>
+  
+app/views/layouts/application.html.erb:28
+Started GET "/" for ::1 at 2026-01-27 16:54:06 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 47.0ms | GC: 3.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 47.6ms | GC: 3.5ms)
+Completed 500 Internal Server Error in 83ms (ActiveRecord: 28.5ms (10 queries, 0 cached) | GC: 12.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `my_profile_path' for an instance of #<Class:0x000000011dc83d40>):
+
+Causes:
+NameError (undefined local variable or method `my_profile_path' for an instance of #<Class:0x000000011dc83d40>)
+    26:     <%= link_to "Головна", root_path, class: "nav-link" %>
+    27:     
+    28:     <% if current_account.present? %>
+    29:       <%= link_to "Мій профіль", my_profile_path, class: "nav-link profile-button" %>
+    30:       <%= link_to "Вийти", logout_path, method: :get %>
+    31:     <% end %>
+    32:   </nav>
+  
+app/views/layouts/application.html.erb:29
+Started GET "/" for ::1 at 2026-01-27 16:56:36 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 51.4ms | GC: 4.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 51.9ms | GC: 4.0ms)
+Completed 200 OK in 77ms (Views: 23.8ms | ActiveRecord: 33.0ms (10 queries, 0 cached) | GC: 4.6ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--ba11c08c08ce6f36da8fc555931f10a6d0453bb3/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:56:36 +0200
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--ba11c08c08ce6f36da8fc555931f10a6d0453bb3", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='BlogApp',controller='redirect'*/[0m
+[36m  Disk Storage (1.7ms) [0m[34mGenerated URL for file at key: a7cfapb2bu5bynb4csj82dnem8su (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png
+Completed 302 Found in 43ms (ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:56:36 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 200 OK in 16ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/my_profile" for ::1 at 2026-01-27 16:56:39 +0200
+Processing by PostsController#my_profile as HTML
+  [1m[36mAccount Load (0.9ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."account_id" = 3 ORDER BY "posts"."created_at" DESC /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 1.2ms | ActiveRecord: 1.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/my_profile" for ::1 at 2026-01-27 16:56:42 +0200
+Processing by PostsController#my_profile as HTML
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."account_id" = 3 ORDER BY "posts"."created_at" DESC /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  Rendered posts/index.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 1.3ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts/new" for ::1 at 2026-01-27 16:56:45 +0200
+Processing by PostsController#new as HTML
+  [1m[36mAccount Load (0.9ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='new',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 6.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | GC: 0.0ms)
+Completed 200 OK in 31ms (Views: 7.5ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/posts" for ::1 at 2026-01-27 16:56:52 +0200
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"body"=>"erf", "image"=>#<ActionDispatch::Http::UploadedFile:0x000000011c91fce0 @tempfile=#<Tempfile:/var/folders/py/_slk_bhd3sg9ztb2v8cr4smw0000gn/T/RackMultipart20260127-59115-er9qc7.png>, @content_type="image/png", @original_filename="Знімок екрана 2025-11-21 о 19.04.14.png", @headers="Content-Disposition: form-data; name=\"post[image]\"; filename=\"Знімок екрана 2025-11-21 о 19.04.14.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Опублікувати"}
+  [1m[36mAccount Load (1.0ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mPost Create (6.7ms)[0m  [1m[32mINSERT INTO "posts" ("account_id", "body", "created_at", "updated_at") VALUES (3, 'erf', '2026-01-27 14:56:53.021565', '2026-01-27 14:56:53.021565') RETURNING "id" /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mActiveStorage::Blob Load (2.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mActiveStorage::Blob Create (1.7ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('38arvlhj5w546hf1grdwybhnj84z', 'Знімок екрана 2025-11-21 о 19.04.14.png', 'image/png', '{"identified":true}', 'local', 56055, 'e9TZzpbu6z6HowQhCZBHYA==', '2026-01-27 14:56:53.043141') RETURNING "id" /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mActiveStorage::Attachment Create (1.6ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('image', 'Post', 3, 3, '2026-01-27 14:56:53.047779') RETURNING "id" /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mPost Update (0.9ms)[0m  [1m[33mUPDATE "posts" SET "updated_at" = '2026-01-27 14:56:53.050007' WHERE "posts"."id" = 3 /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+[36m  Disk Storage (0.5ms) [0m[32mUploaded file to key: 38arvlhj5w546hf1grdwybhnj84z (checksum: e9TZzpbu6z6HowQhCZBHYA==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: ded20c99-debd-4b74-91cf-f46bcb1f2536) to Async(default) with arguments: #<GlobalID:0x00000001201bcb70 @uri=#<URI::GID gid://blog-app/ActiveStorage::Blob/3>>
+[ActiveJob] ↳ app/controllers/posts_controller.rb:18:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 74ms (ActiveRecord: 16.7ms (7 queries, 0 cached) | GC: 1.8ms)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536]   [1m[36mActiveStorage::Blob Load (2.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*application='BlogApp'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536] Performing ActiveStorage::AnalyzeJob (Job ID: ded20c99-debd-4b74-91cf-f46bcb1f2536) from Async(default) enqueued at 2026-01-27T14:56:53.071587000Z with arguments: #<GlobalID:0x00000001201592f0 @uri=#<URI::GID gid://blog-app/ActiveStorage::Blob/3>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536] Skipping image analysis because the ruby-vips gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='BlogApp',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536]   [1m[36mActiveStorage::Blob Update (1.1ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = '{"identified":true,"analyzed":true}' WHERE "active_storage_blobs"."id" = 3 /*application='BlogApp',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536]   [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = 3 /*application='BlogApp',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536]   [1m[36mPost Load (1.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = 3 /*application='BlogApp',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536]   [1m[36mPost Update (0.8ms)[0m  [1m[33mUPDATE "posts" SET "updated_at" = '2026-01-27 14:56:53.126500' WHERE "posts"."id" = 3 /*application='BlogApp',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536]   [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='BlogApp',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [ded20c99-debd-4b74-91cf-f46bcb1f2536] Performed ActiveStorage::AnalyzeJob (Job ID: ded20c99-debd-4b74-91cf-f46bcb1f2536) from Async(default) in 52.37ms
+Started GET "/" for ::1 at 2026-01-27 16:56:53 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 4.1ms | GC: 3.7ms)
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.7ms | GC: 0.5ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 16.1ms | GC: 4.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | GC: 4.1ms)
+Completed 200 OK in 33ms (Views: 12.2ms | ActiveRecord: 4.4ms (13 queries, 0 cached) | GC: 4.1ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MywicHVyIjoiYmxvYl9pZCJ9fQ==--b6aabb293b1435ad71f32cb835126691be8f07ad/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:56:53 +0200
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsiZGF0YSI6MywicHVyIjoiYmxvYl9pZCJ9fQ==--b6aabb293b1435ad71f32cb835126691be8f07ad", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:56:53 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='show',application='BlogApp',controller='redirect'*/[0m
+[36m  Disk Storage (0.3ms) [0m[34mGenerated URL for file at key: 38arvlhj5w546hf1grdwybhnj84z (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png
+Completed 302 Found in 53ms (ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Completed 304 Not Modified in 33ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:56:53 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Completed 200 OK in 20ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/posts/3/like" for ::1 at 2026-01-27 16:56:56 +0200
+Processing by PostsController#like as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"3"}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = 3 LIMIT 1 /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:62:in `set_post'
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."account_id" = 3 AND "reactions"."post_id" = 3 LIMIT 1 /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:40:in `like'
+  [1m[36mCACHE Account Load (0.0ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1[0m
+  ↳ app/controllers/posts_controller.rb:45:in `like'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = 3 LIMIT 1[0m
+  ↳ app/controllers/posts_controller.rb:45:in `like'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:45:in `like'
+  [1m[36mReaction Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "reactions" WHERE "reactions"."account_id" = 3 AND "reactions"."post_id" = 3 LIMIT 1 /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:45:in `like'
+  [1m[36mReaction Create (2.1ms)[0m  [1m[32mINSERT INTO "reactions" ("account_id", "post_id", "created_at", "updated_at") VALUES (3, 3, '2026-01-27 14:56:56.466468', '2026-01-27 14:56:56.466468') RETURNING "id" /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:45:in `like'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='like',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:45:in `like'
+Redirected to http://localhost:3000/
+Completed 302 Found in 30ms (ActiveRecord: 4.7ms (7 queries, 2 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:56:56 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 9.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 7.2ms | ActiveRecord: 3.1ms (13 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:56:56 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:56:56 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 38ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/my_profile" for ::1 at 2026-01-27 16:56:59 +0200
+Processing by PostsController#my_profile as HTML
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 3 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."account_id" = 3 ORDER BY "posts"."created_at" DESC /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 3 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 10.2ms | GC: 4.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | GC: 4.5ms)
+Completed 200 OK in 36ms (Views: 9.4ms | ActiveRecord: 2.1ms (6 queries, 0 cached) | GC: 4.5ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:56:59 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Completed 304 Not Modified in 15ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/logout" for ::1 at 2026-01-27 16:57:16 +0200
+Processing by SessionsController#destroy as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 20ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:57:16 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered posts/index.html.erb within layouts/application (Duration: 12.2ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | GC: 0.5ms)
+Completed 200 OK in 28ms (Views: 8.7ms | ActiveRecord: 4.2ms (12 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:57:16 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:57:16 +0200
+Completed 304 Not Modified in 46ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 15ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:57:20 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered posts/index.html.erb within layouts/application (Duration: 10.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | GC: 0.0ms)
+Completed 200 OK in 32ms (Views: 8.6ms | ActiveRecord: 2.8ms (12 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:57:20 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:57:20 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:57:28 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.1ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered posts/index.html.erb within layouts/application (Duration: 11.4ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | GC: 1.1ms)
+Completed 200 OK in 32ms (Views: 8.7ms | ActiveRecord: 3.2ms (12 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:57:29 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:57:29 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:57:39 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered posts/index.html.erb within layouts/application (Duration: 20.6ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.1ms | GC: 0.7ms)
+Completed 200 OK in 41ms (Views: 17.0ms | ActiveRecord: 4.5ms (12 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:57:39 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:57:39 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 35ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 35ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:57:42 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered posts/index.html.erb within layouts/application (Duration: 10.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | GC: 0.0ms)
+Completed 200 OK in 31ms (Views: 7.8ms | ActiveRecord: 2.8ms (12 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:57:43 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:57:43 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:58:02 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.1ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered posts/index.html.erb within layouts/application (Duration: 20.1ms | GC: 2.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.4ms | GC: 2.1ms)
+Completed 200 OK in 38ms (Views: 15.2ms | ActiveRecord: 5.4ms (12 queries, 0 cached) | GC: 2.1ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:58:02 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:58:02 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 35ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 35ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/accounts/new" for ::1 at 2026-01-27 16:58:07 +0200
+Processing by AccountsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering accounts/new.html.erb within layouts/application
+  Rendered accounts/new.html.erb within layouts/application (Duration: 6.5ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | GC: 0.2ms)
+Completed 200 OK in 29ms (Views: 8.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/accounts" for ::1 at 2026-01-27 16:58:17 +0200
+Processing by AccountsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "account"=>{"username"=>"aesrdtfyghjkkjjkhkhj", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Зареєструватися"}
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+  [1m[36mAccount Exists? (3.7ms)[0m  [1m[34mSELECT 1 AS one FROM "accounts" WHERE "accounts"."username" = 'aesrdtfyghjkkjjkhkhj' LIMIT 1 /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+  [1m[36mAccount Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "accounts" WHERE "accounts"."email" = 'szdxfcghv@gmail.com' LIMIT 1 /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[31mROLLBACK /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering accounts/new.html.erb within layouts/application
+  Rendered accounts/new.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 422 Unprocessable Content in 251ms (Views: 2.4ms | ActiveRecord: 7.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/accounts" for ::1 at 2026-01-27 16:58:29 +0200
+Processing by AccountsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "account"=>{"username"=>"aesrdtfyghjkkjjkhkhj", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Зареєструватися"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+  [1m[36mAccount Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "accounts" WHERE "accounts"."username" = 'aesrdtfyghjkkjjkhkhj' LIMIT 1 /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+  [1m[36mAccount Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "accounts" WHERE "accounts"."email" = 'szkjjkdxfcghv@gmail.com' LIMIT 1 /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+  [1m[36mAccount Create (2.4ms)[0m  [1m[32mINSERT INTO "accounts" ("status", "created_at", "updated_at", "username", "email", "password_digest", "display_name", "bio") VALUES ('active', '2026-01-27 14:58:29.257463', '2026-01-27 14:58:29.257463', 'aesrdtfyghjkkjjkhkhj', 'szkjjkdxfcghv@gmail.com', '$2a$12$ZQ1mGsp7C0E7DJz9ioqGfe359FocRLxOmQypyLMyH7qRZe0UoE1JS', NULL, NULL) RETURNING "id" /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*action='create',application='BlogApp',controller='accounts'*/[0m
+  ↳ app/controllers/accounts_controller.rb:8:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 249ms (ActiveRecord: 5.0ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:58:29 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (1.1ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 18.5ms | GC: 4.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.8ms | GC: 4.8ms)
+Completed 200 OK in 33ms (Views: 13.8ms | ActiveRecord: 5.1ms (13 queries, 0 cached) | GC: 4.8ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:58:29 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:58:29 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:58:31 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.2ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 12.2ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | GC: 0.8ms)
+Completed 200 OK in 33ms (Views: 9.3ms | ActiveRecord: 3.4ms (13 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:58:31 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:58:31 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/my_profile" for ::1 at 2026-01-27 16:58:32 +0200
+Processing by PostsController#my_profile as HTML
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."account_id" = 4 ORDER BY "posts"."created_at" DESC /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 24ms (Views: 1.3ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts/new" for ::1 at 2026-01-27 16:58:33 +0200
+Processing by PostsController#new as HTML
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='new',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 1.0ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/posts" for ::1 at 2026-01-27 16:58:36 +0200
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"body"=>"jkjjkjknb"}, "commit"=>"Опублікувати"}
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mPost Create (1.2ms)[0m  [1m[32mINSERT INTO "posts" ("account_id", "body", "created_at", "updated_at") VALUES (4, 'jkjjkjknb', '2026-01-27 14:58:36.586132', '2026-01-27 14:58:36.586132') RETURNING "id" /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 25ms (ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:58:36 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 14.8ms | GC: 2.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | GC: 2.5ms)
+Completed 200 OK in 30ms (Views: 11.4ms | ActiveRecord: 3.9ms (15 queries, 0 cached) | GC: 2.5ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:58:36 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:58:36 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts/new" for ::1 at 2026-01-27 16:58:37 +0200
+Processing by PostsController#new as HTML
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='new',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.4ms)
+Completed 200 OK in 23ms (Views: 1.3ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/posts" for ::1 at 2026-01-27 16:58:40 +0200
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"body"=>"kjkjljkljkl"}, "commit"=>"Опублікувати"}
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mPost Create (1.0ms)[0m  [1m[32mINSERT INTO "posts" ("account_id", "body", "created_at", "updated_at") VALUES (4, 'kjkjljkljkl', '2026-01-27 14:58:40.964943', '2026-01-27 14:58:40.964943') RETURNING "id" /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='create',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:18:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 25ms (ActiveRecord: 2.3ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:58:40 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.7ms | GC: 0.4ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.1ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 13.6ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | GC: 0.7ms)
+Completed 200 OK in 29ms (Views: 10.5ms | ActiveRecord: 3.6ms (17 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:58:41 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:58:41 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:58:42 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.1ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 16.6ms | GC: 1.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.9ms | GC: 1.9ms)
+Completed 200 OK in 37ms (Views: 13.2ms | ActiveRecord: 3.8ms (17 queries, 0 cached) | GC: 1.9ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:58:42 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:58:42 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/my_profile" for ::1 at 2026-01-27 16:58:43 +0200
+Processing by PostsController#my_profile as HTML
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."account_id" = 4 ORDER BY "posts"."created_at" DESC /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 5 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 4 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.4ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | GC: 0.4ms)
+Completed 200 OK in 28ms (Views: 5.3ms | ActiveRecord: 2.1ms (8 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:58:44 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.1ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.8ms | GC: 0.5ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.5ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 15.6ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.0ms | GC: 0.7ms)
+Completed 200 OK in 37ms (Views: 12.0ms | ActiveRecord: 4.2ms (17 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:58:45 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:58:45 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Completed 304 Not Modified in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 35ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/my_profile" for ::1 at 2026-01-27 16:59:47 +0200
+Processing by PostsController#my_profile as HTML
+  [1m[36mAccount Load (1.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."account_id" = 4 ORDER BY "posts"."created_at" DESC /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 5 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 4 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 11.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | GC: 0.0ms)
+Completed 200 OK in 37ms (Views: 10.1ms | ActiveRecord: 3.5ms (8 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:59:50 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.4ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 1.6ms | GC: 1.2ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 28.9ms | GC: 9.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.3ms | GC: 9.2ms)
+Completed 200 OK in 51ms (Views: 24.4ms | ActiveRecord: 5.0ms (17 queries, 0 cached) | GC: 9.2ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:59:50 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:59:50 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/my_profile" for ::1 at 2026-01-27 16:59:53 +0200
+Processing by PostsController#my_profile as HTML
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."account_id" = 4 ORDER BY "posts"."created_at" DESC /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 5 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 4 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.4ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | GC: 0.3ms)
+Completed 200 OK in 28ms (Views: 5.5ms | ActiveRecord: 2.0ms (8 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-01-27 16:59:56 +0200
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAccount Load (0.6ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mAccount Load (0.3ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" IN (4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mReaction Load (0.3ms)[0m  [1m[34mSELECT "reactions".* FROM "reactions" WHERE "reactions"."post_id" IN (5, 4, 3, 1) /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 3 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 3 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:33
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mAccount Load (0.2ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 2 LIMIT 1 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:48
+  [1m[36mCommentReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comment_reactions" WHERE "comment_reactions"."comment_id" = 5 /*action='index',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:52
+  Rendered comments/_form.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 15.2ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.6ms | GC: 0.6ms)
+Completed 200 OK in 36ms (Views: 11.7ms | ActiveRecord: 4.1ms (17 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiIzOGFydmxoajV3NTQ2aGYxZ3Jkd3liaG5qODR6IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOS4wNC4xNC5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTkuMDQuMTQucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTo1My4zMjVaIiwicHVyIjoiYmxvYl9rZXkifX0=--8f33571d9abfc489e688822d582531978dcff0fc/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2019.04.14.png" for ::1 at 2026-01-27 16:59:56 +0200
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJhN2NmYXBiMmJ1NWJ5bmI0Y3NqODJkbmVtOHN1IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiJTNGJTNGJTNGJTNGJTNGJTNGICUzRiUzRiUzRiUzRiUzRiUzRiAyMDI1LTExLTIxICUzRiAxOC40OC4xMS5wbmdcIjsgZmlsZW5hbWUqPVVURi04JyclRDAlOTclRDAlQkQlRDElOTYlRDAlQkMlRDAlQkUlRDAlQkElMjAlRDAlQjUlRDAlQkElRDElODAlRDAlQjAlRDAlQkQlRDAlQjAlMjAyMDI1LTExLTIxJTIwJUQwJUJFJTIwMTguNDguMTEucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0wMS0yN1QxNTowMTozNi42ODRaIiwicHVyIjoiYmxvYl9rZXkifX0=--12ae5ad4760951a025ca91a4328bb6898ce68567/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-11-21%20%D0%BE%2018.48.11.png" for ::1 at 2026-01-27 16:59:56 +0200
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 18.48.11"}
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Знімок екрана 2025-11-21 о 19.04.14"}
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Completed 304 Not Modified in 37ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/my_profile" for ::1 at 2026-01-27 17:00:02 +0200
+Processing by PostsController#my_profile as HTML
+  [1m[36mAccount Load (1.1ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 4 LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/controllers/application_controller.rb:10:in `current_account'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."account_id" = 4 ORDER BY "posts"."created_at" DESC /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:19
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 5 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 5 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:31
+  [1m[36mReaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reactions" WHERE "reactions"."post_id" = 4 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:41
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = 4 /*action='my_profile',application='BlogApp',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:45
+  Rendered comments/_form.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered posts/index.html.erb within layouts/application (Duration: 8.3ms | GC: 1.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | GC: 1.3ms)
+Completed 200 OK in 33ms (Views: 7.0ms | ActiveRecord: 3.0ms (8 queries, 0 cached) | GC: 1.3ms)
+
+

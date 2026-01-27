@@ -22,6 +22,14 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   </head>
   <body>
+    <nav>
+    <%= link_to "Головна", root_path, class: "nav-link" %>
+    
+    <% if current_account.present? %>
+      <%= link_to "Мій профіль", my_profile_path, class: "nav-link profile-button" %>
+      <%= link_to "Вийти", logout_path, method: :get %>
+    <% end %>
+  </nav>
     <%= yield %>
   </body>
 </html>

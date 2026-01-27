@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "posts#index"
 
+  get 'my_profile', to: 'posts#my_profile', as: 'my_profile'
+
   # Переконайся, що тут є і :new, і :create
   resources :posts, only: [:index, :new, :create, :show, :destroy] do
     member do
@@ -30,4 +32,6 @@ Rails.application.routes.draw do
 
   # Профілі (якщо вони знадобляться Владу для дизайну)
   resources :user_profiles, controller: 'profiles', as: 'user_profile', only: [:show]
+
+  
 end
