@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  # Вбудовані зв'язки: коментар належить автору та посту
+  # Built-in associations: comment belongs to an author and a post
   belongs_to :account
   belongs_to :post
   has_many :comment_reactions, dependent: :destroy

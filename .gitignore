@@ -1,0 +1,22 @@
+# Ігноруємо лог-файли (щоб не було конфліктів у development.log)
+/log/*.log
+/log/*.lock
+
+# Ігноруємо тимчасові файли
+/tmp/
+
+# Ігноруємо конфігурацію з паролями та секретами
+/config/database.yml
+/config/master.key
+/config/credentials/*.key
+
+# Ігноруємо файли твого MacBook (сміття системи)
+.DS_Store
+
+# Ігноруємо базу даних (якщо у вас SQLite)
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ігноруємо папку завантажень (якщо будете додавати фото постів)
+/storage/
+/public/assets

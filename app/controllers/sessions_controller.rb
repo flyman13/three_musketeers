@@ -1,24 +1,24 @@
 class SessionsController < ApplicationController
   def new
-    # Просто показує сторінку з формою логіну
+    # Just renders the login form page
   end
 
   def create
   account = Account.find_by(email: params[:email])
   
-  # authenticate — це метод, який дає гем bcrypt
+  # authenticate is provided by the bcrypt gem
   if account && account.authenticate(params[:password])
     session[:account_id] = account.id
     redirect_to root_path, notice: "З поверненням!"
   else
-    # Якщо пароль невірний, повертаємо на форму
+    # If the password is incorrect, return to the form
     flash.now[:alert] = "Невірний email або пароль"
     render :new, status: :unprocessable_entity
   end
 end
 
   def destroy
-    # Очищуємо сесію, щоб "вийти"
+    # Clear the session to log out
     session[:account_id] = nil
     redirect_to root_path, notice: "Ви вийшли з акаунта."
   end

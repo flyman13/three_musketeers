@@ -4,7 +4,8 @@ class Post < ApplicationRecord
   has_many :media_assets, dependent: :destroy
   has_many :reactions, dependent: :destroy
   
-  validates :body, presence: true
+  validates :body, presence: true, length: { maximum: 1000 } 
+  validates :image, presence: true
 
   has_one_attached :image
 end

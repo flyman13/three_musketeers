@@ -15,6 +15,16 @@
     <div>
       <%= form.submit "Опублікувати", style: "background: #0095f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" %>
       <%= link_to "Скасувати", root_path, style: "margin-left: 15px; color: #666; text-decoration: none;" %>
+      <% if @post.errors.any? %>
+        <div class="alert alert-danger error-container animate-hover">
+          <h5 class="alert-heading">Ой! Щось пішло не так:</h5>
+          <ul class="mb-0">
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

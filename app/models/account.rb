@@ -1,12 +1,12 @@
 class Account < ApplicationRecord
-  # Вбудований метод для роботи з паролями (потрібен гем bcrypt)
+  # Built-in method for password handling (requires the bcrypt gem)
   has_secure_password 
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :reactions, dependent: :destroy
   
-  # Валідації тепер живуть тут, бо таблиця Profile видалена
+  # Validations now live here because the Profile table was removed
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 end

@@ -26,7 +26,7 @@
   <hr class="separator">
 
   <div class="posts-grid">
-    <% # Головне виправлення: використовуємо перемінну циклу 'post' %>
+  <% # Important fix: use the loop variable 'post' %>
     <% @posts.each do |post| %>
       <div class="post-item">
         <%= link_to post_path(post), class: "post-link" do %>

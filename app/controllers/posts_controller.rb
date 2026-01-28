@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    # @post вже знайдено через set_post
+    # @post is already found by set_post
   end
 
   def new
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path, notice: "Пост створено!"
     else
-      # status: :unprocessable_entity важливо для Rails 7, щоб форма показувала помилки
+      # status: :unprocessable_entity is important for Rails 7 so the form displays errors
       render :new, status: :unprocessable_entity
     end
   end
@@ -49,10 +49,10 @@ class PostsController < ApplicationController
   end
 
   def my_profile
-    # Знаходимо пости тільки поточного акаунта
+    # Find posts only for the current account
     @posts = current_account.posts.order(created_at: :desc)
 
-    # Використовуємо той самий файл відображення, що і для головної сторінки
+    # Use the same view file as the main page
     render :index 
   end
 
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    # Обов'язково дозволяємо :image для завантаження фото
+    # Make sure to permit :image for uploading photos
     params.require(:post).permit(:body, :image)
   end
 

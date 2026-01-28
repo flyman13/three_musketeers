@@ -1,8 +1,8 @@
 class Reaction < ApplicationRecord
-  # Тільки ці два зв'язки!
+  # Only these two associations!
   belongs_to :account
   belongs_to :post
 
-  # Валідація: один мушкетер може лайкнути один пост лише один раз
+  # Validation: a musketeer can like a post only once
   validates :account_id, uniqueness: { scope: :post_id, message: "ви вже лайкнули цей допис" }
 end

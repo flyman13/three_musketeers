@@ -3,34 +3,34 @@ Rails.application.routes.draw do
 
   get 'my_profile', to: 'posts#my_profile', as: 'my_profile'
 
-  # Переконайся, що тут є і :new, і :create
+  # Make sure :new and :create are present here
   resources :posts, only: [:index, :new, :create, :show, :destroy] do
     member do
       post :like
       get :delete
     end
 
-    # Ось тут ми вкладаємо лайки в коментарі
+  # Here we nest likes under comments
     resources :comments, only: [:create, :destroy] do
       member do
-        post :like   # Це створить той самий like_post_comment_path
+        post :like   # This will create the same like_post_comment_path
         get :delete
       end
     end
   end
 
-  # Маршрути для авторизації (вхід/вихід)
-  get    'login',  to: 'sessions#new'     # Сторінка з формою
-  post   'login',  to: 'sessions#create'  # Процес перевірки пароля
-  
-  # Вихід із системи (підтримуємо обидва методи для надійності)
+  # Routes for authentication (login/logout)
+  get    'login',  to: 'sessions#new'     # Page with the form
+  post   'login',  to: 'sessions#create'  # Password authentication process
+
+  # Logout routes (support both methods for reliability)
   delete 'logout', to: 'sessions#destroy'
   get    'logout', to: 'sessions#destroy'
 
-  # Реєстрація нових мушкетерів
+  # Routes for account registration
   resources :accounts, only: [:new, :create]
 
-  # Профілі (якщо вони знадобляться Владу для дизайну)
+  # Profile routes (kept in case Vlad needs them for design)
   resources :user_profiles, controller: 'profiles', as: 'user_profile', only: [:show]
 
   

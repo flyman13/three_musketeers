@@ -1,18 +1,18 @@
 class Relationship < ApplicationRecord
-  # 1. Хто підписується (Фолловер)
-  # Ми називаємо зв'язок :follower, але кажемо Rails: 
-  # "Насправді дивись у таблицю Account (class_name)"
+  # 1. Who follows (Follower)
+  # We name the association :follower, but tell Rails:
+  # "Actually look up the Account table (class_name)"
   belongs_to :follower, class_name: "Account"
 
-  # 2. На кого підписуються (Зірка)
-  # Те саме: назва :followed, але клас — Account
+  # 2. Who is being followed (Followed)
+  # Same: name is :followed, but class is Account
   belongs_to :followed, class_name: "Account"
 
-  # 3. Валідації
+  # 3. Validations
   validates :follower_id, presence: true
   validates :followed_id, presence: true
 
-  # Вбудований метод унікальності: не можна підписатися двічі на ту саму людину
+  # Built-in uniqueness validation: cannot follow the same person twice
   validates :follower_id, uniqueness: { scope: :followed_id, 
                                         message: "ви вже підписані" }
 end

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  # 1. Створення коментаря
+  # 1. Create comment
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
@@ -12,22 +12,22 @@ class CommentsController < ApplicationController
     end
   end
 
-  # 2. ЛАЙК коментаря (те, чого зараз не вистачає)
+  # 2. Like a comment (feature that was missing)
   def like
     @comment = Comment.find(params[:id])
-    # Шукаємо, чи вже є лайк від цього акаунта
+    # Check whether there is already a like from this account
     @reaction = @comment.comment_reactions.find_by(account: current_account)
 
     if @reaction
-      @reaction.destroy # Якщо є — видаляємо (анлайк)
+      @reaction.destroy # If present — remove (unlike)
     else
-      @comment.comment_reactions.create(account: current_account) # Якщо немає — створюємо
+      @comment.comment_reactions.create(account: current_account) # If not present — create one
     end
 
     redirect_back fallback_location: root_path
   end
 
-  # 3. ВИДАЛЕННЯ (через наш спеціальний GET маршрут)
+  # 3. Deletion (via our special GET route)
   def delete
     destroy
   end
