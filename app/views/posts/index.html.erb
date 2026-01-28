@@ -4,7 +4,7 @@
     <div class="posts-index__header-actions">
       <% if current_account %>
         <span>Привіт, <b><%= current_account.username %></b>!</span>
-        <%= link_to "Вийти", logout_path, data: { turbo_method: :delete }, class: "link-danger" %>
+
       <% else %>
         <%= link_to "Увійти", login_path, class: "" %>
         <%= link_to "Реєстрація", new_account_path, class: "link-strong" %>
