@@ -1,10 +1,10 @@
 <div class="posts-index__container">
   <header class="posts-index__header">
-    <h2>Three Musketeers Insta</h2>
+    <h2>Three Musketeers insts</h2>
     <div class="posts-index__header-actions">
       <% if current_account %>
         <span>Привіт, <b><%= current_account.username %></b>!</span>
-        <%= link_to "Вийти", logout_path, data: { turbo_method: :delete }, class: "link-danger" %>
+
       <% else %>
         <%= link_to "Увійти", login_path, class: "" %>
         <%= link_to "Реєстрація", new_account_path, class: "link-strong" %>

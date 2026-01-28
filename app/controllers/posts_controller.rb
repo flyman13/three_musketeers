@@ -48,6 +48,14 @@ class PostsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def my_profile
+    # Знаходимо пости тільки поточного акаунта
+    @posts = current_account.posts.order(created_at: :desc)
+
+    # Використовуємо той самий файл відображення, що і для головної сторінки
+    render :index 
+  end
+
   private
 
   def set_post
@@ -60,4 +68,5 @@ class PostsController < ApplicationController
     # Обов'язково дозволяємо :image для завантаження фото
     params.require(:post).permit(:body, :image)
   end
+
 end

@@ -19,7 +19,8 @@
       <%= f.password_field :password_confirmation, class: "full-width" %>
     </div>
     <%= f.submit "Зареєструватися", class: "btn-primary" %>
+    
   <% end %>
-  
+  <p><%= link_to "Вже маєте аккаунт?", login_path %></p>
   <p><%= link_to "Назад до стрічки", root_path %></p>
 </div>
