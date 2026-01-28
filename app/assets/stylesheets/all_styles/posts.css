@@ -158,3 +158,121 @@
     background-color: #1877f2;
   }
 }
+
+.error-container {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-left: 5px solid #dc3545; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 400px; 
+}
+
+.error-container-animate-hover:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  background-color: #f8d7da; 
+}
+
+.insta-sidebar {
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  border-right: 1px solid #dbdbdb;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.insta-sidebar-logo {
+  margin-bottom: 40px;
+  padding-left: 15px;
+}
+
+.insta-logo-link {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+
+.insta-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-grow: 1;
+}
+
+.insta-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #000;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.insta-nav-item:hover {
+  background-color: #fafafa;
+  transform: scale(1.03);
+}
+
+.insta-nav-item--danger {
+  color: #dc3545;
+  margin-top: auto;
+}
+
+.insta-icon {
+  font-size: 1.4rem;
+}
+
+.insta-nav-text {
+  font-size: 1.1rem;
+}
+
+body {
+  padding-left: 240px;
+}
+
+@media (max-width: 768px) {
+  .insta-sidebar {
+    display: none;
+  }
+  body {
+    padding-left: 0;
+  }
+}
+
+.main-content {
+  padding-top: 30px;
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+.post-card {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.post-image-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #efefef;
+}
+
+.post-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-content {
+  padding: 15px;
+}

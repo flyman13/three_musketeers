@@ -21,14 +21,39 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   </head>
   <body>
-    <nav>
-    <%= link_to "Головна", root_path, class: "nav-link profile-button" %>
+    <div class="insta-sidebar">
+      <div class="insta-sidebar-logo">
+        <%= link_to "Musketeers", root_path, class: "insta-logo-link" %>
+      </div>
+
+      <nav class="insta-nav">
+        <%= link_to root_path, class: "insta-nav-item" do %>
+          <i class="bi bi-house-door-fill insta-icon"></i>
+          <span class="insta-nav-text">Головна</span>
+        <% end %>
+
+        <% if current_account.present? %>
+          <%= link_to my_profile_path, class: "insta-nav-item" do %>
+            <i class="bi bi-person-circle insta-icon"></i>
+            <span class="insta-nav-text">Мій профіль</span>
+          <% end %>
+
+          <%= link_to logout_path, method: :get, class: "insta-nav-item insta-nav-item--danger" do %>
+            <i class="bi bi-box-arrow-right insta-icon"></i>
+            <span class="insta-nav-text">Вийти</span>
+          <% end %>
+        <% end %>
+      </nav>
+    </div>
+    <main class="main-content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </main>
     
-    <% if current_account.present? %>
-      <%= link_to "Мій профіль", my_profile_path, class: "nav-link profile-button" %>
-      <%= link_to "Вийти", logout_path, method: :get, class: "nav-link profile-button" %>
-    <% end %>
-  </nav>
-    <%= yield %>
   </body>
 </html>
