@@ -1,0 +1,66 @@
+<%# Profile container %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      
+      <%# Profile Header section %>
+      <div class="d-flex align-items-center gap-4 mb-5 justify-content-center">
+        <h2 class="fw-light m-0 text-dark"><%= current_account.username %></h2>
+        <%= link_to "Edit Profile", "#", class: "btn btn-outline-secondary btn-sm fw-bold px-3" %>
+      </div>
+
+      <hr class="mb-5">
+
+       <%# Profile detailed stream with likes and delete option %>
+        <div class="profile-stream">
+        <% @posts.each do |post| %>
+            <div class="card mb-4 border-1 shadow-sm">
+            
+            <%# Post Image section %>
+            <% if post.image.attached? %>
+                <%= image_tag post.image, class: "card-img-top img-fluid" %>
+            <% end %>
+
+            <div class="card-body">
+                <%# Likes count using Reactions table %>
+                <div class="post-actions-section mb-2">
+                <span class="fw-bold text-dark">
+                    <i class="bi bi-heart-fill text-danger"></i> 
+                    <%= post.reactions.count %> likes
+                </span>
+                </div>
+
+                <%# Post Body content %>
+                <p class="card-text">
+                <span class="fw-bold me-2"><%= post.account.username %></span>
+                <%= post.body %>
+                </p>
+
+                <hr>
+
+                <%# Comments loop %>
+                <div class="post-comments-section mb-3">
+                <% post.comments.each do |comment| %>
+                    <div class="d-flex gap-2 mb-1 small">
+                    <span class="fw-bold text-dark"><%= comment.account.username %>:</span>
+                    <span class="text-secondary"><%= comment.body %></span>
+                    </div>
+                <% end %>
+                </div>
+
+                <%# Delete post button for the owner %>
+                <div class="post-management-section">
+                <%= button_to post_path(post), 
+                                method: :delete, 
+                                data: { confirm: "Are you sure you want to delete this post?" }, 
+                                class: "btn btn-outline-danger btn-sm w-100 fw-bold" do %>
+                    Delete Post
+                <% end %>
+                </div>
+            </div>
+            </div>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div>

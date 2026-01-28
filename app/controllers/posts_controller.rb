@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     @posts = current_account.posts.order(created_at: :desc)
 
     # Use the same view file as the main page
-    render :index 
+
   end
 
   private
