@@ -6,14 +6,16 @@
         <span>Привіт, <b><%= current_account.username %></b>!</span>
 
       <% else %>
-        <%= link_to "Увійти", login_path, class: "" %>
+        <%= link_to "Увійти", login_path, class: "link-strong" %>
         <%= link_to "Реєстрація", new_account_path, class: "link-strong" %>
       <% end %>
     </div>
   </header>
 
   <div class="new-post-wrap">
-    <%= link_to "+ Новий допис", new_post_path, class: "new-post-btn" %>
+    <% if current_account %>
+      <%= link_to "+ Новий допис", new_post_path, class: "new-post-btn" %>
+    <% end %>
   </div>
 
   <% @posts.each do |post| %>
