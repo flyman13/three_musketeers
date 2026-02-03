@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :destroy, :delete, :like]
+  before_action :set_post, :require_login, only: [:show, :destroy, :delete, :like]
 
   def index
     @posts = Post.includes(:account, :comments, :reactions).all.order(created_at: :desc)

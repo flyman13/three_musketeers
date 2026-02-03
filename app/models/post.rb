@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :reactions, dependent: :destroy
   
   validates :body, presence: true, length: { maximum: 1000 } 
-  validates :image, presence: true
+  validates :image, presence: true, content_type: ['image/jpeg','image/png','image/webp'], size: { less_than: 5.megabytes}
 
   has_one_attached :image
 end

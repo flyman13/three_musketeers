@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :require_login, only: [:create, :like, :destroy, :delete]
   # 1. Create comment
   def create
     @post = Post.find(params[:post_id])
