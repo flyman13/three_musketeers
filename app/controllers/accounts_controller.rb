@@ -13,6 +13,26 @@ class AccountsController < ApplicationController
     end
   end
 
+  def show
+    # Find the account by ID from the URL params
+    @account = Account.find(params[:id])
+    @posts = @account.posts.order(created_at: :desc)
+    
+    # English comment: Loading user data and their posts for the show view
+  end
+
+  def following
+    @account = Account.find(params[:id])
+    @accounts = @account.following
+    render 'show_follow' # We will use one view for both lists
+  end
+
+  def followers
+    @account = Account.find(params[:id])
+    @accounts = @account.followers
+    render 'show_follow'
+  end
+
   private
 
   def account_params

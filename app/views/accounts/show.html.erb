@@ -1,0 +1,82 @@
+<%# Profile container for other users %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      
+      <%# Profile Header section %>
+      <div class="profile-header-top d-flex align-items-center mb-5">
+        
+        <%# Profile Avatar Section %>
+        <div class="profile-avatar-container me-5">
+          <% if @account.avatar.attached? %>
+            <%= image_tag @account.avatar, class: "rounded-circle profile-avatar-img" %>
+          <% else %>
+            <div class="rounded-circle profile-avatar-placeholder"></div>
+          <% end %>
+        </div>
+
+        <div class="profile-title-actions">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <h2 class="fw-light m-0 text-dark"><%= @account.username %></h2>
+            
+            <%# Follow/Unfollow button logic for other users %>
+            <div class="profile-buttons">
+              <% if current_account.following?(@account) %>
+                <%# Find the relationship to delete it if already following %>
+                <% rel = current_account.following_relationships.find_by(followed_id: @account.id) %>
+                <%= button_to "Unfollow", relationship_path(rel), 
+                              method: :delete, 
+                              class: "btn btn-outline-secondary btn-sm fw-bold px-4" %>
+              <% else %>
+                <%# Create a new relationship if not following %>
+                <%= button_to "Follow", relationships_path(followed_id: @account.id), 
+                              method: :post, 
+                              class: "btn btn-primary btn-sm fw-bold px-4" %>
+              <% end %>
+            </div>
+          </div>
+          
+          <%# Profile Stats Section (Followers/Following) %>
+          <div class="profile-stats d-flex gap-4 mb-3">
+            <div class="stat-item">
+              <span class="fw-bold"><%= @account.posts.count %></span> posts
+            </div>
+            <div class="stat-item">
+              <span class="fw-bold"><%= @account.followers.count %></span> followers
+            </div>
+            <div class="stat-item">
+              <span class="fw-bold"><%= @account.following.count %></span> following
+            </div>
+          </div>
+
+          <%# Display user bio if present %>
+          <% if @account.description.present? %>
+            <p class="profile-description mt-2 text-dark">
+              <%= @account.description %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+
+      <hr class="mb-5">
+
+      <%# Stream of posts for this specific account %>
+      <div class="profile-stream">
+        <% @posts.each do |post| %>
+          <div class="card mb-4 border-1 shadow-sm">
+            <% if post.image.attached? %>
+              <%= image_tag post.image, class: "card-img-top img-fluid" %>
+            <% end %>
+            <div class="card-body">
+              <p class="card-text">
+                <span class="fw-bold me-2"><%= post.account.username %></span>
+                <%= post.body %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

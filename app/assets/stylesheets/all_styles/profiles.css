@@ -121,3 +121,45 @@
 .btn-primary:hover {
   background-color: #1877f2;
 }
+
+/* Container for follow/edit buttons */
+.profile-actions-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Instagram-style blue button */
+.btn-primary {
+  background-color: #0095f6;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Gray outline button for Unfollow */
+.btn-outline-secondary {
+  border-color: #dbdbdb;
+  color: #000;
+  border-radius: 8px;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 6px 16px;
+}
+
+/* Statistics section layout */
+.profile-stats {
+  font-size: 1rem;
+  color: #262626;
+}
+
+/* Individual stat item styling */
+.stat-item {
+  cursor: default;
+}
+
+/* Make numbers bold as in professional UI */
+.fw-bold {
+  font-weight: 600;
+}

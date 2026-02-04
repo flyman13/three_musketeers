@@ -28,12 +28,20 @@ Rails.application.routes.draw do
   get    'logout', to: 'sessions#destroy'
 
   # Routes for account registration
-  resources :accounts, only: [:new, :create]
+  # Corrected routes structure
+  resources :accounts, only: [:new, :create, :show] do
+    member do
+      get :following, :followers
+    end
+  end
 
   # Profile routes (kept in case Vlad needs them for design)
   resources :user_profiles, controller: 'profiles', as: 'user_profile', only: [:show]
 
   # Routes for profile management
   resource :profile, only: [:edit, :update]
+
+  # Routes for social interactions
+  resources :relationships, only: [:create, :destroy]
 
 end
