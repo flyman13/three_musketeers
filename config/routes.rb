@@ -33,5 +33,7 @@ Rails.application.routes.draw do
   # Profile routes (kept in case Vlad needs them for design)
   resources :user_profiles, controller: 'profiles', as: 'user_profile', only: [:show]
 
-  
+  # Routes for profile management
+  resource :profile, only: [:edit, :update]
+
 end

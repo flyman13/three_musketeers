@@ -77,3 +77,47 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Circle profile image styling */
+.profile-avatar-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #dbdbdb;
+}
+
+/* Gray placeholder for empty avatars */
+.profile-avatar-placeholder {
+  width: 150px;
+  height: 150px;
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+}
+
+/* Container for profile top section alignment */
+.profile-header-top {
+  padding-left: 20px;
+}
+
+/* Card styling for the edit form */
+.edit-profile-card {
+  border: 1px solid #dbdbdb;
+  border-radius: 12px;
+}
+
+/* Bio text appearance in profile */
+.profile-description {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  max-width: 400px;
+}
+
+/* Customizing the primary button to look more modern */
+.btn-primary {
+  background-color: #0095f6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1877f2;
+}

@@ -4,10 +4,29 @@
     <div class="col-md-8">
       
       <%# Profile Header section %>
-      <div class="d-flex align-items-center gap-4 mb-5 justify-content-center">
-        <h2 class="fw-light m-0 text-dark"><%= current_account.username %></h2>
-        <%= link_to "Edit Profile", "#", class: "btn btn-outline-secondary btn-sm fw-bold px-3" %>
-      </div>
+      <div class="profile-header-top d-flex align-items-center mb-4">
+        <div class="profile-avatar-container me-5">
+            <% if current_account.avatar.attached? %>
+            <%= image_tag current_account.avatar, class: "rounded-circle profile-avatar-img" %>
+            <% else %>
+            <div class="rounded-circle profile-avatar-placeholder"></div>
+            <% end %>
+        </div>
+
+        <div class="profile-title-actions">
+            <div class="d-flex align-items-center gap-3 mb-2">
+            <h2 class="fw-light m-0"><%= current_account.username %></h2>
+            <%= link_to "Edit Profile", edit_profile_path, class: "btn btn-outline-secondary btn-sm fw-bold px-3" %>
+            </div>
+            
+            <%# Display user bio if present %>
+            <% if current_account.description.present? %>
+            <p class="profile-description mt-2 text-dark">
+                <%= current_account.description %>
+            </p>
+            <% end %>
+        </div>
+        </div>
 
       <hr class="mb-5">
 

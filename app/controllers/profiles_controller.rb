@@ -1,9 +1,27 @@
 class ProfilesController < ApplicationController
-  def show
-    # Find the profile by username from the URL (e.g. user_2)
-    @profile = Profile.find_by!(username: params[:id])
-    
-    # Get all posts for this account
-    @posts = @profile.account.posts.order(created_at: :desc)
+  before_action :set_account
+
+  # Display the edit form
+  def edit
+  end
+
+  # Update account information
+  def update
+    if @account.update(account_params)
+      redirect_to my_profile_path, notice: "Profile updated successfully."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def set_account
+    @account = current_account
+  end
+
+  # Strong parameters to allow avatar and description
+  def account_params
+    params.require(:account).permit(:username, :description, :avatar)
   end
 end

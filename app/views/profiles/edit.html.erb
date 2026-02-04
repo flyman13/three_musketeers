@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="edit-profile-card card p-4 shadow-sm">
+        <h2 class="mb-4 fw-bold text-center">Edit Profile</h2>
+
+        <%= form_with model: @account, url: profile_path, method: :patch, local: true do |f| %>
+          <%# Avatar upload field %>
+          <div class="mb-4 text-center">
+            <div class="mb-2">
+              <label class="form-label fw-bold">Profile Picture</label>
+            </div>
+            <%= f.file_field :avatar, class: "form-control" %>
+          </div>
+
+          <%# Username field %>
+          <div class="mb-3">
+            <%= f.label :username, class: "form-label fw-bold" %>
+            <%= f.text_field :username, class: "form-control" %>
+          </div>
+
+          <%# Description field %>
+          <div class="mb-4">
+            <%= f.label :description, "Bio", class: "form-label fw-bold" %>
+            <%= f.text_area :description, rows: 3, class: "form-control", placeholder: "Tell us about yourself..." %>
+          </div>
+
+          <%# Submit button %>
+          <div class="d-grid gap-2">
+            <%= f.submit "Update Profile", class: "btn btn-primary fw-bold" %>
+            <%= link_to "Cancel", my_profile_path, class: "btn btn-link text-muted" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
