@@ -1,67 +1,30 @@
 <!DOCTYPE html>
-<html>
   <head>
     <title><%= content_for(:title) || "Blog App" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Blog App">
-    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+  <%# Include Bootstrap CSS (load BEFORE your application CSS so your styles can override it) %>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+  <%# This line includes application.css %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
-    <%# Favicon %>
-    <%= favicon_link_tag 'fav-icon.jpg' %>
+  <%# Also include individual compiled stylesheets to ensure view-specific styles are loaded %>
+  <%= stylesheet_link_tag "posts", "profiles", "loading", "inline_from_views", media: "all", "data-turbo-track": "reload" %>
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <%# This line includes JavaScript and Turbo %>
+  <%= javascript_importmap_tags %>
+
+  <%# Your favicon %>
+  <%= favicon_link_tag 'fav-icon.jpg' %>
   </head>
   <body>
-    <%= render 'layouts/loading' %>
+    <%# Переконайся, що цей файл існує і не містить помилок %>
+    <%= render 'layouts/loading' if lookup_context.exists?('layouts/_loading', [], true) %>
     
-    <script>
-      document.addEventListener('turbo:visit', function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-          loadingScreen.classList.remove('hidden');
-        }
-      });
-
-      document.addEventListener('turbo:load', function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-          loadingScreen.classList.add('hidden');
-        }
-      });
-
-      document.addEventListener('turbo:submit-start', function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-          loadingScreen.classList.remove('hidden');
-        }
-      });
-
-      document.addEventListener('turbo:submit-end', function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-          loadingScreen.classList.add('hidden');
-        }
-      });
-
-      window.addEventListener('load', function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-          setTimeout(() => {
-            loadingScreen.classList.add('hidden');
-          }, 300);
-        }
-      });
-    </script>
     <div class="insta-sidebar">
       <div class="insta-sidebar-logo">
         <%= link_to "Musketeers", root_path, class: "insta-logo-link" %>
@@ -79,16 +42,19 @@
             <span class="insta-nav-text">Мій профіль</span>
           <% end %>
 
-          <%= link_to logout_path, method: :get, class: "insta-nav-item insta-nav-item--danger" do %>
+          <%# Змінюємо спосіб виходу для кращої сумісності %>
+          <%= link_to logout_path, class: "insta-nav-item insta-nav-item--danger" do %>
             <i class="bi bi-box-arrow-right insta-icon"></i>
             <span class="insta-nav-text">Вийти</span>
           <% end %>
         <% end %>
       </nav>
     </div>
+
     <main class="main-content">
       <div class="container">
         <div class="row justify-content-center">
+          <%# Контейнер для Turbo-відповідей %>
           <div class="col-12 col-md-8 col-lg-6">
             <%= yield %>
           </div>
@@ -96,5 +62,18 @@
       </div>
     </main>
 
+    <%# Весь JS краще тримати в одному місці в кінці body або в application.js %>
+    <script type="module">
+      import { Turbo } from "@hotwired/turbo-rails"
+      
+      const toggleLoader = (show) => {
+        const screen = document.getElementById('loading-screen');
+        if (screen) screen.classList.toggle('hidden', !show);
+      };
+
+      document.addEventListener('turbo:submit-start', () => toggleLoader(true));
+      document.addEventListener('turbo:submit-end', () => toggleLoader(false));
+      document.addEventListener('turbo:load', () => toggleLoader(false));
+    </script>
   </body>
 </html>

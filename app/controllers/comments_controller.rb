@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :require_login, only: [:create, :like, :destroy, :delete]
+  # Видалили :delete звідси, бо методу delete не існує
+  before_action :require_login, only: [:create, :like, :unlike, :destroy]
+
   # 1. Create comment
   def create
     @post = Post.find(params[:post_id])
@@ -13,26 +15,30 @@ class CommentsController < ApplicationController
     end
   end
 
-  # 2. Like a comment (feature that was missing)
   def like
     @comment = Comment.find(params[:id])
-    # Check whether there is already a like from this account
-    @reaction = @comment.comment_reactions.find_by(account: current_account)
+    @post = @comment.post # Важливо для знаходження ID на сторінці
+    @comment.comment_reactions.find_or_create_by(account: current_account)
 
-    if @reaction
-      @reaction.destroy # If present — remove (unlike)
-    else
-      @comment.comment_reactions.create(account: current_account) # If not present — create one
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_back fallback_location: root_path }
     end
-
-    redirect_back fallback_location: root_path
   end
 
-  # 3. Deletion (via our special GET route)
-  def delete
-    destroy
+  def unlike
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
+    @reaction = @comment.comment_reactions.find_by(account: current_account)
+    @reaction&.destroy
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_back fallback_location: root_path }
+    end
   end
 
+  # 4. Destroy comment
   def destroy
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
