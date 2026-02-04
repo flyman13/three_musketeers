@@ -77,3 +77,89 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Circle profile image styling */
+.profile-avatar-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #dbdbdb;
+}
+
+/* Gray placeholder for empty avatars */
+.profile-avatar-placeholder {
+  width: 150px;
+  height: 150px;
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+}
+
+/* Container for profile top section alignment */
+.profile-header-top {
+  padding-left: 20px;
+}
+
+/* Card styling for the edit form */
+.edit-profile-card {
+  border: 1px solid #dbdbdb;
+  border-radius: 12px;
+}
+
+/* Bio text appearance in profile */
+.profile-description {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  max-width: 400px;
+}
+
+/* Customizing the primary button to look more modern */
+.btn-primary {
+  background-color: #0095f6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1877f2;
+}
+
+/* Container for follow/edit buttons */
+.profile-actions-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Instagram-style blue button */
+.btn-primary {
+  background-color: #0095f6;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Gray outline button for Unfollow */
+.btn-outline-secondary {
+  border-color: #dbdbdb;
+  color: #000;
+  border-radius: 8px;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 6px 16px;
+}
+
+/* Statistics section layout */
+.profile-stats {
+  font-size: 1rem;
+  color: #262626;
+}
+
+/* Individual stat item styling */
+.stat-item {
+  cursor: default;
+}
+
+/* Make numbers bold as in professional UI */
+.fw-bold {
+  font-weight: 600;
+}

@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3 class="mb-4 fw-bold"><%= action_name.capitalize %></h3>
+      
+      <div class="list-group shadow-sm">
+        <% @accounts.each do |account| %>
+          <div class="list-group-item d-flex align-items-center justify-content-between p-3">
+            <div class="d-flex align-items-center">
+              <% if account.avatar.attached? %>
+                <%= image_tag account.avatar, class: "rounded-circle me-3", style: "width: 45px; height: 45px; object-fit: cover;" %>
+              <% else %>
+                <div class="rounded-circle bg-light me-3" style="width: 45px; height: 45px; border: 1px solid #dbdbdb;"></div>
+              <% end %>
+              
+              <%= link_to account.username, account_path(account), class: "fw-bold text-dark text-decoration-none" %>
+            </div>
+
+            <%# Show follow/unfollow button if it's not you %>
+            <% if current_account != account %>
+               <% if current_account.following?(account) %>
+                <% rel = current_account.following_relationships.find_by(followed_id: account.id) %>
+                <%= button_to "Unfollow", relationship_path(rel), method: :delete, class: "btn btn-outline-secondary btn-sm fw-bold" %>
+              <% else %>
+                <%= button_to "Follow", relationships_path(followed_id: account.id), method: :post, class: "btn btn-primary btn-sm fw-bold" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="mt-4">
+        <%= link_to "Back to Profile", account_path(@account), class: "btn btn-link text-muted p-0" %>
+      </div>
+    </div>
+  </div>
+</div>

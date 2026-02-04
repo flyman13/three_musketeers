@@ -375,3 +375,12 @@ body {
 .fw-bold {
   font-weight: 700;
 }
+
+/* Clean links for usernames */
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.text-dark:hover {
+  color: #8e8e8e !important; /* Slight fade on hover like Instagram */
+}

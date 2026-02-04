@@ -22,7 +22,10 @@
     <div class="post-card">
       
       <div class="post-meta-row">
-        <strong><%= post.account&.username || "Анонім" %></strong>
+        <%# Link to the user's profile from the post header %>
+        <div class="post-header mb-2">
+          <%= link_to post.account.username, account_path(post.account), class: "fw-bold text-dark text-decoration-none" %>
+        </div>
         <% if post.account == current_account %>
           <%= link_to "Видалити", delete_post_path(post), 
                       data: { confirm: "Ви впевнені?" }, 

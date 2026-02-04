@@ -51,6 +51,7 @@ class PostsController < ApplicationController
   def my_profile
     # Find posts only for the current account
     @posts = current_account.posts.order(created_at: :desc)
+    @account = current_account
 
     # Use the same view file as the main page
 
