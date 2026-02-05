@@ -1,20 +1,44 @@
-<div class="post-show-container">
-  <div class="post-main-content">
-    <div class="post-media">
-      <% if @post.image.attached? %>
-        <%= image_tag @post.image, style: "width: 100%;" %>
-      <% end %>
-    </div>
+<div class="container mt-4">
+  <%# Кнопка назад %>
+  <div class="mb-3">
+    <%= link_to :back, class: "text-dark text-decoration-none fw-bold d-flex align-items-center gap-2" do %>
+      <i class="bi bi-arrow-left fs-4"></i> Назад
+    <% end %>
+  </div>
 
-    <div class="post-details">
-      <header>
-        <strong><%= link_to @post.account.username, "#" %></strong>
-      </header>
-      
-      <div class="post-body">
-        <p><%= @post.body %></p>
+  <div class="card shadow-sm border-0 overflow-hidden post-show-card">
+    <div class="row g-0">
+      <%# Ліва частина: Зображення %>
+      <div class="col-md-7 bg-light d-flex align-items-center justify-content-center">
+        <% if @post.image.attached? %>
+          <%= image_tag @post.image, class: "img-fluid w-100 h-100 object-fit-contain" %>
+        <% end %>
       </div>
 
+      <%# Права частина: Інфо, лайки та коментарі %>
+      <div class="col-md-5 d-flex flex-column bg-white">
+        <div class="p-3 border-bottom d-flex align-items-center gap-2">
+          <%= link_to account_path(@post.account), class: "fw-bold text-dark text-decoration-none" do %>
+            <%= @post.account.username %>
+          <% end %>
+        </div>
+
+        <div class="p-3 flex-grow-1 overflow-auto" style="max-height: 400px;">
+          <p><span class="fw-bold me-2"><%= @post.account.username %></span><%= @post.body %></p>
+          <hr>
+          <%# Секція коментарів %>
+          <div id="comments_post_<%= @post.id %>">
+             <%= render @post.comments %>
+          </div>
+        </div>
+
+        <%# Блок лайків (Turbo) %>
+        <div class="p-3 border-top">
+          <div id="like_post_<%= @post.id %>">
+            <%= render "posts/like_button", post: @post %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
