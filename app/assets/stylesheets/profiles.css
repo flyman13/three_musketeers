@@ -163,3 +163,14 @@
 .fw-bold {
   font-weight: 600;
 }
+
+.profile-avatar-img, .profile-avatar-placeholder {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #dbdbdb;
+}
+
+.profile-avatar-placeholder {
+  background-color: #efefef;
+}
