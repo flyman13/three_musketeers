@@ -174,3 +174,15 @@
 .profile-avatar-placeholder {
   background-color: #efefef;
 }
+
+.grid-item {
+  width: calc(33.333% - 3px); /* Рівно три в ряд */
+  aspect-ratio: 1 / 1; /* Робимо їх квадратними */
+  overflow: hidden;
+}
+
+.grid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Щоб фото не стискалося */
+}

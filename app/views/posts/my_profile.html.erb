@@ -52,12 +52,17 @@
 
       <hr class="mb-5">
 
-      <%# Стрічка постів (можна залишити як була, або зробити сітку) %>
-      <div class="profile-stream">
-        <% @posts.each do |post| %>
-          <%# Твій старий код для карток постів тут %>
-        <% end %>
-      </div>
+      <div class="profile-posts-grid d-flex flex-wrap gap-1">
+      <% @posts.each do |post| %>
+        <div class="grid-item">
+          <% if post.image.attached? %>
+            <%= link_to post_path(post) do %>
+              <%= image_tag post.image, class: "grid-image" %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
     </div>
   </div>
