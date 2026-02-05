@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy] do
       member do
         post :like   # This will create the same like_post_comment_path
-        get :delete
+        delete :unlike
       end
     end
   end
@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   # Routes for account registration
   # Corrected routes structure
   resources :accounts, only: [:new, :create, :show] do
+    collection do
+      get :search # Route for the search functional
+    end
     member do
       get :following, :followers
     end
@@ -43,5 +46,7 @@ Rails.application.routes.draw do
 
   # Routes for social interactions
   resources :relationships, only: [:create, :destroy]
+
+  resources :reactions, only: [:create, :destroy]
 
 end

@@ -1,0 +1,32 @@
+<div id="like_post_<%= post.id %>" class="post-actions-section mb-3">
+  <% if current_account %>
+    <% reaction = current_account.reactions.find_by(post: post) %>
+    <div class="d-flex align-items-center gap-2">
+      <% if reaction %>
+        <%# Додаємо remote та turbo_stream %>
+        <%= button_to reaction_path(reaction), 
+                      method: :delete, 
+                      remote: true, 
+                      data: { turbo_stream: true }, 
+                      class: "btn-like" do %>
+          <i class="bi bi-heart-fill text-danger fs-4"></i>
+        <% end %>
+      <% else %>
+        <%# Додаємо remote та turbo_stream %>
+        <%= button_to reactions_path(post_id: post.id), 
+                      method: :post, 
+                      remote: true, 
+                      data: { turbo_stream: true }, 
+                      class: "btn-like" do %>
+          <i class="bi bi-heart text-dark fs-4"></i>
+        <% end %>
+      <% end %>
+      <span class="fw-bold"><%= post.reactions.count %> likes</span>
+    </div>
+  <% else %>
+    <div class="d-flex align-items-center gap-2">
+      <i class="bi bi-heart text-muted fs-4"></i>
+      <span class="fw-bold"><%= post.reactions.count %> likes</span>
+    </div>
+  <% end %>
+</div>

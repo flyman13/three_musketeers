@@ -1,78 +1,71 @@
 <div class="posts-index__container">
-  <header class="posts-index__header">
-    <h2>Three Musketeers insts</h2>
+  <header class="posts-index__header mb-4">
+    <h2 class="fw-bold">Three Musketeers</h2>
     <div class="posts-index__header-actions">
       <% if current_account %>
-        <span>Привіт, <b><%= current_account.username %></b>!</span>
-
+        <span>Hi, <b><%= current_account.username %></b>!</span>
       <% else %>
-        <%= link_to "Увійти", login_path, class: "link-strong" %>
-        <%= link_to "Реєстрація", new_account_path, class: "link-strong" %>
+        <%= link_to "Login", login_path, class: "link-strong me-2" %>
+        <%= link_to "Sign Up", new_account_path, class: "link-strong" %>
       <% end %>
     </div>
   </header>
 
-  <div class="new-post-wrap">
+  <div class="search-container mb-4">
+    <%= form_with url: search_accounts_path, method: :get, local: true, class: "d-flex" do |f| %>
+      <%= f.text_field :username, placeholder: "Search users...", class: "form-control search-input", value: params[:username] %>
+    <% end %>
+  </div>
+
+  <div class="new-post-wrap mb-4">
     <% if current_account %>
-      <%= link_to "+ Новий допис", new_post_path, class: "new-post-btn" %>
+      <%= link_to "+ New Post", new_post_path, class: "new-post-btn btn btn-primary w-100 fw-bold" %>
     <% end %>
   </div>
 
   <% @posts.each do |post| %>
-    <div class="post-card">
-      
-      <div class="post-meta-row">
-        <%# Link to the user's profile from the post header %>
-        <div class="post-header mb-2">
+    <div class="post-card card mb-5 shadow-sm">
+      <div class="post-meta-row card-header bg-white d-flex justify-content-between align-items-center">
+        <div class="post-header">
           <%= link_to post.account.username, account_path(post.account), class: "fw-bold text-dark text-decoration-none" %>
         </div>
-        <% if post.account == current_account %>
-          <%= link_to "Видалити", delete_post_path(post), 
-                      data: { confirm: "Ви впевнені?" }, 
-                      class: "link-danger comment-action-link", title: "Видалити" %>
+        <% if current_account == post.account %>
+          <%= link_to "Delete", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-danger small text-decoration-none" %>
         <% end %>
       </div>
 
       <% if post.image.attached? %>
         <div class="post-image">
-          <%= image_tag post.image, class: "" %>
+          <%= image_tag post.image, class: "card-img-top" %>
         </div>
       <% end %>
-      <p class="post-body"><%= post.body %></p>
-      
-      <hr>
 
-      <div>
-        <%= button_to "❤️ #{post.reactions.count}", like_post_path(post), method: :post, class: "reactions-btn" %>
-      </div>
+      <div class="card-body">
+        <p class="post-body card-text"><%= post.body %></p>
+        <hr>
 
-      <div class="comments-wrap">
-        <% post.comments.each do |comment| %>
-          <div class="comment-item">
-            <p class="comment-author">
-              <b><%= comment.account&.username || "Анонім" %>:</b> <%= comment.body %>
-            </p>
-            
-            <div class="comment-actions">
-              <%= button_to "👍 #{comment.comment_reactions.count}", 
-                            like_post_comment_path(post, comment), 
-                            method: :post, 
-                            class: "", title: "Like comment" %>
+        <%# Виклик partial для лайків поста %>
+        <%= render "posts/like_button", post: post %>
 
-              <% if comment.account == current_account %>
-                <%= link_to "🗑️", delete_post_comment_path(post, comment), 
-                            data: { confirm: "Видалити коментар?" }, 
-                            class: "comment-action-link" %>
-              <% end %>
+        <div class="comments-wrap mt-3 bg-light p-3 rounded">
+          <% post.comments.each do |comment| %>
+            <div class="comment-item mb-2 border-bottom pb-1">
+              <p class="comment-author m-0">
+                <b><%= link_to (comment.account&.username || "Anon"), account_path(comment.account), class: "text-dark text-decoration-none" %>:</b> 
+                <%= comment.body %>
+              </p>
+              
+              <%# Виклик partial для лайків коментаря %>
+              <%= render "comments/like_button", post: post, comment: comment %>
             </div>
-          </div>
-        <% end %>
+          <% end %>
 
-        <% if current_account %>
-          <div class="comment-form-wrap">
-            <%= render 'comments/form', post: post %>
-          </div>
-        <% end %>
+          <% if current_account %>
+            <div class="comment-form-wrap mt-3">
+              <%= render 'comments/form', post: post %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>

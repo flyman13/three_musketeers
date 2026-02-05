@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%# Кнопка повернення та заголовок %>
+      <div class="d-flex align-items-center mb-4 gap-3">
+        <%= link_to root_path, class: "btn btn-outline-dark border-0 rounded-circle p-2 d-flex align-items-center justify-content-center", style: "width: 40px; height: 40px;" do %>
+          <i class="bi bi-arrow-left fs-4"></i>
+        <% end %>
+        <h3 class="m-0 fw-bold">Search Results</h3>
+      </div>
+
+      <% if @accounts.any? %>
+        <div class="list-group shadow-sm">
+          <% @accounts.each do |account| %>
+            <div class="list-group-item d-flex align-items-center justify-content-between p-3">
+              <div class="d-flex align-items-center">
+                <% if account.avatar.attached? %>
+                  <%= image_tag account.avatar, class: "rounded-circle me-3", style: "width: 45px; height: 45px; object-fit: cover;" %>
+                <% else %>
+                  <div class="rounded-circle bg-light me-3" style="width: 45px; height: 45px; border: 1px solid #dbdbdb;"></div>
+                <% end %>
+                <%= link_to account.username, account_path(account), class: "fw-bold text-dark text-decoration-none" %>
+              </div>
+              
+              <% if current_account != account %>
+                <%# Обгортка для Turbo Stream підписки %>
+                <div id="follow_form_<%= account.id %>">
+                  <% if current_account.following?(account) %>
+                    <%= button_to "Unfollow", relationship_path(current_account.following_relationships.find_by(followed_id: account.id)), 
+                                  method: :delete, 
+                                  data: { turbo_stream: true }, 
+                                  class: "btn btn-outline-secondary btn-sm fw-bold" %>
+                  <% else %>
+                    <%= button_to "Follow", relationships_path(followed_id: account.id), 
+                                  method: :post, 
+                                  data: { turbo_stream: true }, 
+                                  class: "btn btn-primary btn-sm fw-bold" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="text-center mt-5">
+          <p class="text-muted">No users found with that name.</p>
+          <%= link_to "Back to Feed", root_path, class: "btn btn-link text-decoration-none" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

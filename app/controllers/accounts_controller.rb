@@ -33,6 +33,15 @@ class AccountsController < ApplicationController
     render 'show_follow'
   end
 
+  def search
+    if params[:username].present?
+      # Search for accounts where username is similar to the query
+      @accounts = Account.where("username LIKE ?", "%#{params[:username]}%")
+    else
+      @accounts = Account.none
+    end
+  end
+
   private
 
   def account_params
