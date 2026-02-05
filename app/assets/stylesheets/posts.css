@@ -173,86 +173,7 @@
   background-color: #f8d7da; 
 }
 
-.insta-sidebar {
-  width: 240px;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
-  padding: 20px;
-  border-right: 1px solid #dbdbdb;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-}
-
-.insta-sidebar-logo {
-  margin-bottom: 40px;
-  padding-left: 15px;
-}
-
-.insta-logo-link {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #000;
-}
-
-.insta-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  flex-grow: 1;
-}
-
-.insta-nav-item {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 12px 15px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #000;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.insta-nav-item:hover {
-  background-color: #fafafa;
-  transform: scale(1.03);
-}
-
-.insta-nav-item--danger {
-  color: #dc3545;
-  margin-top: auto;
-}
-
-.insta-icon {
-  font-size: 1.4rem;
-}
-
-.insta-nav-text {
-  flex-grow: 1;
-  margin-left: 10px;
-  color: #555;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-}
-
-body {
-  padding-left: 240px;
-}
-
-@media (max-width: 768px) {
-  .insta-sidebar {
-    display: none;
-  }
-  body {
-    padding-left: 0;
-  }
-}
+/* Sidebar rules moved to sidebar.css (single source of truth) */
 
 .main-content {
   padding-top: 30px;
@@ -391,7 +312,7 @@ body {
   border: none;
   border-radius: 8px;
   padding: 8px 16px;
-  width: 250px;
+  width: 100%;
 }
 
 .search-input:focus {

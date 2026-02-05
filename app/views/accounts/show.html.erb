@@ -42,10 +42,14 @@
               <span class="fw-bold"><%= @account.posts.count %></span> posts
             </div>
             <div class="stat-item">
-              <span class="fw-bold"><%= @account.followers.count %></span> followers
+              <%= link_to followers_account_path(@account), class: "text-decoration-none text-dark" do %>
+                <span class="fw-bold"><%= @account.followers.count %></span> followers
+              <% end %>
             </div>
             <div class="stat-item">
-              <span class="fw-bold"><%= @account.following.count %></span> following
+              <%= link_to following_account_path(@account), class: "text-decoration-none text-dark" do %>
+                <span class="fw-bold"><%= @account.following.count %></span> following
+              <% end %>
             </div>
           </div>
 

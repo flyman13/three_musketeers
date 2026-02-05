@@ -14,7 +14,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
     <%# Also include individual compiled stylesheets to ensure view-specific styles are loaded %>
-    <%= stylesheet_link_tag "posts", "profiles", "loading", "inline_from_views", media: "all", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "sidebar", "posts", "profiles", "loading", "inline_from_views", media: "all", "data-turbo-track": "reload" %>
 
     <%# This line includes JavaScript and Turbo %>
     <%= javascript_importmap_tags %>
@@ -24,12 +24,14 @@
   </head>
 
   <body>
-    <%# Переконайся, що цей файл існує і не містить помилок %>
     <%= render 'layouts/loading' if lookup_context.exists?('layouts/_loading', [], true) %>
 
     <div class="insta-sidebar">
-      <div class="insta-sidebar-logo">
-        <%= link_to "Musketeers", root_path, class: "insta-logo-link" %>
+      <div class="insta-sidebar-logo d-flex justify-content-center py-4">
+        <%= link_to root_path, class: "insta-logo-link" do %>
+          <%# Встановлюємо чіткий розмір 40x40 %>
+          <%= image_tag "fav-icon.jpg", size: "40x40", alt: "Musketeers Logo", class: "insta-logo-img shadow-sm" %>
+        <% end %>
       </div>
 
       <nav class="insta-nav">
@@ -63,7 +65,6 @@
       </div>
     </main>
 
-    <%# Весь JS краще тримати в одному місці в кінці body або в application.js %>
     <script type="module">
       import { Turbo } from "@hotwired/turbo-rails"
 

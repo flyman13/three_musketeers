@@ -20,8 +20,16 @@
           <%# Статистика %>
           <div class="profile-stats d-flex gap-4 mb-3">
             <span><strong><%= @account.posts.count %></strong> posts</span>
-            <span><strong><%= @account.followers.count %></strong> followers</span>
-            <span><strong><%= @account.following.count %></strong> following</span>
+            <span>
+              <%= link_to followers_account_path(@account), class: "text-decoration-none text-dark" do %>
+                <strong><%= @account.followers.count %></strong> followers
+              <% end %>
+            </span>
+            <span>
+              <%= link_to following_account_path(@account), class: "text-decoration-none text-dark" do %>
+                <strong><%= @account.following.count %></strong> following
+              <% end %>
+            </span>
           </div>
 
           <%# Опис (BIO) %>
