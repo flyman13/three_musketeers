@@ -1,30 +1,32 @@
 <!DOCTYPE html>
+<html>
   <head>
     <title><%= content_for(:title) || "Blog App" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-  <%# Include Bootstrap CSS (load BEFORE your application CSS so your styles can override it) %>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <%# Include Bootstrap CSS (load BEFORE your application CSS so your styles can override it) %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <%# This line includes application.css %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%# This line includes application.css %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
-  <%# Also include individual compiled stylesheets to ensure view-specific styles are loaded %>
-  <%= stylesheet_link_tag "posts", "profiles", "loading", "inline_from_views", media: "all", "data-turbo-track": "reload" %>
+    <%# Also include individual compiled stylesheets to ensure view-specific styles are loaded %>
+    <%= stylesheet_link_tag "posts", "profiles", "loading", "inline_from_views", media: "all", "data-turbo-track": "reload" %>
 
-  <%# This line includes JavaScript and Turbo %>
-  <%= javascript_importmap_tags %>
+    <%# This line includes JavaScript and Turbo %>
+    <%= javascript_importmap_tags %>
 
-  <%# Your favicon %>
-  <%= favicon_link_tag 'fav-icon.jpg' %>
+    <%# Your favicon %>
+    <%= favicon_link_tag 'fav-icon.jpg' %>
   </head>
+
   <body>
     <%# Переконайся, що цей файл існує і не містить помилок %>
     <%= render 'layouts/loading' if lookup_context.exists?('layouts/_loading', [], true) %>
-    
+
     <div class="insta-sidebar">
       <div class="insta-sidebar-logo">
         <%= link_to "Musketeers", root_path, class: "insta-logo-link" %>
@@ -42,7 +44,6 @@
             <span class="insta-nav-text">Мій профіль</span>
           <% end %>
 
-          <%# Змінюємо спосіб виходу для кращої сумісності %>
           <%= link_to logout_path, class: "insta-nav-item insta-nav-item--danger" do %>
             <i class="bi bi-box-arrow-right insta-icon"></i>
             <span class="insta-nav-text">Вийти</span>
@@ -65,7 +66,7 @@
     <%# Весь JS краще тримати в одному місці в кінці body або в application.js %>
     <script type="module">
       import { Turbo } from "@hotwired/turbo-rails"
-      
+
       const toggleLoader = (show) => {
         const screen = document.getElementById('loading-screen');
         if (screen) screen.classList.toggle('hidden', !show);
