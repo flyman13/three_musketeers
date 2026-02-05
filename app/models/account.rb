@@ -10,7 +10,11 @@ class Account < ApplicationRecord
   # Validations now live here because the Profile table was removed
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  validates :avatar, presence: true, content_type: ['image/jpeg','image/png','image/webp'], size: { less_than: 5.megabytes}
+  # В app/models/account.rb
+  validates :avatar, 
+            content_type: ['image/jpeg', 'image/png', 'image/webp'], 
+            size: { less_than: 5.megabytes },
+            allow_nil: true # Дозволяємо реєструватися без фото
 
   # Accounts that follow YOU (Followers)
   # Change foreign_key from following_id to followed_id

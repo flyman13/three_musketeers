@@ -11,9 +11,17 @@
       </div>
 
       <ul class="profile-stats">
-        <li><strong><%= @posts.count %></strong> дописів</li>
-        <li><strong><%= @profile.account.followers.count %></strong> читачів</li>
-        <li><strong><%= @profile.account.following.count %></strong> стежить</li>
+        <li><strong><%= @posts.count %></strong> posts</li>
+        <li>
+          <%= link_to followers_account_path(@profile.account), class: "text-decoration-none text-dark" do %>
+            <strong><%= @profile.account.followers.count %></strong> followers
+          <% end %>
+        </li>
+        <li>
+          <%= link_to following_account_path(@profile.account), class: "text-decoration-none text-dark" do %>
+            <strong><%= @profile.account.following.count %></strong> following
+          <% end %>
+        </li>
       </ul>
 
       <div class="profile-bio">
