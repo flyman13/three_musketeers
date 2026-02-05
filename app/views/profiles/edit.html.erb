@@ -10,7 +10,7 @@
             <div class="mb-2">
               <label class="form-label fw-bold">Profile Picture</label>
             </div>
-            <%= f.file_field :avatar, class: "form-control" %>
+            <%= f.file_field :avatar, class: "form-control", accept: 'image/png,image/gif,image/jpeg' %>
           </div>
 
           <%# Username field %>
