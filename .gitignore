@@ -19,4 +19,4 @@
 
 # Ігноруємо папку завантажень (якщо будете додавати фото постів)
 /storage/
-/public/assets
+/public/assetstmp/cache/bootsnap/
