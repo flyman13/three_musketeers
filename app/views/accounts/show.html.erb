@@ -19,6 +19,11 @@
           <div class="d-flex align-items-center gap-3 mb-3">
             <h2 class="fw-light m-0 text-dark"><%= @account.username %></h2>
             
+            <%# Edit button for the account owner %>
+            <% if current_account == @account %>
+              <%= link_to "Edit Profile", edit_profile_path, class: "btn btn-outline-secondary btn-sm fw-bold px-4" %>
+            <% end %>
+
             <%# Follow/Unfollow button logic for other users %>
             <div class="profile-buttons">
               <% if current_account && current_account != @account %>

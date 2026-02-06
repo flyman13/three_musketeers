@@ -45,9 +45,15 @@ class CommentsController < ApplicationController
 
     if @comment.account == current_account
       @comment.destroy
-      redirect_back fallback_location: root_path, notice: 'Коментар видалено.'
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_back fallback_location: root_path, notice: 'Comment removed.' }
+      end
     else
-      redirect_back fallback_location: root_path, alert: 'Ви не можете видалити чужий коментар!'
+      respond_to do |format|
+        format.turbo_stream { head :forbidden }
+        format.html { redirect_back fallback_location: root_path, alert: 'You cannot delete someone else\'s comment!' }
+      end
     end
   end
 

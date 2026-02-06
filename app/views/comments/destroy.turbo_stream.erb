@@ -1,0 +1,10 @@
+<%= turbo_stream.replace dom_id(@comment) do %>
+	<div id="<%= dom_id(@comment) %>" data-controller="comment" class="comment-item"></div>
+<% end %>
+
+<%= turbo_stream.prepend "flash" do %>
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		Comment removed.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+<% end %>

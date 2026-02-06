@@ -45,15 +45,7 @@
 
         <div class="comments-wrap mt-3 bg-light p-3 rounded">
           <% post.comments.each do |comment| %>
-            <div class="comment-item mb-2 border-bottom pb-1">
-              <p class="comment-author m-0">
-                <b><%= link_to (comment.account&.username || "Anon"), account_path(comment.account), class: "text-dark text-decoration-none" %>:</b> 
-                <%= comment.body %>
-              </p>
-              
-              <%# Виклик partial для лайків коментаря %>
-              <%= render "comments/like_button", post: post, comment: comment %>
-            </div>
+            <%= render "comments/comment", comment: comment %>
           <% end %>
 
           <% if current_account %>
