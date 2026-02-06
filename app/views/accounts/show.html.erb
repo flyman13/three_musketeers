@@ -21,17 +21,19 @@
             
             <%# Follow/Unfollow button logic for other users %>
             <div class="profile-buttons">
-              <% if current_account.following?(@account) %>
-                <%# Find the relationship to delete it if already following %>
-                <% rel = current_account.following_relationships.find_by(followed_id: @account.id) %>
-                <%= button_to "Unfollow", relationship_path(rel), 
-                              method: :delete, 
-                              class: "btn btn-outline-secondary btn-sm fw-bold px-4" %>
-              <% else %>
-                <%# Create a new relationship if not following %>
-                <%= button_to "Follow", relationships_path(followed_id: @account.id), 
-                              method: :post, 
-                              class: "btn btn-primary btn-sm fw-bold px-4" %>
+              <% if current_account && current_account != @account %>
+                <% if current_account.following?(@account) %>
+                  <%# Find the relationship to delete it if already following %>
+                  <% rel = current_account.following_relationships.find_by(followed_id: @account.id) %>
+                  <%= button_to "Unfollow", relationship_path(rel), 
+                                method: :delete, 
+                                class: "btn btn-outline-secondary btn-sm fw-bold px-4" %>
+                <% else %>
+                  <%# Create a new relationship if not following %>
+                  <%= button_to "Follow", relationships_path(followed_id: @account.id), 
+                                method: :post, 
+                                class: "btn btn-primary btn-sm fw-bold px-4" %>
+                <% end %>
               <% end %>
             </div>
           </div>

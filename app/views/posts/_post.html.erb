@@ -1,17 +1,17 @@
 <div id="<%= dom_id post %>">
   <div>
-    <strong>Title:</strong>
-    <%= post.title %>
+    <% if post.image.attached? %>
+      <%= image_tag post.image, alt: "Post image" %>
+    <% end %>
   </div>
 
   <div>
-    <strong>Content:</strong>
-    <%= post.content %>
+    <strong><%= link_to post.account.username, account_path(post.account) %></strong>
+    <%= post.body %>
   </div>
 
   <div>
-    <strong>Published:</strong>
-    <%= post.published %>
+    <%= render "posts/post_actions", post: post %>
   </div>
 
 </div>

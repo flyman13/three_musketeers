@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   # Видалили :delete звідси, бо методу delete не існує
-  before_action :require_login, only: [:create, :like, :unlike, :destroy]
+  before_action :require_login, only: %i[create like unlike destroy]
 
   # 1. Create comment
   def create
@@ -9,9 +9,9 @@ class CommentsController < ApplicationController
     @comment.account = current_account
 
     if @comment.save
-      redirect_to root_path, notice: "Коментар додано!"
+      redirect_to root_path, notice: 'Коментар додано!'
     else
-      redirect_to root_path, alert: "Не вдалося додати коментар."
+      redirect_to root_path, alert: 'Не вдалося додати коментар.'
     end
   end
 
@@ -45,9 +45,9 @@ class CommentsController < ApplicationController
 
     if @comment.account == current_account
       @comment.destroy
-      redirect_back fallback_location: root_path, notice: "Коментар видалено."
+      redirect_back fallback_location: root_path, notice: 'Коментар видалено.'
     else
-      redirect_back fallback_location: root_path, alert: "Ви не можете видалити чужий коментар!"
+      redirect_back fallback_location: root_path, alert: 'Ви не можете видалити чужий коментар!'
     end
   end
 

@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  before_action :require_login, only: []
+
   def new
     @account = Account.new
   end
@@ -7,7 +9,7 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
     if @account.save
       session[:account_id] = @account.id
-      redirect_to root_path, notice: "Акаунт створено!"
+      redirect_to root_path, notice: 'Акаунт створено!'
     else
       render :new, status: :unprocessable_entity
     end
@@ -17,7 +19,7 @@ class AccountsController < ApplicationController
     # Find the account by ID from the URL params
     @account = Account.find(params[:id])
     @posts = @account.posts.order(created_at: :desc)
-    
+
     # English comment: Loading user data and their posts for the show view
   end
 
@@ -34,12 +36,12 @@ class AccountsController < ApplicationController
   end
 
   def search
-    if params[:username].present?
-      # Search for accounts where username is similar to the query
-      @accounts = Account.where("username LIKE ?", "%#{params[:username]}%")
-    else
-      @accounts = Account.none
-    end
+    @accounts = if params[:username].present?
+                  # Search for accounts where username is similar to the query
+                  Account.where('username LIKE ?', "%#{params[:username]}%")
+                else
+                  Account.none
+                end
   end
 
   private
