@@ -5,9 +5,10 @@ class Post < ApplicationRecord
   has_many :reactions, dependent: :destroy
   has_many :saved_posts, dependent: :destroy
   has_many :savers, through: :saved_posts, source: :account
-  
-  validates :body, presence: true, length: { maximum: 1000 } 
-  validates :image, presence: true, content_type: ['image/jpeg','image/png','image/webp'], size: { less_than: 5.megabytes}
+
+  validates :body, presence: true, length: { maximum: 1000 }
+  validates :image, content_type: ['image/jpeg', 'image/png', 'image/webp'], size: { less_than: 5.megabytes },
+                    allow_nil: true
 
   has_one_attached :image
 end

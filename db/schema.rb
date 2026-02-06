@@ -10,19 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_02_06_123000) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "account_emails", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.string "email", null: false
-    t.boolean "primary", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_account_emails_on_account_id"
-    t.index ["email"], name: "index_account_emails_on_email", unique: true
-  end
 
   create_table "accounts", force: :cascade do |t|
     t.string "status", default: "active", null: false
@@ -86,14 +76,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_123000) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
-  create_table "credentials", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.string "password_digest", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_credentials_on_account_id", unique: true
-  end
-
   create_table "media_assets", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.string "asset_type", null: false
@@ -110,18 +92,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_123000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_posts_on_account_id"
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.string "username", null: false
-    t.string "display_name"
-    t.text "bio"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "is_private", default: false
-    t.index ["account_id"], name: "index_profiles_on_account_id", unique: true
-    t.index ["username"], name: "index_profiles_on_username", unique: true
   end
 
   create_table "reactions", force: :cascade do |t|
@@ -153,15 +123,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_123000) do
     t.index ["post_id"], name: "index_saved_posts_on_post_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password_digest"
-    t.string "avatar"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comment_reactions", "accounts"
@@ -172,6 +133,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_123000) do
   add_foreign_key "posts", "accounts"
   add_foreign_key "reactions", "accounts"
   add_foreign_key "reactions", "posts"
+  add_foreign_key "relationships", "accounts", column: "followed_id"
+  add_foreign_key "relationships", "accounts", column: "follower_id"
   add_foreign_key "saved_posts", "accounts"
   add_foreign_key "saved_posts", "posts"
 end

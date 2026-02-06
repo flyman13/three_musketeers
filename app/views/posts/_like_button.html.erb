@@ -7,16 +7,15 @@
         <%= button_to reaction_path(reaction), 
                       method: :delete, 
                       remote: true, 
-                      data: { turbo_stream: true }, 
                       class: "btn-like" do %>
           <i class="bi bi-heart-fill text-danger fs-4"></i>
         <% end %>
       <% else %>
         <%# Додаємо remote та turbo_stream %>
-        <%= button_to reactions_path(post_id: post.id), 
+        <%= button_to reactions_path, 
                       method: :post, 
+                      params: { reaction: { post_id: post.id } },
                       remote: true, 
-                      data: { turbo_stream: true }, 
                       class: "btn-like" do %>
           <i class="bi bi-heart text-dark fs-4"></i>
         <% end %>
