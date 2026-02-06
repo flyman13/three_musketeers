@@ -1,14 +1,14 @@
 <div id="<%= dom_id(comment) %>" class="comment-item mb-2 border-bottom pb-1">
   <div class="d-flex justify-content-between align-items-start">
     <p class="comment-author m-0">
-      <b><%= link_to (comment.account&.username || "Anon"), account_path(comment.account), class: "text-dark text-decoration-none" %>:</b> 
+      <b><%= link_to (comment.account&.username || "Anon"), account_path(comment.account), class: "text-dark text-decoration-none" %>:</b>
       <%= comment.body %>
     </p>
     <% if current_account == comment.account %>
       <%= link_to "✕", post_comment_path(comment.post, comment), method: :delete, data: { turbo_confirm: "Видалити коментар?" }, class: "text-danger small text-decoration-none" %>
     <% end %>
   </div>
-  
-  <%# Виклик partial для лайків коментаря %>
+
+  <%# Render partial for comment likes %>
   <%= render "comments/like_button", comment: comment, post: comment.post %>
 </div>

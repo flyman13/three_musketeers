@@ -1,9 +1,8 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+# test/fixtures/relationships.yml
 one:
-  follower_id: 1
-  followed_id: 1
+  follower: one  # береться ім'я запису з accounts.yml
+  followed: two  # береться ім'я запису з accounts.yml
 
 two:
-  follower_id: 1
-  followed_id: 1
+  follower: two
+  followed: one

@@ -1,11 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   account: one
   post: one
-  body: MyText
+  body: "Перший коментар!"
 
 two:
   account: two
-  post: two
-  body: MyText
+  post: one     # Зміни 'two' на 'one', бо поста 'two' у тебе немає
+  body: "Другий коментар до того ж посту!"

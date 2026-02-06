@@ -17,11 +17,7 @@
     <% end %>
   </div>
 
-  <div class="new-post-wrap mb-4">
-    <% if current_account %>
-      <%= link_to "+ New Post", new_post_path, class: "new-post-btn btn btn-primary w-100 fw-bold" %>
-    <% end %>
-  </div>
+ 
 
   <% @posts.each do |post| %>
     <div class="post-card card mb-5 shadow-sm">

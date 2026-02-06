@@ -14,6 +14,16 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "account_emails", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "email", null: false
+    t.boolean "primary", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_emails_on_account_id"
+    t.index ["email"], name: "index_account_emails_on_email", unique: true
+  end
+
   create_table "accounts", force: :cascade do |t|
     t.string "status", default: "active", null: false
     t.datetime "created_at", null: false
@@ -62,6 +72,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
     t.bigint "comment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_id", "comment_id"], name: "index_comment_reactions_on_account_and_comment", unique: true
     t.index ["account_id"], name: "index_comment_reactions_on_account_id"
     t.index ["comment_id"], name: "index_comment_reactions_on_comment_id"
   end
@@ -74,6 +85,14 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
+  create_table "credentials", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_credentials_on_account_id", unique: true
   end
 
   create_table "media_assets", force: :cascade do |t|
@@ -94,13 +113,30 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
     t.index ["account_id"], name: "index_posts_on_account_id"
   end
 
-  create_table "reactions", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.bigint "account_id", null: false
-    t.bigint "post_id", null: false
+    t.string "username", null: false
+    t.string "display_name"
+    t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_private", default: false
+    t.index ["account_id"], name: "index_profiles_on_account_id", unique: true
+    t.index ["username"], name: "index_profiles_on_username", unique: true
+  end
+
+  create_table "reactions", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "target_type", null: false
+    t.bigint "target_id", null: false
+    t.string "kind", default: "like", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.index ["account_id", "target_id", "target_type"], name: "unique_user_reaction", unique: true
     t.index ["account_id"], name: "index_reactions_on_account_id"
     t.index ["post_id"], name: "index_reactions_on_post_id"
+    t.index ["target_type", "target_id"], name: "index_reactions_on_target"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -123,14 +159,17 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
     t.index ["post_id"], name: "index_saved_posts_on_post_id"
   end
 
+  add_foreign_key "account_emails", "accounts"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comment_reactions", "accounts"
   add_foreign_key "comment_reactions", "comments"
   add_foreign_key "comments", "accounts"
   add_foreign_key "comments", "posts"
+  add_foreign_key "credentials", "accounts"
   add_foreign_key "media_assets", "posts"
   add_foreign_key "posts", "accounts"
+  add_foreign_key "profiles", "accounts"
   add_foreign_key "reactions", "accounts"
   add_foreign_key "reactions", "posts"
   add_foreign_key "relationships", "accounts", column: "followed_id"

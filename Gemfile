@@ -55,6 +55,7 @@ group :development do
 end
 
 group :test do
+  gem "minitest", "< 6"
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
@@ -70,3 +71,5 @@ gem "solid_cable"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+
+gem 'devise'

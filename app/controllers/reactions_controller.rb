@@ -3,8 +3,13 @@ class ReactionsController < ApplicationController
 
   # Logic to "like" a post
   def create
-    @reaction = Reaction.new(reaction_params)
-    @reaction.account = current_account
+    # Build reaction robustly from either nested params or top-level post_id
+    @reaction = current_account.reactions.build
+    post_id = params[:post_id] || (params[:reaction] && params[:reaction][:post_id])
+    @reaction.post = Post.find(post_id) if post_id
+
+    # Set polymorphic target to the post so required target_type/target_id are present
+    @reaction.target = @reaction.post
 
     @post = @reaction.post if @reaction.save
 
