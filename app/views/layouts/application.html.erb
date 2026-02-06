@@ -34,24 +34,30 @@
         <% end %>
       </div>
 
-      <nav class="insta-nav">
-        <%= link_to root_path, class: "insta-nav-item" do %>
-          <i class="bi bi-house-door-fill insta-icon"></i>
-          <span class="insta-nav-text">Головна</span>
-        <% end %>
+<nav class="insta-nav">
+  <%= link_to root_path, class: "insta-nav-item" do %>
+    <i class="bi bi-house-door-fill insta-icon"></i>
+    <span class="insta-nav-text">Головна</span>
+  <% end %>
 
-        <% if current_account.present? %>
-          <%= link_to my_profile_path, class: "insta-nav-item" do %>
-            <i class="bi bi-person-circle insta-icon"></i>
-            <span class="insta-nav-text">Мій профіль</span>
-          <% end %>
+  <% if current_account.present? %>
+    <%= link_to my_profile_path, class: "insta-nav-item" do %>
+      <i class="bi bi-person-circle insta-icon"></i>
+      <span class="insta-nav-text">Мій профіль</span>
+    <% end %>
 
-          <%= link_to logout_path, class: "insta-nav-item insta-nav-item--danger" do %>
-            <i class="bi bi-box-arrow-right insta-icon"></i>
-            <span class="insta-nav-text">Вийти</span>
-          <% end %>
-        <% end %>
-      </nav>
+    <%= link_to new_post_path, class: "insta-nav-item" do %>
+      <i class="bi bi-plus-square insta-icon"></i>
+      <span class="insta-nav-text">Створити пост</span>
+    <% end %>
+
+    <%= link_to logout_path, class: "insta-nav-item insta-nav-item--danger" do %>
+      <i class="bi bi-box-arrow-right insta-icon"></i>
+      <span class="insta-nav-text">Вийти</span>
+    <% end %>
+  <% end %>
+</nav>
+
     </div>
 
     <main class="main-content">
