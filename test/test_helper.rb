@@ -4,12 +4,13 @@ require "rails/test_help"
 
 module ActiveSupport
   class TestCase
-    # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
-
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    # Add more helper methods to be used by all tests here...
+    # Додай цей метод сюди
+    def sign_in_as(account)
+      # Заміни 'login_url' на ваш реальний шлях (можливо sessions_url або sign_in_url)
+      post login_url, params: { email: account.email, password: 'password' }
+    end
   end
 end

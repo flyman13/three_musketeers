@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_account
+  before_action :set_account, only: [:edit, :update]
 
   # Display the edit form
   def edit
@@ -12,6 +12,14 @@ class ProfilesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @account = Account.find(params[:id])
+    # Backwards-compatible @profile object (previously there was a Profile model)
+    # Use AccountPresenter so views that reference @profile still work.
+    @posts = @account.posts.order(created_at: :desc)
+    @profile = AccountPresenter.new(@account)
   end
 
   private

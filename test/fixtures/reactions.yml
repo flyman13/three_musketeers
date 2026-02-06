@@ -1,13 +1,7 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   account: one
-  target: one
-  target_type: Target
-  kind: MyString
+  post: one
 
 two:
   account: two
-  target: two
-  target_type: Target
-  kind: MyString
+  post: one

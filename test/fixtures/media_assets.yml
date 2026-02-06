@@ -1,11 +1,7 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   post: one
-  asset_type: MyString
-  position: 1
+  asset_type: "image" # або "0", якщо це ціле число (integer)
 
 two:
-  post: two
-  asset_type: MyString
-  position: 1
+  post: one
+  asset_type: "image"
