@@ -1,0 +1,92 @@
+/* Sidebar styles - single source of truth
+   Collapsed width: 72px, Expanded: 240px
+   Behavior: overlay (does NOT shift main content on hover)
+*/
+
+.insta-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 72px; /* collapsed */
+  background: #fff;
+  border-right: 1px solid #dbdbdb;
+  z-index: 1050; /* sits above main content */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 10px;
+  transition: width 0.25s ease, box-shadow 0.25s ease;
+}
+
+.insta-sidebar:hover {
+  width: 240px; /* expanded */
+  box-shadow: 10px 0 20px rgba(0,0,0,0.05);
+}
+
+.insta-sidebar-logo {
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.insta-logo-link {
+  text-decoration: none;
+  color: #111;
+  font-weight: 700;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.insta-logo-img { /* optional avatar */
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #dbdbdb;
+  transition: transform 0.2s ease;
+}
+.insta-logo-img:hover { transform: scale(1.05); }
+
+.insta-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.insta-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #111;
+  white-space: nowrap;
+}
+
+.insta-nav-item:hover { background: #f6f6f6; }
+.insta-nav-item--danger { color: #d93025; margin-top: auto; }
+
+.insta-icon { font-size: 20px; width: 24px; min-width: 24px; }
+
+/* hide text in collapsed state */
+.insta-nav-text {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+.insta-sidebar:hover .insta-nav-text { opacity: 1; transform: translateX(0); }
+
+/* Main content should reserve space for collapsed sidebar but never shift on hover */
+.main-content {
+  margin-left: 72px; /* matches collapsed width */
+}
+
+@media (max-width: 768px) {
+  .insta-sidebar { display: none; }
+  .main-content { margin-left: 0; }
+}

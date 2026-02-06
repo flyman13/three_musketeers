@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     return if current_account
-    redirect_to login_path, alert: "Будь ласка, увійдіть щоб виконати цю дію."
+
+    redirect_to login_path, alert: 'Будь ласка, увійдіть щоб виконати цю дію.'
   end
 end

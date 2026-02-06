@@ -40,8 +40,8 @@
         <p class="post-body card-text"><%= post.body %></p>
         <hr>
 
-        <%# Виклик partial для лайків поста %>
-        <%= render "posts/like_button", post: post %>
+        <%# Виклик partial для лайків і збереження поста %>
+        <%= render "posts/post_actions", post: post %>
 
         <div class="comments-wrap mt-3 bg-light p-3 rounded">
           <% post.comments.each do |comment| %>

@@ -32,11 +32,9 @@
           </div>
         </div>
 
-        <%# Блок лайків (Turbo) %>
+        <%# Блок лайків і збереження (Turbo) %>
         <div class="p-3 border-top">
-          <div id="like_post_<%= @post.id %>">
-            <%= render "posts/like_button", post: @post %>
-          </div>
+          <%= render "posts/post_actions", post: @post %>
         </div>
       </div>
     </div>

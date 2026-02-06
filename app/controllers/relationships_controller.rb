@@ -1,11 +1,13 @@
 class RelationshipsController < ApplicationController
+  before_action :require_login
+
   # Метод для підписки
   def create
     @account = Account.find(params[:followed_id])
     current_account.following << @account
-    
+
     respond_to do |format|
-      format.turbo_stream 
+      format.turbo_stream
       format.html { redirect_back fallback_location: root_path }
     end
   end
@@ -14,7 +16,7 @@ class RelationshipsController < ApplicationController
     @relationship = Relationship.find(params[:id])
     @account = @relationship.followed
     @relationship.destroy
-    
+
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_back fallback_location: root_path }

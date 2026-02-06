@@ -12,18 +12,13 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.label :body, style: "display: block" %>
+    <%= form.textarea :body %>
   </div>
 
   <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.textarea :content %>
-  </div>
-
-  <div>
-    <%= form.label :published, style: "display: block" %>
-    <%= form.checkbox :published %>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image, accept: 'image/jpeg,image/png,image/webp' %>
   </div>
 
   <div>

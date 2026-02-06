@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_02_06_081735) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -140,6 +140,16 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_081735) do
   end
 
   add_foreign_key "account_emails", "accounts"
+
+  create_table "saved_posts", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "post_id"], name: "index_saved_posts_on_account_id_and_post_id", unique: true
+    t.index ["account_id"], name: "index_saved_posts_on_account_id"
+    t.index ["post_id"], name: "index_saved_posts_on_post_id"
+  end
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "accounts"
@@ -150,4 +160,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_081735) do
   add_foreign_key "profiles", "accounts"
   add_foreign_key "reactions", "accounts"
   add_foreign_key "reactions", "posts"
+  add_foreign_key "relationships", "accounts", column: "followed_id"
+  add_foreign_key "relationships", "accounts", column: "follower_id"
+  add_foreign_key "saved_posts", "accounts"
+  add_foreign_key "saved_posts", "posts"
 end
