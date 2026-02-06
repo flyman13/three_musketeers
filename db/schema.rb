@@ -67,6 +67,16 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comment_reactions", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "comment_id"], name: "index_comment_reactions_on_account_and_comment", unique: true
+    t.index ["account_id"], name: "index_comment_reactions_on_account_id"
+    t.index ["comment_id"], name: "index_comment_reactions_on_comment_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "post_id", null: false
@@ -139,8 +149,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  add_foreign_key "account_emails", "accounts"
-
   create_table "saved_posts", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "post_id", null: false
@@ -150,8 +158,12 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_06_140000) do
     t.index ["account_id"], name: "index_saved_posts_on_account_id"
     t.index ["post_id"], name: "index_saved_posts_on_post_id"
   end
+
+  add_foreign_key "account_emails", "accounts"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comment_reactions", "accounts"
+  add_foreign_key "comment_reactions", "comments"
   add_foreign_key "comments", "accounts"
   add_foreign_key "comments", "posts"
   add_foreign_key "credentials", "accounts"
