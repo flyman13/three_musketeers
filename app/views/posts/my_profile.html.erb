@@ -59,18 +59,66 @@
       </div>
 
       <hr class="mb-5">
+      <%# Tabs like Instagram: Posts | Saved | Liked %>
+      <nav class="profile-tabs mb-4">
+        <div class="nav nav-tabs justify-content-center gap-5">
+          <%= link_to my_profile_path(tab: 'posts'), class: "nav-link "+(@tab == 'posts' ? 'active' : '') do %>
+            <i class="bi bi-grid text-dark fs-4" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to my_profile_path(tab: 'saved'), class: "nav-link "+(@tab == 'saved' ? 'active' : '') do %>
+            <i class="bi bi-bookmark text-dark fs-4"></i>
+          <% end %>
+          <%= link_to my_profile_path(tab: 'liked'), class: "nav-link "+(@tab == 'liked' ? 'active' : '') do %>
+            <i class="bi bi-heart text-danger fs-4"></i>
+          <% end %>
+        </div>
+      </nav>
 
-      <div class="profile-posts-grid d-flex flex-wrap gap-1">
-      <% @posts.each do |post| %>
-        <div class="grid-item">
-          <% if post.image.attached? %>
-            <%= link_to post_path(post) do %>
-              <%= image_tag post.image, class: "grid-image" %>
+      <% if @tab == 'posts' %>
+        <div class="profile-posts-grid d-flex flex-wrap gap-1">
+          <% @posts.each do |post| %>
+            <div class="grid-item">
+              <% if post.image.attached? %>
+                <%= link_to post_path(post) do %>
+                  <%= image_tag post.image, class: "grid-image" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% elsif @tab == 'saved' %>
+        <div class="profile-saved-grid d-flex flex-wrap gap-1">
+          <% if @saved_posts.any? %>
+            <% @saved_posts.each do |post| %>
+              <div class="grid-item">
+                <% if post.image.attached? %>
+                  <%= link_to post_path(post) do %>
+                    <%= image_tag post.image, class: "grid-image" %>
+                  <% end %>
+                <% end %>
+              </div>
             <% end %>
+          <% else %>
+            <p class="text-muted">You haven't saved any posts yet.</p>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="profile-liked-grid d-flex flex-wrap gap-1">
+          <% if @liked_posts.any? %>
+            <% @liked_posts.each do |post| %>
+              <div class="grid-item">
+                <% if post.image.attached? %>
+                  <%= link_to post_path(post) do %>
+                    <%= image_tag post.image, class: "grid-image" %>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <p class="text-muted">You haven't liked any posts yet.</p>
           <% end %>
         </div>
       <% end %>
-    </div>
 
     </div>
   </div>

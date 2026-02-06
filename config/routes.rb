@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :new, :create, :show, :destroy] do
     member do
       post :like
+      post :save
+      delete :unsave
       get :delete
     end
 

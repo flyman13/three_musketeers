@@ -6,6 +6,8 @@ class Account < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :reactions, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
+  has_many :saved_posts, dependent: :destroy
+  has_many :saved, through: :saved_posts, source: :post
   
   # Validations now live here because the Profile table was removed
   validates :username, presence: true, uniqueness: true

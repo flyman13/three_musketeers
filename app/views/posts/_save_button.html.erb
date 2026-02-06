@@ -1,0 +1,16 @@
+<div id="save_post_<%= post.id %>" class="post-actions-section mb-3">
+  <% if current_account %>
+    <% saved = current_account.saved_posts.find_by(post: post) %>
+    <div class="d-flex align-items-center gap-2">
+      <% if saved %>
+        <%= button_to unsave_post_path(post), method: :delete, remote: true, data: { turbo_stream: true }, class: "btn-save" do %>
+          <i class="bi bi-bookmark-fill text-dark fs-4"></i>
+        <% end %>
+      <% else %>
+        <%= button_to save_post_path(post), method: :post, remote: true, data: { turbo_stream: true }, class: "btn-save" do %>
+          <i class="bi bi-bookmark text-dark fs-4"></i>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

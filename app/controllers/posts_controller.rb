@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, :require_login, only: [:show, :destroy, :delete, :like]
+  before_action :set_post, :require_login, only: [:show, :destroy, :delete, :like, :save, :unsave]
 
   def index
     @posts = Post.includes(:account, :comments, :reactions).all.order(created_at: :desc)
@@ -48,13 +48,36 @@ class PostsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def save
+    saved = SavedPost.find_by(account_id: current_account.id, post_id: @post.id)
+    unless saved
+      SavedPost.create(account_id: current_account.id, post_id: @post.id)
+    end
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("post_actions_#{@post.id}", partial: "posts/post_actions", locals: { post: @post }) }
+    end
+  end
+
+  def unsave
+    saved = SavedPost.find_by(account_id: current_account.id, post_id: @post.id)
+    saved&.destroy
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("post_actions_#{@post.id}", partial: "posts/post_actions", locals: { post: @post }) }
+    end
+  end
+
   def my_profile
-    # Find posts only for the current account
-    @posts = current_account.posts.order(created_at: :desc)
+    # Find posts only for the current account and optionally show saved posts
     @account = current_account
-
-    # Use the same view file as the main page
-
+    @tab = params[:tab].presence_in(%w[posts saved liked]) || 'posts'
+    @posts = current_account.posts.order(created_at: :desc)
+    @saved_posts = current_account.saved.order(created_at: :desc)
+    @liked_posts = current_account.reactions.includes(:post).map(&:post).sort_by(&:created_at).reverse
+    # The view will render the appropriate section based on @tab
   end
 
   private
