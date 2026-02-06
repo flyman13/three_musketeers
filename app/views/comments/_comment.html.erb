@@ -5,7 +5,9 @@
       <%= comment.body %>
     </p>
     <% if current_account == comment.account %>
-      <%= link_to "✕", post_comment_path(comment.post, comment), method: :delete, data: { turbo_confirm: "Видалити коментар?" }, class: "text-danger small text-decoration-none" %>
+      <%= button_to post_comment_path(comment.post, comment), method: :delete, data: { turbo_confirm: "Видалити коментар?" }, class: "btn btn-sm btn-outline-danger", form: { class: "d-inline" } do %>
+        <i class="bi bi-trash" aria-hidden="true"></i>
+      <% end %>
     <% end %>
   </div>
 

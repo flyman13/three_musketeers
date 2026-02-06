@@ -1,15 +1,18 @@
-<div id="like_comment_<%= comment.id %>" class="comment-actions d-flex align-items-center gap-2 mt-1">
+<div id="like_comment_<%= comment.id %>"
+     class="comment-actions d-flex align-items-center gap-2 mt-1"
+     data-controller="like"
+     data-like-post-id-value="<%= post.id %>"
+     data-like-create-url-value="<%= like_post_comment_path(post, comment) %>"
+     data-like-destroy-url-value="<%= unlike_post_comment_path(post, comment) %>"
+     data-like-liked-value="<%= comment.comment_reactions.exists?(account: current_account) ? 'true' : 'false' %>">
   <% if current_account %>
-    <% comment_reaction = comment.comment_reactions.find_by(account: current_account) %>
-    <% if comment_reaction %>
-      <%= button_to unlike_post_comment_path(post, comment), method: :delete, class: "btn-comment-like" do %>
-        <i class="bi bi-heart-fill text-danger small"></i>
+    <button type="button" data-action="click->like#toggle" data-like-target="button" class="btn-comment-like btn btn-link p-0">
+      <% if comment.comment_reactions.exists?(account: current_account) %>
+        <i data-like-target="icon" class="bi bi-heart-fill text-danger small"></i>
+      <% else %>
+        <i data-like-target="icon" class="bi bi-heart text-muted small"></i>
       <% end %>
-    <% else %>
-      <%= button_to like_post_comment_path(post, comment), method: :post, class: "btn-comment-like" do %>
-        <i class="bi bi-heart text-muted small"></i>
-      <% end %>
-    <% end %>
+    </button>
   <% end %>
-  <span class="text-muted small"><%= comment.comment_reactions.count %></span>
+  <span data-like-target="count" class="text-muted small"><%= comment.comment_reactions.count %></span>
 </div>
