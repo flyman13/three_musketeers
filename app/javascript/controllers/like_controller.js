@@ -23,6 +23,10 @@ export default class extends Controller {
     try {
       const token = document.querySelector('meta[name=csrf-token]').content
       if (wasLiked) {
+        if (!this.hasDestroyUrlValue) {
+          console.error('LikeController: destroyUrl missing')
+          throw new Error('Missing destroy URL')
+        }
         // send DELETE to destroyUrl
         const res = await fetch(this.destroyUrlValue, {
           method: 'DELETE',
@@ -30,9 +34,14 @@ export default class extends Controller {
         })
         await this._applyServerResponse(res)
       } else {
+        if (!this.hasCreateUrlValue) {
+          console.error('LikeController: createUrl missing')
+          throw new Error('Missing create URL')
+        }
         // send POST to createUrl with form data
         const fd = new FormData()
-        fd.append('reaction[post_id]', this.postIdValue)
+        // if postIdValue is available, include it
+        if (this.hasPostIdValue) fd.append('reaction[post_id]', this.postIdValue)
         const res = await fetch(this.createUrlValue, {
           method: 'POST',
           headers: { 'X-CSRF-Token': token, 'Accept': 'text/vnd.turbo-stream.html' },

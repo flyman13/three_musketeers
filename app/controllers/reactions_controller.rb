@@ -3,15 +3,22 @@ class ReactionsController < ApplicationController
 
   # Logic to "like" a post
   def create
-    # Build reaction robustly from either nested params or top-level post_id
-    @reaction = current_account.reactions.build
+    # Determine post id from possible param locations
     post_id = params[:post_id] || (params[:reaction] && params[:reaction][:post_id])
-    @reaction.post = Post.find(post_id) if post_id
+    @post = Post.find_by(id: post_id)
 
-    # Set polymorphic target to the post so required target_type/target_id are present
-    @reaction.target = @reaction.post
+    # Build reaction tied to current account and the post as both convenience and polymorphic target
+    @reaction = current_account.reactions.build(post: @post)
+    @reaction.target = @post if @post
 
-    @post = @reaction.post if @reaction.save
+    if @reaction.save
+      Rails.logger.debug("Reaction created: ")
+    else
+      Rails.logger.debug("Reaction failed to save: #{ @reaction.errors.full_messages.join(', ') }")
+    end
+
+    # Ensure @post is set so turbo_stream partials can render reliably even on failure
+    @post ||= Post.find_by(id: post_id)
 
     respond_to do |format|
       format.turbo_stream
