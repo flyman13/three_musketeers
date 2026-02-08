@@ -6,16 +6,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @account = accounts(:one)
     @post = posts(:one)
-    sign_in_as(@account) # Тепер current_account у контролері НЕ буде nil!
+  sign_in_as(@account) # Now current_account in the controller will NOT be nil!
   end
 
   test "should get index" do
-    get posts_url # це роут /posts
+  get posts_url # this is the /posts route
     assert_response :success
   end
 
   test "should get new" do
-    get new_post_url # це роут /posts/new
+  get new_post_url # this is the /posts/new route
     assert_response :success
   end
 
@@ -23,7 +23,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Post.count", 1) do
       post posts_url, params: { post: { body: "A long body to pass validation", image: fixture_file_upload('test_image.png', 'image/png') } }
     end
-    assert_redirected_to root_url # Саме root_url, як у твоєму контролері!
+  assert_redirected_to root_url # Exactly root_url, as in your controller!
   end
 
   test "should show post" do
@@ -33,7 +33,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy post" do
     assert_difference("Post.count", -1) do
-      # У вас видалення через DELETE /posts/:id
+  # Deletion happens via DELETE /posts/:id
       delete post_url(@post)
     end
       assert_redirected_to root_url
