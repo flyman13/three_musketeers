@@ -7,9 +7,9 @@ module ActiveSupport
     parallelize(workers: :number_of_processors)
     fixtures :all
 
-    # Додай цей метод сюди
+    # Add this helper method here
     def sign_in_as(account)
-      # Заміни 'login_url' на ваш реальний шлях (можливо sessions_url або sign_in_url)
+      # Replace 'login_url' with your actual sign-in path (maybe sessions_url or sign_in_url)
       post login_url, params: { email: account.email, password: 'password' }
     end
   end

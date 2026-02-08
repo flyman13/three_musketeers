@@ -1,6 +1,6 @@
 one:
   post: one
-  asset_type: "image" # або "0", якщо це ціле число (integer)
+  asset_type: "image" # or "0" if this is an integer
 
 two:
   post: one
