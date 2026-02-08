@@ -1,25 +1,17 @@
-<div id="like_post_<%= post.id %>"
-     data-controller="like"
-     data-like-post-id-value="<%= post.id %>"
-     <% if current_account && (reaction = current_account.reactions.find_by(post: post)) %>
-       data-like-destroy-url-value="<%= reaction_path(reaction) %>"
-       data-like-liked-value="true"
-     <% else %>
-       data-like-create-url-value="<%= reactions_path %>"
-       data-like-liked-value="false"
-     <% end %>
-     class="post-actions-section mb-3">
+<div id="like_post_<%= post.id %>" class="post-actions-section mb-3">
   <% if current_account %>
     <div class="d-flex align-items-center gap-2">
-      <%# Stimulus-driven button: optimistic UI, fallback is minimal (no-JS shows counts only) %>
-      <button type="button" data-action="click->like#toggle" data-like-target="button" class="btn-like btn btn-link p-0">
-        <% if current_account && current_account.reactions.exists?(post: post) %>
-          <i data-like-target="icon" class="bi bi-heart-fill text-danger fs-4"></i>
-        <% else %>
-          <i data-like-target="icon" class="bi bi-heart text-dark fs-4"></i>
+      <% reaction = current_account.reactions.find_by(post: post) %>
+      <% if reaction %>
+        <%= button_to reaction_path(reaction), method: :delete, class: "btn-like btn btn-link p-0", form: { data: { turbo: true } } do %>
+          <i class="bi bi-heart-fill text-danger fs-4"></i>
         <% end %>
-      </button>
-      <span data-like-target="count" class="fw-bold"><%= post.reactions.count %> likes</span>
+      <% else %>
+        <%= button_to like_post_path(post), method: :post, class: "btn-like btn btn-link p-0", form: { data: { turbo: true } } do %>
+          <i class="bi bi-heart text-dark fs-4"></i>
+        <% end %>
+      <% end %>
+      <span class="fw-bold"><%= post.reactions.count %> likes</span>
     </div>
   <% else %>
     <div class="d-flex align-items-center gap-2">

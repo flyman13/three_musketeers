@@ -43,10 +43,16 @@ class PostsController < ApplicationController
     if @reaction
       @reaction.destroy
     else
-      Reaction.create(account_id: current_account.id, post_id: @post.id)
+      # ensure polymorphic target is set so DB constraints are satisfied
+      Reaction.create(account: current_account, post: @post, target: @post)
     end
 
-    redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("like_post_#{@post.id}", partial: 'posts/like_button', locals: { post: @post })
+      end
+    end
   end
 
   def save
