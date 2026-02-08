@@ -8,8 +8,7 @@ class Relationship < ApplicationRecord
   # 3. Validations
   validates :follower_id, presence: true
   validates :followed_id, presence: true
-
-  # Заборона підписуватися на самого себе
+  
   # Prevent following yourself
   validate :cannot_follow_self
 
