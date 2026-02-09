@@ -89,63 +89,7 @@
   margin-left: 72px; /* matches collapsed width */
 }
 
-/* On small screens (mobile and tablet) convert the left sidebar into a bottom nav
-   so it doesn't consume horizontal space and is reachable with the thumb. */
-@media (max-width: 992px) {
-  .insta-sidebar {
-    /* occupy bottom full-width area */
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    width: 100%;
-    padding: 6px 8px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border-right: none;
-    border-top: 1px solid #e9e9e9;
-    background: #fff;
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.04);
-  }
-
-  .insta-sidebar:hover { width: 100%; box-shadow: 0 -6px 14px rgba(0,0,0,0.06); }
-
-  .insta-logo-img { display: none; }
-  .insta-logo-link { display: none; }
-
-  .insta-nav {
-    flex-direction: row;
-    gap: 12px;
-    margin-top: 0;
-    padding: 0;
-    justify-content: space-around;
-    width: 100%;
-  }
-
-  .insta-nav-item {
-    padding: 8px 10px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    color: #333;
-  }
-
-  .insta-nav-item--danger { margin-top: 0; }
-
-  .insta-nav-text { 
-    opacity: 1; 
-    transform: translateX(0);
-    font-size: 11px;
-    display: block;
-  }
-
-  .insta-icon { font-size: 20px; }
-
-  /* main content should not reserve left margin on small screens */
-  .main-content { margin-left: 0; margin-bottom: 72px; }
+@media (max-width: 768px) {
+  .insta-sidebar { display: none; }
+  .main-content { margin-left: 0; }
 }

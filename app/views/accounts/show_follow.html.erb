@@ -30,7 +30,12 @@
       </div>
       
       <div class="mt-4">
-        <%= link_to "Back to Profile", account_path(@account), class: "btn btn-link text-muted p-0" %>
+        <%# If the list belongs to the current user, go back to my_profile; otherwise go to that account's page %>
+        <% if @account == current_account %>
+          <%= link_to "Back to Profile", my_profile_path, class: "btn btn-link text-muted p-0" %>
+        <% else %>
+          <%= link_to "Back to Profile", account_path(@account), class: "btn btn-link text-muted p-0" %>
+        <% end %>
       </div>
     </div>
   </div>
