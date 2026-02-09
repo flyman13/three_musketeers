@@ -26,7 +26,7 @@
           <%= link_to post.account.username, account_path(post.account), class: "fw-bold text-dark text-decoration-none" %>
         </div>
         <% if current_account == post.account %>
-          <%= link_to "Delete", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-danger small text-decoration-none" %>
+          <%= link_to "Delete", post_path(post), data: { turbo_method: :delete }, class: "text-danger small text-decoration-none" %>
         <% end %>
       </div>
 
