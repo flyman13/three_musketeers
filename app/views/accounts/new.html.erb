@@ -19,7 +19,7 @@
       <%= f.password_field :password_confirmation, class: "full-width" %>
     </div>
 
-    <%= link_to "Створити аккаунт", new_account_path, class: "btn btn-success", style: "background-color: #198754 !important; border-color: #198754 !important; color: white !important;" %>
+    <%= f.submit "Створити аккаунт", class: "btn btn-success", style: "background-color: #198754 !important; border-color: #198754 !important; color: white !important;" %>
   <% end %>
   <div class="mt-4">
     <%= link_to "Назад до стрічки", root_path, class: "btn btn-secondary" %>
