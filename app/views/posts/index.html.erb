@@ -5,8 +5,8 @@
       <% if current_account %>
         <span>Hi, <b><%= current_account.username %></b>!</span>
       <% else %>
-        <%= link_to "Login", login_path, class: "link-strong me-2" %>
-        <%= link_to "Sign Up", new_account_path, class: "link-strong" %>
+        <%= link_to "Login", login_path, class: "btn btn-outline-primary me-2" %>
+        <%= link_to "Sign Up", new_account_path, class: "btn btn-primary" %>
       <% end %>
     </div>
   </header>
