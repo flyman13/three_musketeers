@@ -15,9 +15,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_account.posts.build(post_params)
-    if @post.save
-      redirect_to root_path, notice: 'Пост створено!'
+  # pass the permitted `post_params` directly to the service; the service knows how to
+  # handle either a Hash or ActionController::Parameters
+  service = Posts::CreatePostService.new(current_account, post_params)
+    @post = service.call
+
+    if @post.persisted?
+      redirect_to root_path, notice: 'Post created!'
     else
       # status: :unprocessable_entity is important for Rails 7 so the form displays errors
       render :new, status: :unprocessable_entity
@@ -38,19 +42,22 @@ class PostsController < ApplicationController
   end
 
   def like
-    @reaction = Reaction.find_by(account_id: current_account.id, post_id: @post.id)
-
-    if @reaction
-      @reaction.destroy
-    else
-      # ensure polymorphic target is set so DB constraints are satisfied
-      Reaction.create(account: current_account, post: @post, target: @post)
-    end
+    result = TogglePostLike.call(account: current_account, post: @post)
 
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path }
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("like_post_#{@post.id}", partial: 'posts/like_button', locals: { post: @post })
+        streams = []
+        # always replace the like button partial to reflect current state
+        streams << turbo_stream.replace("like_post_#{@post.id}", partial: 'posts/like_button', locals: { post: @post })
+
+        unless result.success?
+          # prepend an alert message into the #flash container
+          alert_html = ApplicationController.render(inline: "<div class='alert alert-danger'>#{ERB::Util.html_escape(result.message)}</div>")
+          streams << turbo_stream.prepend('flash', alert_html)
+        end
+
+        render turbo_stream: streams
       end
     end
   end
@@ -87,7 +94,8 @@ class PostsController < ApplicationController
     @tab = params[:tab].presence_in(%w[posts saved liked]) || 'posts'
     @posts = current_account.posts.order(created_at: :desc)
     @saved_posts = current_account.saved.order(created_at: :desc)
-    @liked_posts = current_account.reactions.includes(:post).map(&:post).sort_by(&:created_at).reverse
+  # Use a Query Object for liked posts to keep controller slim and to execute the work in the DB
+  @liked_posts = LikedPostsQuery.new(current_account).call
     # The view will render the appropriate section based on @tab
   end
 
