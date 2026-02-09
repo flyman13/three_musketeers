@@ -1,8 +1,0 @@
-# test/fixtures/relationships.yml
-one:
-  follower: one  # береться ім'я запису з accounts.yml
-  followed: two  # береться ім'я запису з accounts.yml
-
-two:
-  follower: two
-  followed: one

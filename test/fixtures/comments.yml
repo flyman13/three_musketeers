@@ -1,9 +1,0 @@
-one:
-  account: one
-  post: one
-  body: "Перший коментар!"
-
-two:
-  account: two
-  post: one     # Зміни 'two' на 'one', бо поста 'two' у тебе немає
-  body: "Другий коментар до того ж посту!"
