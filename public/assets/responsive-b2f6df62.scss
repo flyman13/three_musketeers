@@ -1,0 +1,75 @@
+// Responsive mixins for mobile and tablet
+// Usage:
+// @include mobile { .selector { ... } }
+// @include tablet { .selector { ... } }
+
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 992px;
+
+@mixin respond-to($device) {
+  @if $device == mobile {
+    @media (max-width: $breakpoint-mobile) {
+      @content;
+    }
+  } @else if $device == tablet {
+    // tablet: between mobile+1 and tablet
+    @media (min-width: #{ $breakpoint-mobile + 1 }) and (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $device == lt-tablet {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $device == gt-tablet {
+    @media (min-width: #{ $breakpoint-tablet + 1 }) {
+      @content;
+    }
+  }
+}
+
+// Convenience mixins
+@mixin mobile { @include respond-to(mobile) { @content; } }
+@mixin tablet { @include respond-to(tablet) { @content; } }
+
+// Example responsive tweaks for the layout used in the app
+.insta-sidebar {
+  // default desktop width
+  width: 260px;
+
+  @include tablet {
+    width: 220px;
+  }
+
+  @include mobile {
+    display: none; // hide left sidebar on small screens
+  }
+}
+
+.main-content {
+  margin-left: 280px; // leave room for sidebar on desktop
+
+  @include tablet {
+    margin-left: 240px;
+  }
+
+  @include mobile {
+    margin-left: 0; // full-width content on mobile
+    padding: 0 0.75rem;
+  }
+}
+
+// Posts grid adjustments
+.post-media {
+  @include mobile {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+// Make post actions more compact on mobile
+.post-actions-section {
+  @include mobile {
+    .btn-like { font-size: 0.9rem; }
+    span { font-size: 0.9rem; }
+  }
+}
