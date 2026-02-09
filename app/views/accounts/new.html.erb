@@ -18,9 +18,11 @@
       <%= f.label :password_confirmation, "Підтвердження пароля" %><br>
       <%= f.password_field :password_confirmation, class: "full-width" %>
     </div>
-    <%= f.submit "Зареєструватися", class: "btn-primary" %>
-    
+
+    <%= link_to "Створити аккаунт", new_account_path, class: "btn btn-success", style: "background-color: #198754 !important; border-color: #198754 !important; color: white !important;" %>
   <% end %>
-  <p><%= link_to "Вже маєте аккаунт?", login_path, class: "btn btn-outline-primary me-2" %></p>
-  <p><%= link_to "Назад до стрічки", root_path, class: "btn btn-link" %></p>
+  <div class="mt-4">
+    <%= link_to "Назад до стрічки", root_path, class: "btn btn-secondary" %>
+  </div>
+  <p class="mt-3"><%= link_to "Вже маєте аккаунт?", login_path, class: "text-decoration-none" %></p>
 </div>
