@@ -197,6 +197,17 @@
       <%= link_to "Вже маєте обліковку?", login_path, class: "btn-login" %>
 
     <% end %>
+    <br>
+    <% if @account.errors.any? %>
+        <div class="alert alert-danger error-container animate-hover">
+          <h5 class="alert-heading">Помилки з реєстрацією:</h5>
+          <ul class="mb-0">
+            <% @account.errors.full_messages.each do |message| %>
+              <li><%= message %>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
   </div>
 </div>
 
