@@ -143,6 +143,28 @@
     color: white;
   }
 
+  .password-wrapper {
+    position: relative;
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #a6a6a6;
+    font-size: 18px;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .toggle-password:hover {
+    color: #262626;
+  }
+
 </style>
 
 <div class="sessions__panel">
@@ -159,9 +181,12 @@
         <%= f.label :email, "Email" %>
       </div>
 
-      <div class="form-row">
-        <%= f.password_field :password, required: true, class: "full-width", placeholder: "" %>
+      <div class="form-row password-wrapper">
+        <%= f.password_field :password, required: true, class: "full-width", placeholder: "", id: "password-field" %>
         <%= f.label :password, "Пароль" %>
+        <button type="button" class="toggle-password" id="toggle-password-btn" onclick="togglePasswordVisibility()">
+          <span id="eye-icon">👁️</span>
+        </button>
       </div>
 
       <%= f.submit "Увійти", class: "btn-block" %><br>
@@ -170,3 +195,18 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  function togglePasswordVisibility() {
+    const passwordField = document.getElementById('password-field');
+    const eyeIcon = document.getElementById('eye-icon');
+    
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      eyeIcon.textContent = '🙈';
+    } else {
+      passwordField.type = 'password';
+      eyeIcon.textContent = '👁️';
+    }
+  }
+</script>
