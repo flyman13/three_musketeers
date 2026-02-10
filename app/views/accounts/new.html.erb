@@ -1,28 +1,216 @@
-<div class="accounts-new__panel">
-  <h2>Реєстрація мушкетера</h2>
+<style>
+  body {
+    background: #fafafa !important;
+    margin: 0;
+    padding: 0;
+  }
 
-  <%= form_with model: @account, local: true do |f| %>
-    <div class="form-row">
-      <%= f.label :username, "Нікнейм" %><br>
-      <%= f.text_field :username, class: "full-width" %>
-    </div>
-    <div class="form-row">
-      <%= f.label :email %><br>
-      <%= f.email_field :email, class: "full-width" %>
-    </div>
-    <div class="form-row">
-      <%= f.label :password, "Пароль" %><br>
-      <%= f.password_field :password, class: "full-width" %>
-    </div>
-    <div class="form-row form-row--large">
-      <%= f.label :password_confirmation, "Підтвердження пароля" %><br>
-      <%= f.password_field :password_confirmation, class: "full-width" %>
+  .accounts__panel {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  .accounts__container {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .accounts__logo {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .accounts__logo img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .accounts__panel h2 {
+    display: none;
+  }
+
+  .accounts__panel form::before {
+    content: "Реєстрація мушкетера";
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+    color: #000;
+    margin: -40px -44px 30px -44px;
+    padding: 0 44px 20px 44px;
+  }
+
+  .form-row {
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  .form-row label {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    color: gray;
+    transition: 0.2s ease;
+    pointer-events: none;
+    padding: 0 4px;
+  }
+
+  .form-row input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    background-color: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 16px;
+    font: 16px;
+    color: #262626;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    min-height: 50px;
+  }
+
+  .form-row input::placeholder {
+    color: #a6a6a6;
+  }
+
+  .form-row input:focus + label, .form-row input:not(:placeholder-shown) + label {
+    top: -10px;
+    font: 12px;
+    background-color: #fafafa;
+    border-color: #717171;
+  }
+
+  .btn-block {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 0;
+    background-color: #0095f6;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    transition: background-color 0.2s;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    min-height: 44px;
+  }
+
+  .btn-block:hover {
+    background-color: #0081d4;
+  }
+
+  .btn-block:active {
+    background-color: #0075ba;
+  }
+
+  .btn-login {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 0;
+    background-color: transparent;
+    border: 1px solid #0095f6;
+    border-radius: 50px;
+    color: #0095f6;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    transition: all 0.2s;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    min-height: 44px;
+  }
+
+  .btn-login:hover {
+    background-color: #0095f6;
+    color: white;
+  }
+
+  .password-wrapper {
+    position: relative;
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #a6a6a6;
+    font-size: 18px;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .toggle-password:hover {
+    color: #262626;
+  }
+
+</style>
+
+<div class="accounts__panel">
+  <div class="accounts__container">
+    <div class="accounts__logo">
+      <%= image_tag "fav-icon.jpg", alt: "Logo" %>
     </div>
 
-    <%= f.submit "Створити аккаунт", class: "btn btn-success", style: "background-color: #198754 !important; border-color: #198754 !important; color: white !important;" %>
-  <% end %>
-  <div class="mt-4">
-    <%= link_to "Назад до стрічки", root_path, class: "btn btn-secondary" %>
+    <h2>Реєстрація мушкетера</h2>
+
+    <%= form_with model: @account, local: true do |f| %>
+      <div class="form-row">
+        <%= f.text_field :username, required: true, class: "full-width", placeholder: "" %>
+        <%= f.label :username, "Нікнейм" %>
+      </div>
+
+      <div class="form-row">
+        <%= f.email_field :email, required: true, class: "full-width", placeholder: "" %>
+        <%= f.label :email, "Email" %>
+      </div>
+
+      <div class="form-row password-wrapper">
+        <%= f.password_field :password, required: true, class: "full-width", placeholder: "", id: "password-field" %>
+        <%= f.label :password, "Пароль" %>
+        <button type="button" class="toggle-password" id="toggle-password-btn" onclick="togglePasswordVisibility()">
+          <span id="eye-icon">👁️</span>
+        </button>
+      </div>
+
+      <%= f.submit "Створити обліковку", class: "btn-block" %><br>
+      <%= link_to "Вже маєте обліковку?", login_path, class: "btn-login" %>
+
+    <% end %>
   </div>
-  <p class="mt-3"><%= link_to "Вже маєте аккаунт?", login_path, class: "text-decoration-none" %></p>
 </div>
+
+<script>
+  function togglePasswordVisibility() {
+    const passwordField = document.getElementById('password-field');
+    const eyeIcon = document.getElementById('eye-icon');
+    
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      eyeIcon.textContent = '🙈';
+    } else {
+      passwordField.type = 'password';
+      eyeIcon.textContent = '👁️';
+    }
+  }
+</script>
