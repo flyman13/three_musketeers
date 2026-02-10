@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many :savers, through: :saved_posts, source: :account
   has_one_attached :image
 
-  validates :body, presence: true, length: { maximum: 1000 }
-  validates :image, presence: true, content_type: ['image/jpeg', 'image/png', 'image/webp'], size: { less_than: 5.megabytes },
+  validates :body, length: { maximum: 1000 }
+  validates :image, presence: true, content_type: ['image/jpeg', 'image/png', 'image/webp'], size: { less_than: 5.megabytes }
 
 end
