@@ -1,93 +1,502 @@
-<%# Profile container for other users %>
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      
-      <%# Profile Header section %>
-      <div class="profile-header-top d-flex align-items-center mb-5">
-        
-        <%# Profile Avatar Section %>
-        <div class="profile-avatar-container me-5">
-          <% if @account.avatar.attached? %>
-            <%= image_tag @account.avatar, class: "rounded-circle profile-avatar-img" %>
-          <% else %>
-            <div class="rounded-circle profile-avatar-placeholder"></div>
-          <% end %>
-        </div>
-
-        <div class="profile-title-actions">
-          <div class="d-flex align-items-center gap-3 mb-3">
-            <h2 class="fw-light m-0 text-dark"><%= @account.username %></h2>
-            
-            <%# Edit button for the account owner %>
-            <% if current_account == @account %>
-              <%= link_to "Edit Profile", edit_profile_path, class: "btn btn-outline-secondary btn-sm fw-bold px-4" %>
-            <% end %>
-
-            <%# Follow/Unfollow button logic for other users %>
-            <div class="profile-buttons">
-              <% if current_account && current_account != @account %>
-                <% if current_account.following?(@account) %>
-                  <%# Find the relationship to delete it if already following %>
-                  <% rel = current_account.following_relationships.find_by(followed_id: @account.id) %>
-                  <%= button_to "Unfollow", relationship_path(rel), 
-                                method: :delete, 
-                                class: "btn btn-outline-secondary btn-sm fw-bold px-4" %>
-                <% else %>
-                  <%# Create a new relationship if not following %>
-                  <%= button_to "Follow", relationships_path(followed_id: @account.id), 
-                                method: :post, 
-                                class: "btn btn-primary btn-sm fw-bold px-4" %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-          
-          <%# Profile Stats Section (Followers/Following) %>
-          <div class="profile-stats d-flex gap-4 mb-3">
-            <div class="stat-item">
-              <span class="fw-bold"><%= @account.posts.count %></span> posts
-            </div>
-            <div class="stat-item">
-              <%= link_to followers_account_path(@account), class: "text-decoration-none text-dark" do %>
-                <span class="fw-bold"><%= @account.followers.count %></span> followers
-              <% end %>
-            </div>
-            <div class="stat-item">
-              <%= link_to following_account_path(@account), class: "text-decoration-none text-dark" do %>
-                <span class="fw-bold"><%= @account.following.count %></span> following
-              <% end %>
-            </div>
-          </div>
-
-          <%# Display user bio if present %>
-          <% if @account.description.present? %>
-            <p class="profile-description mt-2 text-dark">
-              <%= @account.description %>
-            </p>
-          <% end %>
+<%# Profile Page for Users %>
+<div class="account-profile-wrapper">
+  <!-- Profile Header -->
+  <header class="account-profile-header">
+    <div class="account-profile-header-content">
+      <div class="account-profile-avatar-section">
+        <div class="account-profile-avatar">
+          <span class="account-avatar-letter"><%= @account.username.first.upcase %></span>
         </div>
       </div>
 
-      <hr class="mb-5">
-
-      <%# Stream of posts for this specific account %>
-      <div class="profile-stream">
-        <% @posts.each do |post| %>
-          <div class="card mb-4 border-1 shadow-sm">
-            <% if post.image.attached? %>
-              <%= image_tag post.image, class: "card-img-top img-fluid" %>
+      <div class="account-profile-info-section">
+        <div class="account-profile-name-row">
+          <h1 class="account-profile-username"><%= @account.username %></h1>
+          
+          <!-- Action Buttons -->
+          <div class="account-profile-actions">
+            <% if current_account == @account %>
+              <%= link_to "Редагувати", edit_profile_path, class: "btn-edit-account" %>
+            <% elsif current_account && current_account != @account %>
+              <% if current_account.following?(@account) %>
+                <% rel = current_account.following_relationships.find_by(followed_id: @account.id) %>
+                <%= button_to "Відписатися", relationship_path(rel), method: :delete, class: "btn-following" %>
+              <% else %>
+                <%= button_to "Підписатися", relationships_path(followed_id: @account.id), method: :post, class: "btn-follow" %>
+              <% end %>
             <% end %>
-            <div class="card-body">
-              <p class="card-text">
-                <span class="fw-bold me-2"><%= post.account.username %></span>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <ul class="account-profile-stats">
+          <li>
+            <span class="stat-number"><%= @account.posts.count %></span>
+            <span class="stat-label">постів</span>
+          </li>
+          <li>
+            <%= link_to followers_account_path(@account), class: "stat-link" do %>
+              <span class="stat-number"><%= @account.followers.count %></span>
+              <span class="stat-label">підписники</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to following_account_path(@account), class: "stat-link" do %>
+              <span class="stat-number"><%= @account.following.count %></span>
+              <span class="stat-label">підписань</span>
+            <% end %>
+          </li>
+        </ul>
+
+        <!-- Bio -->
+        <div class="account-profile-bio">
+          <p class="bio-name"><strong><%= @account.username %></strong></p>
+          <% if @account.description.present? %>
+            <p class="bio-text"><%= @account.description %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Posts Feed -->
+  <div class="account-profile-content">
+    <div class="account-posts-feed">
+      <% if @posts.any? %>
+        <% @posts.each do |post| %>
+          <div class="account-post-card">
+            <!-- Post Header -->
+            <div class="account-post-header">
+              <div class="account-post-user">
+                <div class="account-post-avatar">
+                  <span class="account-avatar-small"><%= post.account.username.first.upcase %></span>
+                </div>
+                <div class="account-post-user-info">
+                  <%= link_to post.account.username, account_path(post.account), class: "account-post-username" %>
+                  <span class="account-post-time"><%= time_ago_in_words(post.created_at) %> ago</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post Image -->
+            <% if post.image.attached? %>
+              <div class="account-post-image">
+                <%= image_tag post.image, class: "account-image" %>
+              </div>
+            <% end %>
+
+            <!-- Post Body -->
+            <div class="account-post-body">
+              <p class="account-post-text">
+                <strong><%= link_to post.account.username, account_path(post.account), class: "account-post-username-link" %></strong>
                 <%= post.body %>
               </p>
             </div>
+
+            <!-- Post Actions -->
+            <div class="account-post-actions">
+              <%= render "posts/post_actions", post: post %>
+            </div>
+
+            <!-- Comments Preview -->
+            <% if post.comments.any? %>
+              <div class="account-post-comments-preview">
+                <% post.comments.limit(1).each do |comment| %>
+                  <div class="account-comment-preview">
+                    <strong><%= link_to comment.account.username, account_path(comment.account), class: "account-comment-username" %></strong>
+                    <span class="account-comment-text"><%= comment.body %></span>
+                  </div>
+                <% end %>
+                <% if post.comments.count > 1 %>
+                  <div class="account-view-more-comments">
+                    <%= link_to "Переглянути всі #{post.comments.count} коментарів", post_path(post), class: "account-view-all-link" %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         <% end %>
-      </div>
-
+      <% else %>
+        <div class="account-empty-posts">
+          <p>Немає постів</p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
+
+<style>
+  .account-profile-wrapper {
+    background: #fafafa;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  .account-profile-header {
+    background: white;
+    border-bottom: 1px solid #dbdbdb;
+  }
+
+  .account-profile-header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .account-profile-avatar-section {
+    flex-shrink: 0;
+  }
+
+  .account-profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .account-avatar-letter {
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+  }
+
+  .account-profile-info-section {
+    flex: 1;
+  }
+
+  .account-profile-name-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .account-profile-username {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    color: #000;
+  }
+
+  .account-profile-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-edit-account,
+  .btn-follow,
+  .btn-following {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn-edit-account {
+    background: #f0f0f0;
+    color: #000;
+  }
+
+  .btn-edit-account:hover {
+    background: #e0e0e0;
+  }
+
+  .btn-follow {
+    background: #0095f6;
+    color: white;
+  }
+
+  .btn-follow:hover {
+    background: #1877f2;
+    box-shadow: 0 4px 12px rgba(0, 149, 246, 0.4);
+  }
+
+  .btn-following {
+    background: white;
+    color: #0095f6;
+    border: 1px solid #0095f6;
+  }
+
+  .btn-following:hover {
+    background: #f0f8ff;
+  }
+
+  .account-profile-stats {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    gap: 40px;
+  }
+
+  .account-profile-stats li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-number {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  .stat-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+
+  .stat-link:hover {
+    color: #0095f6;
+  }
+
+  .stat-link:hover .stat-number {
+    color: #0095f6;
+  }
+
+  .account-profile-bio {
+    margin-top: 20px;
+  }
+
+  .bio-name {
+    margin: 0 0 8px 0;
+    font-weight: 600;
+    color: #000;
+    font-size: 14px;
+  }
+
+  .bio-text {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .account-profile-content {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 20px 40px;
+  }
+
+  .account-posts-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .account-post-card {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .account-post-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .account-post-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #efefef;
+  }
+
+  .account-post-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .account-post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .account-avatar-small {
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .account-post-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .account-post-username {
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .account-post-username:hover {
+    color: #999;
+  }
+
+  .account-post-time {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .account-post-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+
+  .account-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .account-post-body {
+    padding: 12px 16px;
+  }
+
+  .account-post-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .account-post-username-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .account-post-username-link:hover {
+    text-decoration: underline;
+  }
+
+  .account-post-actions {
+    padding: 12px 16px;
+    display: flex;
+    gap: 16px;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+  }
+
+  .account-post-comments-preview {
+    padding: 12px 16px;
+  }
+
+  .account-comment-preview {
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .account-comment-username {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .account-comment-username:hover {
+    text-decoration: underline;
+  }
+
+  .account-comment-text {
+    color: #666;
+    margin-left: 6px;
+  }
+
+  .account-view-more-comments {
+    margin-top: 12px;
+  }
+
+  .account-view-all-link {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .account-view-all-link:hover {
+    color: #000;
+  }
+
+  .account-empty-posts {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .account-profile-header-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 30px 15px;
+      gap: 30px;
+    }
+
+    .account-profile-avatar {
+      width: 100px;
+      height: 100px;
+    }
+
+    .account-avatar-letter {
+      font-size: 40px;
+    }
+
+    .account-profile-username {
+      font-size: 24px;
+    }
+
+    .account-profile-name-row {
+      justify-content: center;
+    }
+
+    .account-profile-stats {
+      justify-content: center;
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .account-profile-stats {
+      gap: 20px;
+    }
+
+    .account-profile-username {
+      font-size: 20px;
+    }
+  }
+</style>
