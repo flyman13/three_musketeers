@@ -1,0 +1,76 @@
+/* styles extracted from app/views/accounts/new.html.erb */
+.accounts-new__panel {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.accounts-new__panel h2 {
+  margin-top: 0;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.form-row--large {
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* sessions/new.html.erb */
+.sessions__panel {
+  max-width: 300px;
+  margin: 50px auto;
+  font-family: sans-serif;
+}
+
+.btn-block {
+  width: 100%;
+  background: var(--color-bg-secondary);
+  cursor: pointer;
+  border: none;
+  padding: 8px 12px;
+  color: var(--color-text-primary);
+}
+
+/* comments/_form.html.erb */
+.comment-form__wrap {
+  margin-top: 10px;
+}
+
+.textarea-full {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  box-sizing: border-box;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.comment-submit {
+  margin-top: 5px;
+  background: #0095f6;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}

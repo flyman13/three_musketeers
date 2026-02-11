@@ -1,0 +1,151 @@
+/* Sidebar styles - single source of truth
+   Collapsed width: 72px, Expanded: 240px
+   Behavior: overlay (does NOT shift main content on hover)
+*/
+
+.insta-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 72px; /* collapsed */
+  background: var(--color-bg-primary);
+  border-right: 1px solid var(--color-border);
+  z-index: 1050; /* sits above main content */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 10px;
+  transition: width 0.25s ease, box-shadow 0.25s ease;
+}
+
+.insta-sidebar:hover {
+  width: 240px; /* expanded */
+  box-shadow: 10px 0 20px var(--color-shadow);
+}
+
+.insta-sidebar-logo {
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.insta-logo-link {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-weight: 700;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.insta-logo-img { /* optional avatar */
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s ease;
+}
+.insta-logo-img:hover { transform: scale(1.05); }
+
+.insta-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  flex: 1 1 auto; /* allow nav to grow so items can be pushed to the bottom */
+  justify-content: flex-start;
+  padding-bottom: 12px;
+}
+
+.insta-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.insta-nav-item:hover { background: var(--color-nav-hover); }
+.insta-nav-item--danger { color: var(--color-danger); margin-top: auto; }
+
+.insta-icon { font-size: 20px; width: 24px; min-width: 24px; }
+
+/* hide text in collapsed state */
+.insta-nav-text {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+.insta-sidebar:hover .insta-nav-text { opacity: 1; transform: translateX(0); }
+
+/* Main content should reserve space for collapsed sidebar but never shift on hover */
+.main-content {
+  margin-left: 72px; /* matches collapsed width */
+}
+
+/* On small screens (mobile and tablet) convert the left sidebar into a bottom nav
+   so it doesn't consume horizontal space and is reachable with the thumb. */
+@media (max-width: 992px) {
+  .insta-sidebar {
+    /* occupy bottom full-width area */
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    width: 100%;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-right: none;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-primary);
+    box-shadow: 0 -4px 12px var(--color-shadow);
+  }
+
+  .insta-sidebar:hover { width: 100%; box-shadow: 0 -6px 14px var(--color-shadow); }
+
+  .insta-logo-img { display: none; }
+  .insta-logo-link { display: none; }
+
+  .insta-nav {
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 0;
+    padding: 0;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .insta-nav-item {
+    padding: 8px 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-text-primary);
+  }
+
+  .insta-nav-item--danger { margin-top: 0; }
+
+  .insta-nav-text { 
+    opacity: 1; 
+    transform: translateX(0);
+    font-size: 11px;
+    display: block;
+  }
+
+  .insta-icon { font-size: 20px; }
+
+  /* main content should not reserve left margin on small screens */
+  .main-content { margin-left: 0; margin-bottom: 72px; }
+}
