@@ -1,55 +1,353 @@
-<div class="profile-container">
+<div class="profile-wrapper">
+  <!-- Profile Header -->
   <header class="profile-header">
-    <div class="profile-avatar">
-      <div class="avatar-placeholder"></div>
+    <div class="profile-header-content">
+      <div class="profile-avatar-section">
+        <div class="profile-avatar">
+          <span class="avatar-letter"><%= @profile.username.first.upcase %></span>
+        </div>
+      </div>
+
+      <div class="profile-info-section">
+        <div class="profile-name-row">
+          <h1 class="profile-username"><%= @profile.username %></h1>
+          <% if current_account == @profile.account %>
+            <%= link_to "Редагувати", edit_profile_path, class: "btn-edit-profile" %>
+          <% end %>
+        </div>
+
+        <ul class="profile-stats">
+          <li>
+            <span class="stat-number"><%= @posts.count %></span>
+            <span class="stat-label">постів</span>
+          </li>
+          <li>
+            <%= link_to followers_account_path(@profile.account), class: "stat-link" do %>
+              <span class="stat-number"><%= @profile.account.followers.count %></span>
+              <span class="stat-label">підписники</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to following_account_path(@profile.account), class: "stat-link" do %>
+              <span class="stat-number"><%= @profile.account.following.count %></span>
+              <span class="stat-label">підписань</span>
+            <% end %>
+          </li>
+        </ul>
+
+        <div class="profile-bio">
+          <p class="bio-name"><%= @profile.display_name %></p>
+          <p class="bio-text"><%= @profile.bio %></p>
+        </div>
+      </div>
     </div>
-
-    <section class="profile-info">
-      <div class="profile-top-row d-flex align-items-center gap-3">
-        <h1 class="m-0"><%= @profile.username %></h1>
-        <% if current_account == @profile.account %>
-          <%= link_to "Edit Profile", edit_profile_path, class: "btn btn-outline-secondary btn-sm" %>
-        <% end %>
-      </div>
-
-      <ul class="profile-stats">
-        <li><strong><%= @posts.count %></strong> posts</li>
-        <li>
-          <%= link_to followers_account_path(@profile.account), class: "text-decoration-none text-dark" do %>
-            <strong><%= @profile.account.followers.count %></strong> followers
-          <% end %>
-        </li>
-        <li>
-          <%= link_to following_account_path(@profile.account), class: "text-decoration-none text-dark" do %>
-            <strong><%= @profile.account.following.count %></strong> following
-          <% end %>
-        </li>
-      </ul>
-
-      <div class="profile-bio">
-        <p class="full-name"><%= @profile.display_name %></p>
-        <p><%= @profile.bio %></p>
-      </div>
-    </section>
   </header>
 
-  <hr class="separator">
-
-  <div class="posts-grid">
-  <% # Important fix: use the loop variable 'post' %>
-    <% @posts.each do |post| %>
-      <div class="post-item">
-        <%= link_to post_path(post), class: "post-link" do %>
-          <div class="post-overlay">
-            <span>❤️ <%= post.reactions.count %></span>
-          </div>
-          <div class="post-placeholder">
-            <% if post.media_assets.any? %>
-              <span class="carousel-icon">📁</span>
+  <!-- Posts Grid -->
+  <div class="profile-content">
+    <div class="posts-grid">
+      <% if @posts.any? %>
+        <% @posts.each do |post| %>
+          <div class="grid-post-item">
+            <%= link_to post_path(post), class: "grid-post-link" do %>
+              <% if post.image.attached? %>
+                <div class="grid-post-image">
+                  <%= image_tag post.image, class: "grid-image" %>
+                </div>
+              <% else %>
+                <div class="grid-post-placeholder">
+                  📸
+                </div>
+              <% end %>
+              <div class="grid-post-overlay">
+                <span class="overlay-icon">❤️</span>
+                <span class="overlay-count"><%= post.reactions.count %></span>
+              </div>
             <% end %>
           </div>
         <% end %>
-      </div>
-    <% end %>
+      <% else %>
+        <div class="empty-posts">
+          <p>Ще немає постів</p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<style>
+  .profile-wrapper {
+    background: #fafafa;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  .profile-header {
+    background: white;
+    border-bottom: 1px solid #dbdbdb;
+  }
+
+  .profile-header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .profile-avatar-section {
+    flex-shrink: 0;
+  }
+
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .avatar-letter {
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+  }
+
+  .profile-info-section {
+    flex: 1;
+  }
+
+  .profile-name-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .profile-username {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    color: #000;
+  }
+
+  .btn-edit-profile {
+    padding: 8px 20px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    transition: all 0.2s ease;
+  }
+
+  .btn-edit-profile:hover {
+    background: #e0e0e0;
+  }
+
+  .profile-stats {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    gap: 40px;
+  }
+
+  .profile-stats li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-number {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  .stat-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+
+  .stat-link:hover {
+    color: #0095f6;
+  }
+
+  .profile-bio {
+    margin-top: 20px;
+  }
+
+  .bio-name {
+    margin: 0 0 8px 0;
+    font-weight: 600;
+    color: #000;
+    font-size: 14px;
+  }
+
+  .bio-text {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .profile-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .grid-post-item {
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    border: 1px solid #dbdbdb;
+  }
+
+  .grid-post-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .grid-post-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+
+  .grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .grid-post-link:hover .grid-image {
+    transform: scale(1.05);
+  }
+
+  .grid-post-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    background: #f9f9f9;
+  }
+
+  .grid-post-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .grid-post-link:hover .grid-post-overlay {
+    opacity: 1;
+  }
+
+  .overlay-icon {
+    font-size: 20px;
+  }
+
+  .overlay-count {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .empty-posts {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .profile-header-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 30px 15px;
+      gap: 30px;
+    }
+
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+    }
+
+    .avatar-letter {
+      font-size: 40px;
+    }
+
+    .profile-username {
+      font-size: 24px;
+    }
+
+    .profile-stats {
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .profile-stats {
+      gap: 20px;
+    }
+
+    .profile-name-row {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
