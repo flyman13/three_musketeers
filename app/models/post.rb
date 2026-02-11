@@ -7,8 +7,8 @@ class Post < ApplicationRecord
   has_many :savers, through: :saved_posts, source: :account
   has_one_attached :image, dependent: :destroy
 
-  validates :body, presence: true, length: { maximum: 1000 }
+  validates :body, length: { maximum: 1000 }
   # Image attachments are optional; when present, validate content type and size
-  validates :image, content_type: ['image/jpeg', 'image/png', 'image/webp'], size: { less_than: 5.megabytes }, allow_nil: true
+  validates :image, presence: true, content_type: ['image/jpeg', 'image/png', 'image/webp'], size: { less_than: 5.megabytes }, allow_nil: true
 
 end
