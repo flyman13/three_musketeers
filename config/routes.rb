@@ -51,6 +51,4 @@ Rails.application.routes.draw do
 
   resources :reactions, only: [:create, :destroy]
 
-  get 'set_theme', to: 'theme#update'
-
 end
