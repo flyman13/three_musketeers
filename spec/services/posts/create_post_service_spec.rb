@@ -32,7 +32,35 @@ RSpec.describe Posts::CreatePostService, type: :service do
 
         post = described_class.new(account, params).call
         expect(post).not_to be_persisted
-        expect(post.errors[:body]).to be_present
+        expect(post.errors[:base]).to include("Пост повинен мати текст або зображення")
+      end
+
+      it 'does not create a post when body is blank and no image is provided' do
+        params = { body: '', image: nil }
+
+        expect {
+          described_class.new(account, params).call
+        }.not_to change(Post, :count)
+
+        post = described_class.new(account, params).call
+        expect(post).not_to be_persisted
+        expect(post.errors[:base]).to include("Пост повинен мати текст або зображення")
+      end
+
+      it 'creates a post with only image when body is blank' do
+        file_path = Rails.root.join('spec', 'fixtures', 'files', 'test_image.png')
+        uploaded = Rack::Test::UploadedFile.new(file_path, 'image/png')
+
+        params = { body: '', image: uploaded }
+
+        expect {
+          described_class.new(account, params).call
+        }.to change(Post, :count).by(1)
+
+        post = described_class.new(account, params).call
+        expect(post).to be_persisted
+        expect(post.body).to be_blank
+        expect(post.image).to be_attached
       end
     end
 
