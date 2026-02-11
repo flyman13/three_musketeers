@@ -7,8 +7,17 @@ class Post < ApplicationRecord
   has_many :savers, through: :saved_posts, source: :account
   has_one_attached :image, dependent: :destroy
 
-  validates :body, presence: true, length: { maximum: 1000 }
-  # Image attachments are optional; when present, validate content type and size
-  validates :image, content_type: ['image/jpeg', 'image/png', 'image/webp'], size: { less_than: 5.megabytes }, allow_nil: true
+  validates :account_id, presence: true
+  validates :body, length: { maximum: 1000, message: "Текст не може бути довше 1000 символів" }, allow_blank: true
+  validates :image, content_type: { with: ['image/jpeg', 'image/png', 'image/webp'], message: 'повинна бути JPG, PNG або WebP' }, size: { less_than: 5.megabytes, message: 'повинна бути менше 5 МБ' }, allow_nil: true
 
+  validate :image_attached_or_body_present
+
+  private
+
+  def image_attached_or_body_present
+    if body.blank? && !image.attached?
+      errors.add(:base, "Пост повинен мати текст або зображення")
+    end
+  end
 end

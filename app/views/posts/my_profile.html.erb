@@ -8,7 +8,7 @@
           <% if @account.avatar.attached? %>
             <%= image_tag @account.avatar, class: "rounded-circle profile-avatar-img" %>
           <% else %>
-            <div class="rounded-circle profile-avatar-placeholder"></div>
+            <div class="rounded-circle profile-avatar-placeholder"><span class="avatar-placeholder-text"><%= @account.username.first.upcase %></span></div>
           <% end %>
         </div>
 
