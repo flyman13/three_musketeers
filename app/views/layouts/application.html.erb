@@ -362,7 +362,7 @@
   <% end %>
 
   <% if current_account.present? %>
-    <%= link_to my_profile_path, class: "insta-nav-item" do %>
+    <%= link_to account_path(current_account), class: "insta-nav-item" do %>
       <i class="bi bi-person-circle insta-icon"></i>
       <span class="insta-nav-text">Мій профіль</span>
     <% end %>
