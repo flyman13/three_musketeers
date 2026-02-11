@@ -8,8 +8,9 @@
 .feed-post {
   background: white;
   border: 1px solid #dbdbdb;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .post-header {
@@ -68,17 +69,31 @@
   padding: 10px 20px;
   background: #0095f6;
   color: white;
-  border-radius: 5px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
   font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.new-post-btn:hover {
+  background: #1877f2;
+  box-shadow: 0 4px 12px rgba(0, 149, 246, 0.4);
 }
 
 .post-card {
   border: 1px solid #ccc;
   margin-top: 20px;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 12px;
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .post-meta-row {
@@ -94,7 +109,7 @@
 
 .post-image img {
   width: 100%;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .post-body {
@@ -102,17 +117,24 @@
 }
 
 .reactions-btn {
-  background: none;
+  background: white;
   border: 1px solid #ddd;
-  border-radius: 20px;
+  border-radius: 24px;
   cursor: pointer;
-  padding: 5px 15px;
+  padding: 6px 16px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.reactions-btn:hover {
+  background: #f0f0f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .comments-wrap {
   background: #f9f9f9;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .comment-item {
@@ -149,14 +171,18 @@
 .profile-button {
   background-color: #0095f6;
   color: white;
-  padding: 5px 15px;
-  border-radius: 4px;
+  padding: 8px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
   font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .profile-button:hover {
   background-color: #1877f2;
+  box-shadow: 0 4px 12px rgba(0, 149, 246, 0.4);
 }
 
 .error-container {
@@ -191,6 +217,21 @@
 
 .post-image-container {
   width: 100%;
+
+/* Comment removal animation (used when a comment is deleted via Turbo) */
+.comment-item {
+  transition: opacity .25s ease, transform .25s ease, max-height .25s ease, margin .25s ease, padding .25s ease;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.comment-item.removing {
+  opacity: 0;
+  transform: translateX(20px);
+  max-height: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
   aspect-ratio: 1 / 1;
   background-color: #efefef;
 }
@@ -312,7 +353,7 @@
   border: none;
   border-radius: 8px;
   padding: 8px 16px;
-  width: 250px;
+  width: 100%;
 }
 
 .search-input:focus {
@@ -340,7 +381,9 @@
 
 .post-show-card {
   max-height: 600px;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 .object-fit-contain {

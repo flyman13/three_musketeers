@@ -1,60 +1,540 @@
-<div class="posts-index__container">
-  <header class="posts-index__header mb-4">
-    <h2 class="fw-bold">Three Musketeers</h2>
-    <div class="posts-index__header-actions">
-      <% if current_account %>
-        <span>Hi, <b><%= current_account.username %></b>!</span>
-      <% else %>
-        <%= link_to "Login", login_path, class: "btn btn-outline-primary me-2" %>
-        <%= link_to "Sign Up", new_account_path, class: "btn btn-primary" %>
-      <% end %>
+<div class="instagram-feed">
+  <!-- Header/Navbar -->
+  <header class="instagram-header">
+    <div class="instagram-header-content">
+      <div class="instagram-logo">
+        <h1>Three Musketeers</h1>
+      </div>
+      <div class="instagram-header-actions">
+        <% if current_account %>
+          <div class="user-greeting">
+            <span>Welcome, <strong><%= current_account.username %></strong></span>
+            <%= link_to "New Post", new_post_path, class: "btn-new-post" %>
+            <%= link_to "Profile", account_path(current_account), class: "btn-profile" %>
+          </div>
+        <% else %>
+          <div class="auth-buttons">
+            <%= link_to "Login", login_path, class: "btn-auth btn-auth-primary" %>
+            <%= link_to "Sign Up", new_account_path, class: "btn-auth btn-auth-secondary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </header>
 
-  <div class="search-container mb-4">
-    <%= form_with url: search_accounts_path, method: :get, local: true, class: "d-flex" do |f| %>
-      <%= f.text_field :username, placeholder: "Search users...", class: "form-control search-input", value: params[:username] %>
-    <% end %>
+  <!-- Search Bar -->
+  <div class="instagram-search-section">
+    <div class="search-wrapper">
+      <%= form_with url: search_accounts_path, method: :get, local: true, class: "search-form" do |f| %>
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <%= f.text_field :username, placeholder: "Search users...", class: "search-input", value: params[:username] %>
+      <% end %>
+    </div>
   </div>
 
- 
+  <!-- Posts Feed -->
+  <div class="instagram-feed-content">
+    <% if @posts.any? %>
+      <% @posts.each do |post| %>
+        <div class="instagram-post">
+          <!-- Post Header -->
+          <div class="post-header-section">
+            <div class="post-user-info">
+              <div class="post-avatar">
+                <%= link_to account_path(post.account) do %>
+                  <span class="avatar-placeholder"><%= post.account.username.first.upcase %></span>
+                <% end %>
+              </div>
+              <div class="post-user-details">
+                <%= link_to post.account.username, account_path(post.account), class: "username-link" %>
+                <span class="post-time"><%= time_ago_in_words(post.created_at) %> ago</span>
+              </div>
+            </div>
+            <% if current_account == post.account %>
+              <%= link_to "•••", post_path(post), data: { turbo_method: :delete }, class: "post-menu", title: "Delete post" %>
+            <% end %>
+          </div>
 
-  <% @posts.each do |post| %>
-    <div class="post-card card mb-5 shadow-sm">
-      <div class="post-meta-row card-header bg-white d-flex justify-content-between align-items-center">
-        <div class="post-header">
-          <%= link_to post.account.username, account_path(post.account), class: "fw-bold text-dark text-decoration-none" %>
-        </div>
-        <% if current_account == post.account %>
-          <%= link_to "Delete", post_path(post), data: { turbo_method: :delete }, class: "text-danger small text-decoration-none" %>
-        <% end %>
-      </div>
-
-      <% if post.image.attached? %>
-        <div class="post-image">
-          <%= image_tag post.image, class: "card-img-top" %>
-        </div>
-      <% end %>
-
-      <div class="card-body">
-        <p class="post-body card-text"><%= post.body %></p>
-        <hr>
-
-        <%# Виклик partial для лайків і збереження поста %>
-        <%= render "posts/post_actions", post: post %>
-
-        <div class="comments-wrap mt-3 bg-light p-3 rounded">
-          <% post.comments.each do |comment| %>
-            <%= render "comments/comment", comment: comment %>
+          <!-- Post Image -->
+          <% if post.image.attached? %>
+            <div class="post-image-container">
+              <%= image_tag post.image, class: "post-image" %>
+            </div>
+          <% else %>
+            <div class="post-image-placeholder">
+              No image
+            </div>
           <% end %>
 
+          <!-- Post Actions (Likes, Comments, Share) -->
+          <div class="post-actions-bar">
+            <%= render "posts/post_actions", post: post %>
+          </div>
+
+          <!-- Post Caption -->
+          <div class="post-caption-section">
+            <p class="post-caption">
+              <strong><%= link_to post.account.username, account_path(post.account), class: "caption-username" %></strong>
+              <%= post.body %>
+            </p>
+          </div>
+
+          <!-- Comments Section -->
+          <% if post.comments.any? %>
+            <div class="post-comments-section">
+              <% post.comments.limit(2).each do |comment| %>
+                <%= render "comments/comment", comment: comment %>
+              <% end %>
+              <% if post.comments.count > 2 %>
+                <div class="view-all-comments">
+                  <%= link_to "View all #{post.comments.count} comments", post_path(post) %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+          <!-- Comment Input -->
           <% if current_account %>
-            <div class="comment-form-wrap mt-3">
-              <%= render 'comments/form', post: post %>
+            <div class="comment-input-section">
+              <%= form_with model: [post, Comment.new], local: true, class: "comment-form" do |f| %>
+                <%= f.text_field :body, placeholder: "Add a comment...", class: "comment-input" %>
+                <%= f.submit "Post", class: "comment-submit" %>
+              <% end %>
             </div>
           <% end %>
         </div>
+      <% end %>
+    <% else %>
+      <div class="empty-feed">
+        <div class="empty-state">
+          <h3>No posts yet</h3>
+          <p>Follow people to see their posts!</p>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
+
+<style>
+  /* Instagram-style Feed */
+  .instagram-feed {
+    background: #fafafa;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  /* Header/Navbar */
+  .instagram-header {
+    background: white;
+    border-bottom: 1px solid #dbdbdb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .instagram-header-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .instagram-logo h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .instagram-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .user-greeting {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+  }
+
+  .user-greeting strong {
+    color: #000;
+  }
+
+  .btn-new-post,
+  .btn-profile {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn-new-post {
+    background: #0095f6;
+    color: white;
+  }
+
+  .btn-new-post:hover {
+    background: #1877f2;
+    box-shadow: 0 4px 12px rgba(0, 149, 246, 0.4);
+  }
+
+  .btn-profile {
+    background: #f0f0f0;
+    color: #000;
+  }
+
+  .btn-profile:hover {
+    background: #e0e0e0;
+  }
+
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .btn-auth {
+    padding: 8px 16px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn-auth-primary {
+    background: #0095f6;
+    color: white;
+  }
+
+  .btn-auth-primary:hover {
+    background: #1877f2;
+  }
+
+  .btn-auth-secondary {
+    background: white;
+    color: #0095f6;
+    border: 1px solid #0095f6;
+  }
+
+  .btn-auth-secondary:hover {
+    background: #f0f8ff;
+  }
+
+  /* Search Section */
+  .instagram-search-section {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+
+  .search-wrapper {
+    position: relative;
+  }
+
+  .search-form {
+    width: 100%;
+    position: relative;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: #999;
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border: 1px solid #dbdbdb;
+    border-radius: 20px;
+    background: #f5f5f5;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .search-input:focus {
+    background: white;
+    border-color: #999;
+  }
+
+  /* Feed Content */
+  .instagram-feed-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+
+  /* Post Card */
+  .instagram-post {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .instagram-post:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Post Header */
+  .post-header-section {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #efefef;
+  }
+
+  .post-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .post-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar-placeholder {
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .post-user-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .username-link {
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .username-link:hover {
+    color: #999;
+  }
+
+  .post-time {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .post-menu {
+    color: #999;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  .post-menu:hover {
+    color: #000;
+    background: #f0f0f0;
+  }
+
+  /* Post Image */
+  .post-image-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+
+  .post-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .post-image-placeholder {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    color: #999;
+    font-size: 16px;
+  }
+
+  /* Post Actions Bar */
+  .post-actions-bar {
+    padding: 12px 16px;
+    display: flex;
+    gap: 16px;
+    border-bottom: 1px solid #efefef;
+  }
+
+  /* Post Caption */
+  .post-caption-section {
+    padding: 12px 16px;
+  }
+
+  .post-caption {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .caption-username {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .caption-username:hover {
+    text-decoration: underline;
+  }
+
+  /* Comments Section */
+  .post-comments-section {
+    padding: 12px 16px;
+    border-top: 1px solid #efefef;
+  }
+
+  .view-all-comments {
+    margin-top: 8px;
+  }
+
+  .view-all-comments a {
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .view-all-comments a:hover {
+    color: #000;
+  }
+
+  /* Comment Input */
+  .comment-input-section {
+    padding: 12px 16px;
+    border-top: 1px solid #efefef;
+  }
+
+  .comment-form {
+    display: flex;
+    gap: 8px;
+  }
+
+  .comment-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+    padding: 8px 0;
+  }
+
+  .comment-input::placeholder {
+    color: #999;
+  }
+
+  .comment-submit {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: all 0.2s ease;
+  }
+
+  .comment-submit:hover {
+    color: #1877f2;
+  }
+
+  /* Empty State */
+  .empty-feed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  .empty-state {
+    text-align: center;
+  }
+
+  .empty-state h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #000;
+  }
+
+  .empty-state p {
+    color: #999;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .instagram-header-content {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .instagram-logo h1 {
+      font-size: 24px;
+    }
+
+    .instagram-feed-content {
+      padding: 0 10px 40px;
+    }
+
+    .instagram-post {
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .user-greeting {
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+    }
+  }
+</style>

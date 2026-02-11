@@ -1,42 +1,350 @@
-<div class="container mt-4">
-  <%# Кнопка назад %>
-  <div class="mb-3">
-    <%= link_to :back, class: "text-dark text-decoration-none fw-bold d-flex align-items-center gap-2" do %>
-      <i class="bi bi-arrow-left fs-4"></i> Назад
-    <% end %>
-  </div>
+<div class="post-show-wrapper">
+  <!-- Header -->
+  <header class="post-show-header">
+    <div class="post-show-header-content">
+      <div class="back-button">
+        <%= link_to "←", root_path, class: "back-link" %>
+      </div>
+      <h1 class="post-show-title">Допис</h1>
+      <div class="header-spacer"></div>
+    </div>
+  </header>
 
-  <div class="card shadow-sm border-0 overflow-hidden post-show-card">
-    <div class="row g-0">
-      <%# Ліва частина: Зображення %>
-      <div class="col-md-7 bg-light d-flex align-items-center justify-content-center">
+  <!-- Post Content -->
+  <div class="post-show-content">
+    <div class="post-show-container">
+      <!-- Post Image -->
+      <div class="post-show-image-section">
         <% if @post.image.attached? %>
-          <%= image_tag @post.image, class: "img-fluid w-100 h-100 object-fit-contain" %>
+          <%= image_tag @post.image, class: "post-show-image" %>
+        <% else %>
+          <div class="no-image-placeholder">Немає зображення</div>
         <% end %>
       </div>
 
-      <%# Права частина: Інфо, лайки та коментарі %>
-      <div class="col-md-5 d-flex flex-column bg-white">
-        <div class="p-3 border-bottom d-flex align-items-center gap-2">
-          <%= link_to account_path(@post.account), class: "fw-bold text-dark text-decoration-none" do %>
-            <%= @post.account.username %>
-          <% end %>
-        </div>
-
-        <div class="p-3 flex-grow-1 overflow-auto" style="max-height: 400px;">
-          <p><span class="fw-bold me-2"><%= @post.account.username %></span><%= @post.body %></p>
-          <hr>
-          <%# Секція коментарів %>
-          <div id="comments_post_<%= @post.id %>">
-             <%= render @post.comments %>
+      <!-- Post Info -->
+      <div class="post-show-info-section">
+        <!-- Post Header -->
+        <div class="post-show-header-info">
+          <div class="post-user-info">
+            <div class="post-avatar">
+              <span class="avatar-placeholder"><%= @post.account.username.first.upcase %></span>
+            </div>
+            <div class="post-user-details">
+              <%= link_to @post.account.username, account_path(@post.account), class: "username-link" %>
+              <span class="post-time"><%= time_ago_in_words(@post.created_at) %> ago</span>
+            </div>
           </div>
         </div>
 
-        <%# Блок лайків і збереження (Turbo) %>
-        <div class="p-3 border-top">
+        <!-- Post Caption -->
+        <div class="post-caption">
+          <p class="caption-text">
+            <strong><%= link_to @post.account.username, account_path(@post.account), class: "caption-username" %></strong>
+            <%= @post.body %>
+          </p>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+          <h3 class="comments-title">Коментарі</h3>
+          <div class="comments-list">
+            <% if @post.comments.any? %>
+              <% @post.comments.each do |comment| %>
+                <%= render "comments/comment", comment: comment %>
+              <% end %>
+            <% else %>
+              <p class="no-comments">Немає коментарів. Будьте першим!</p>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Post Actions -->
+        <div class="post-actions-section">
           <%= render "posts/post_actions", post: @post %>
         </div>
+
+        <!-- Comment Input -->
+        <% if current_account %>
+          <div class="comment-input-wrapper">
+            <%= form_with model: [@post, Comment.new], local: true, class: "comment-form" do |f| %>
+              <%= f.text_field :body, placeholder: "Додайте коментар...", class: "comment-input" %>
+              <%= f.submit "Відправити", class: "comment-submit-btn" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .post-show-wrapper {
+    background: #fafafa;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  .post-show-header {
+    background: white;
+    border-bottom: 1px solid #dbdbdb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .post-show-header-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .back-button {
+    width: 40px;
+  }
+
+  .back-link {
+    font-size: 24px;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: block;
+    padding: 8px;
+    border-radius: 50%;
+  }
+
+  .back-link:hover {
+    color: #000;
+    background: #f0f0f0;
+  }
+
+  .post-show-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    color: #000;
+    flex: 1;
+    text-align: center;
+  }
+
+  .header-spacer {
+    width: 40px;
+  }
+
+  .post-show-content {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px 40px;
+  }
+
+  .post-show-container {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .post-show-image-section {
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    overflow: hidden;
+  }
+
+  .post-show-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .no-image-placeholder {
+    color: #999;
+    font-size: 16px;
+  }
+
+  .post-show-info-section {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #dbdbdb;
+  }
+
+  .post-show-header-info {
+    padding: 16px;
+    border-bottom: 1px solid #efefef;
+  }
+
+  .post-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .post-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar-placeholder {
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .post-user-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .username-link {
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .username-link:hover {
+    color: #999;
+  }
+
+  .post-time {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .post-caption {
+    padding: 16px;
+    border-bottom: 1px solid #efefef;
+  }
+
+  .caption-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .caption-username {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .caption-username:hover {
+    text-decoration: underline;
+  }
+
+  .comments-section {
+    flex: 1;
+    overflow-y: auto;
+    border-bottom: 1px solid #efefef;
+  }
+
+  .comments-title {
+    padding: 16px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #efefef;
+    color: #000;
+  }
+
+  .comments-list {
+    padding: 16px;
+  }
+
+  .no-comments {
+    color: #999;
+    text-align: center;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+
+  .post-actions-section {
+    padding: 12px 16px;
+    border-bottom: 1px solid #efefef;
+    display: flex;
+    gap: 16px;
+  }
+
+  .comment-input-wrapper {
+    padding: 12px 16px;
+  }
+
+  .comment-form {
+    display: flex;
+    gap: 8px;
+  }
+
+  .comment-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+    padding: 8px 0;
+    border-bottom: 1px solid #efefef;
+  }
+
+  .comment-input::placeholder {
+    color: #999;
+  }
+
+  .comment-submit-btn {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: all 0.2s ease;
+  }
+
+  .comment-submit-btn:hover {
+    color: #1877f2;
+  }
+
+  @media (max-width: 900px) {
+    .post-show-container {
+      grid-template-columns: 1fr;
+    }
+
+    .post-show-info-section {
+      border-left: none;
+      border-top: 1px solid #dbdbdb;
+    }
+
+    .post-show-image-section {
+      min-height: 400px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .post-show-image-section {
+      min-height: 300px;
+    }
+
+    .post-show-header-content {
+      padding: 12px 15px;
+    }
+
+    .post-show-title {
+      font-size: 20px;
+    }
+  }
+</style>
