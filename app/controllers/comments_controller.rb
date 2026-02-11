@@ -9,9 +9,9 @@ class CommentsController < ApplicationController
     @comment.account = current_account
 
     if @comment.save
-      redirect_to root_path, notice: 'Коментар додано!'
+      redirect_to @post, notice: 'Коментар додано!'
     else
-      redirect_to root_path, alert: 'Не вдалося додати коментар.'
+      redirect_to @post, alert: 'Коментар не може бути порожнім.'
     end
   end
 
