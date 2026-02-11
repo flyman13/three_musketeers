@@ -45,7 +45,11 @@
             <div class="post-user-info">
               <div class="post-avatar">
                 <%= link_to account_path(post.account) do %>
-                  <span class="avatar-placeholder"><%= post.account.username.first.upcase %></span>
+                  <% if post.account.avatar.attached? %>
+                    <%= image_tag post.account.avatar, class: "avatar-image", alt: post.account.username %>
+                  <% else %>
+                    <span class="avatar-placeholder"><%= post.account.username.first.upcase %></span>
+                  <% end %>
                 <% end %>
               </div>
               <div class="post-user-details">
@@ -327,6 +331,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+  }
+
+  .avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .avatar-placeholder {

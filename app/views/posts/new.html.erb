@@ -11,7 +11,7 @@
       <%= form_with model: @post, local: true, class: "post-form" do |form| %>
         <!-- Post Text Area -->
         <div class="form-group">
-          <%= form.label :body, "Що у вас на думці?", class: "form-label" %>
+          <%= form.label :body, "Що у вас на думці? (опціонально)", class: "form-label" %>
           <%= form.text_area :body, rows: 5, class: "form-control textarea-input", placeholder: "Поділіться своєю думкою..." %>
         </div>
 
@@ -318,6 +318,39 @@
   .btn-cancel:hover {
     background: #e0e0e0;
     color: #000;
+  }
+
+  /* Error Alert */
+  .alert {
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .alert-error {
+    background: #ffebee;
+    border: 1px solid #ef5350;
+    color: #c62828;
+  }
+
+  .alert h5 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .alert ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .alert li {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .alert li:last-child {
+    margin-bottom: 0;
   }
 
   @media (max-width: 640px) {

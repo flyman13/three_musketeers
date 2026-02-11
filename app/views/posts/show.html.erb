@@ -28,7 +28,11 @@
         <div class="post-show-header-info">
           <div class="post-user-info">
             <div class="post-avatar">
-              <span class="avatar-placeholder"><%= @post.account.username.first.upcase %></span>
+              <% if @post.account.avatar.attached? %>
+                <%= image_tag @post.account.avatar, class: "avatar-image", alt: @post.account.username %>
+              <% else %>
+                <span class="avatar-placeholder"><%= @post.account.username.first.upcase %></span>
+              <% end %>
             </div>
             <div class="post-user-details">
               <%= link_to @post.account.username, account_path(@post.account), class: "username-link" %>
@@ -67,12 +71,29 @@
         <!-- Comment Input -->
         <% if current_account %>
           <div class="comment-input-wrapper">
-            <%= form_with model: [@post, Comment.new], local: true, class: "comment-form" do |f| %>
-              <%= f.text_field :body, placeholder: "Додайте коментар...", class: "comment-input" %>
-              <%= f.submit "Відправити", class: "comment-submit-btn" %>
+            <%= form_with model: [@post, Comment.new], local: true, class: "comment-form", id: "comment-form-#{@post.id}" do |f| %>
+              <%= f.text_field :body, placeholder: "Додайте коментар...", class: "comment-input", id: "comment-input-#{@post.id}" %>
+              <%= f.submit "Відправити", class: "comment-submit-btn", id: "comment-submit-#{@post.id}" %>
             <% end %>
           </div>
         <% end %>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const commentForm = document.getElementById('comment-form-<%= @post.id %>');
+            const commentInput = document.getElementById('comment-input-<%= @post.id %>');
+            const submitBtn = document.getElementById('comment-submit-<%= @post.id %>');
+
+            if (commentForm && commentInput && submitBtn) {
+              commentForm.addEventListener('submit', function(e) {
+                if (!commentInput.value.trim()) {
+                  e.preventDefault();
+                  return false;
+                }
+              });
+            }
+          });
+        </script>
       </div>
     </div>
   </div>
@@ -198,6 +219,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+  }
+
+  .avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .avatar-placeholder {
