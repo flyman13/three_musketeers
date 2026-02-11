@@ -21,6 +21,300 @@
 
     <%# Your favicon %>
     <%= favicon_link_tag 'fav-icon.jpg' %>
+
+    <style>
+      :root {
+        --bg: #ffffff;
+        --text: #111111;
+        --sidebar-bg: #f8f9fa;
+        --nav-item-hover: #e9ecef;
+        --border-color: #dee2e6;
+      }
+
+      .dark-mode {
+        --bg: #121212;
+        --text: #eeeeee;
+        --sidebar-bg: #1e1e1e;
+        --nav-item-hover: #2d2d2d;
+        --border-color: #404040;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        transition: background 0.25s, color 0.25s;
+      }
+
+      .dark-mode .insta-sidebar {
+        background: var(--sidebar-bg);
+        border-color: var(--border-color);
+      }
+
+      .dark-mode .insta-nav-item:hover {
+        background: var(--nav-item-hover);
+      }
+
+      /* Fix icon visibility in dark mode */
+      .dark-mode .insta-icon {
+        color: var(--text) !important;
+      }
+
+      .dark-mode .bi {
+        color: var(--text) !important;
+      }
+
+      /* Apply dark mode to all common elements */
+      .dark-mode .card {
+        background: var(--sidebar-bg);
+        border-color: var(--border-color);
+        color: var(--text);
+      }
+
+      .dark-mode .form-control,
+      .dark-mode .form-select {
+        background: var(--bg);
+        border-color: var(--border-color);
+        color: var(--text);
+      }
+
+      .dark-mode .form-control::placeholder {
+        color: #999 !important;
+      }
+
+      .dark-mode .form-control::-webkit-input-placeholder {
+        color: #999 !important;
+      }
+
+      .dark-mode .form-control::-moz-placeholder {
+        color: #999 !important;
+      }
+
+      .dark-mode .form-control:-ms-input-placeholder {
+        color: #999 !important;
+      }
+
+      .dark-mode .btn-light {
+        background: var(--sidebar-bg);
+        border-color: var(--border-color);
+        color: var(--text);
+      }
+
+      .dark-mode .btn-outline-secondary {
+        border-color: var(--border-color);
+        color: var(--text);
+      }
+
+      .dark-mode .text-muted {
+        color: #999 !important;
+      }
+
+      .dark-mode .border {
+        border-color: var(--border-color) !important;
+      }
+
+      .dark-mode .bg-light {
+        background: var(--sidebar-bg) !important;
+      }
+
+      /* Ensure main content respects theme */
+      .dark-mode .main-content {
+        background: var(--bg);
+      }
+
+      /* Apply theme to all text elements */
+      .dark-mode p,
+      .dark-mode h1,
+      .dark-mode h2,
+      .dark-mode h3,
+      .dark-mode h4,
+      .dark-mode h5,
+      .dark-mode h6,
+      .dark-mode span,
+      .dark-mode div {
+        color: var(--text);
+      }
+
+      /* Override any hardcoded Bootstrap backgrounds */
+      .dark-mode * {
+        background-color: transparent !important;
+      }
+
+      .dark-mode body,
+      .dark-mode .main-content,
+      .dark-mode .container,
+      .dark-mode .card,
+      .dark-mode .insta-sidebar {
+        background-color: var(--bg) !important;
+      }
+
+      .dark-mode .insta-sidebar {
+        background-color: var(--sidebar-bg) !important;
+      }
+
+      /* Profile page and post creator styling */
+      .dark-mode .text-dark {
+        color: var(--text) !important;
+      }
+
+      .dark-mode .text-decoration-none {
+        color: var(--text) !important;
+      }
+
+      .dark-mode .nav-link {
+        color: var(--text) !important;
+      }
+
+      .dark-mode .nav-link.active {
+        background-color: var(--sidebar-bg) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .nav-tabs {
+        border-color: var(--border-color) !important;
+      }
+
+      .dark-mode hr {
+        border-color: var(--border-color) !important;
+      }
+
+      .dark-mode .profile-avatar-placeholder {
+        background: var(--sidebar-bg) !important;
+        border: 2px solid var(--border-color) !important;
+      }
+
+      /* Login/Registration pages dark mode */
+      .dark-mode .sessions__panel,
+      .dark-mode .accounts__panel {
+        background: var(--bg) !important;
+      }
+
+      .dark-mode .sessions__panel form::before,
+      .dark-mode .accounts__panel form::before {
+        color: var(--text) !important;
+        border-color: var(--border-color) !important;
+      }
+
+      .dark-mode .form-row input {
+        background: var(--sidebar-bg) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .form-row input:focus + label,
+      .dark-mode .form-row input:not(:placeholder-shown) + label {
+        background: var(--sidebar-bg) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .form-row label {
+        color: #999 !important;
+      }
+
+      .dark-mode .toggle-password {
+        color: #999 !important;
+      }
+
+      .dark-mode .toggle-password:hover {
+        color: var(--text) !important;
+      }
+
+      /* Login/Registration page buttons */
+      .dark-mode .btn-block {
+        background-color: #0095f6 !important;
+        color: white !important;
+      }
+
+      .dark-mode .btn-block:hover {
+        background-color: #0081d4 !important;
+      }
+
+      .dark-mode .btn-block:active {
+        background-color: #0075ba !important;
+      }
+
+      .dark-mode .btn-signup {
+        background-color: transparent !important;
+        border-color: #0095f6 !important;
+        color: #0095f6 !important;
+      }
+
+      .dark-mode .btn-signup:hover {
+        background-color: #0095f6 !important;
+        color: white !important;
+      }
+
+      /* Search page dark mode */
+      .dark-mode .btn-outline-dark {
+        border-color: var(--border-color) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .btn-outline-dark:hover {
+        background: var(--sidebar-bg) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .list-group {
+        background: var(--sidebar-bg) !important;
+        border-color: var(--border-color) !important;
+      }
+
+      .dark-mode .list-group-item {
+        background: var(--sidebar-bg) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .bg-light {
+        background: var(--sidebar-bg) !important;
+        border-color: var(--border-color) !important;
+      }
+
+      /* Comment form dark mode */
+      .dark-mode .comment-form__wrap {
+        background: transparent;
+      }
+
+      .dark-mode .textarea-full {
+        background: var(--sidebar-bg) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .textarea-full::placeholder {
+        color: #999 !important;
+      }
+
+      .dark-mode .comment-submit {
+        background: #0095f6 !important;
+        color: white !important;
+      }
+
+      .dark-mode .comment-submit:hover {
+        background: #0081d4 !important;
+      }
+
+      /* Comment items dark mode */
+      .dark-mode .comment-item {
+        border-color: var(--border-color) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .comment-author {
+        color: var(--text) !important;
+      }
+
+      .dark-mode .btn-comment-like {
+        color: var(--text) !important;
+      }
+
+      .dark-mode .btn-link {
+        color: var(--text) !important;
+      }
+
+    </style>
   </head>
 
   <body>
@@ -55,15 +349,20 @@
       <i class="bi bi-box-arrow-right insta-icon"></i>
       <span class="insta-nav-text">Вийти</span>
     <% end %>
+
   <% end %>
 </nav>
 
     </div>
 
+    <!-- Theme toggle button in top right corner -->
+    <button id="theme-toggle" onclick="toggleTheme()" style="position: fixed; top: 20px; right: 20px; z-index: 1060; background: var(--sidebar-bg); border: 1px solid var(--border-color); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.25s; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <i class="bi bi-moon-fill" id="theme-icon" style="font-size: 20px; color: var(--text);"></i>
+    </button>
+
     <main class="main-content">
       <div class="container">
         <div class="row justify-content-center">
-            <%# Контейнер для Turbo-відповідей and flash messages %>
             <div class="col-12 col-md-8 col-lg-6">
               <div id="flash" data-controller="toast"></div>
               <%= yield %>
@@ -83,6 +382,61 @@
       document.addEventListener('turbo:submit-start', () => toggleLoader(true));
       document.addEventListener('turbo:submit-end', () => toggleLoader(false));
       document.addEventListener('turbo:load', () => toggleLoader(false));
+
+      // Theme toggle functionality - more robust implementation
+      function toggleTheme() {
+        try {
+          const body = document.body;
+          const themeIcon = document.getElementById('theme-icon');
+          
+          if (!body || !themeIcon) return;
+          
+          if (body.classList.contains('dark-mode')) {
+            body.classList.remove('dark-mode');
+            themeIcon.classList.remove('bi-sun-fill');
+            themeIcon.classList.add('bi-moon-fill');
+            localStorage.setItem('theme', 'light');
+          } else {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('bi-moon-fill');
+            themeIcon.classList.add('bi-sun-fill');
+            localStorage.setItem('theme', 'dark');
+          }
+        } catch (error) {
+          console.error('Theme toggle error:', error);
+        }
+      }
+
+      // Load saved theme on page load - safer implementation
+      const loadTheme = () => {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const themeIcon = document.getElementById('theme-icon');
+          
+          if (savedTheme === 'dark' && document.body && themeIcon) {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('bi-moon-fill');
+            themeIcon.classList.add('bi-sun-fill');
+          }
+        } catch (error) {
+          console.error('Theme load error:', error);
+        }
+      };
+
+      // Load theme on DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadTheme);
+      } else {
+        loadTheme();
+      }
+
+      // Load theme on Turbo navigation - with delay to ensure DOM is ready
+      document.addEventListener('turbo:load', () => {
+        setTimeout(loadTheme, 50);
+      });
+
+      // Make toggleTheme available globally
+      window.toggleTheme = toggleTheme;
     </script>
   </body>
 </html>
