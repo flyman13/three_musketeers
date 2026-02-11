@@ -39,10 +39,16 @@
 .edit-btn {
   background: transparent;
   border: 1px solid #dbdbdb;
-  border-radius: 4px;
-  padding: 5px 9px;
+  border-radius: 8px;
+  padding: 8px 20px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .profile-stats {
@@ -68,6 +74,13 @@
   aspect-ratio: 1 / 1; /* Робимо блоки ідеально квадратними */
   position: relative;
   cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.post-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .post-placeholder {
@@ -103,6 +116,7 @@
 .edit-profile-card {
   border: 1px solid #dbdbdb;
   border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Bio text appearance in profile */
@@ -112,14 +126,17 @@
   max-width: 400px;
 }
 
-/* Customizing the primary button to look more modern */
+/* Instagram-style blue button */
 .btn-primary {
   background-color: #0095f6;
   border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
   background-color: #1877f2;
+  box-shadow: 0 4px 12px rgba(0, 149, 246, 0.4);
 }
 
 /* Container for follow/edit buttons */
@@ -129,18 +146,17 @@
   align-items: center;
 }
 
-/* Instagram-style blue button */
-.btn-primary {
-  background-color: #0095f6;
-  border: none;
-  border-radius: 8px;
-}
-
 /* Gray outline button for Unfollow */
 .btn-outline-secondary {
   border-color: #dbdbdb;
   color: #000;
-  border-radius: 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-sm {

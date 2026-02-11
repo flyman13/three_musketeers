@@ -4,16 +4,21 @@
   <%= form_with model: @post, local: true do |form| %>
     <div style="margin-bottom: 15px;">
       <%= form.label :body, "Що у вас на думці?" %><br>
-      <%= form.text_area :body, rows: 5, style: "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" %>
+      <%= form.text_area :body, rows: 5, style: "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;" %>
     </div>
 
-  <div style="margin-bottom: 15px;">
-    <%= form.label :image, "Додати фото" %><br>
-    <%= form.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
-  </div>
+    <div style="margin-bottom: 15px;">
+      <%= form.label :image, "Додати фото" %><br>
+      <%= form.file_field :image, accept: 'image/png,image/gif,image/jpeg', id: 'image-input' %>
+    </div>
 
-    <div>
-      <%= form.submit "Опублікувати", style: "background: #0095f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" %>
+    <!-- Image Preview -->
+    <div id="image-preview-field" style="display: none; margin-bottom: 15px;">
+      <img id="preview-img" src="" alt="Preview" style="width: 320px; height: 320px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); cursor: pointer;" title="Натисніть для видалення">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.submit "Опублікувати", style: "background: #0095f6; color: white; padding: 10px 20px; border: none; border-radius: 12px; cursor: pointer; font-weight: bold;" %>
       <%= link_to "Скасувати", root_path, style: "margin-left: 15px; color: #666; text-decoration: none;" %>
       <% if @post.errors.any? %>
         <div class="alert alert-danger error-container animate-hover">
@@ -28,3 +33,40 @@
     </div>
   <% end %>
 </div>
+
+<style>
+  #preview-img:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const imageInput = document.getElementById('image-input');
+    const previewField = document.getElementById('image-preview-field');
+    const previewImg = document.getElementById('preview-img');
+
+    // Show preview when file is selected
+    imageInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          previewImg.src = event.target.result;
+          previewField.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Remove preview when clicking on image
+    previewImg.addEventListener('click', function(e) {
+      e.preventDefault();
+      imageInput.value = '';
+      previewField.style.display = 'none';
+      previewImg.src = '';
+    });
+  });
+</script>
