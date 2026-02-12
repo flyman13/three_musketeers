@@ -1,16 +1,4 @@
 <style>
-  body {
-    background: #fafafa !important;
-    margin: 0;
-    padding: 0;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: #121212 !important;
-    }
-  }
-
   .profiles__panel {
     display: flex;
     justify-content: center;
@@ -60,13 +48,6 @@
     padding: 0 44px 20px 44px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .profiles__panel form::before {
-      border-bottom-color: #333;
-      color: #fff;
-    }
-  }
-
   .avatar-section {
     flex-shrink: 0;
     padding-top: 60px;
@@ -98,18 +79,6 @@
     border-color: #0095f6;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .avatar-preview img,
-    .avatar-preview .placeholder {
-      border-color: #333;
-    }
-    
-    .avatar-preview:hover img,
-    .avatar-preview:hover .placeholder {
-      border-color: #0095f6;
-    }
-  }
-
   .avatar-preview .placeholder {
     background-color: #f0f0f0;
     display: inline-flex;
@@ -119,24 +88,11 @@
     font-size: 48px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .avatar-preview .placeholder {
-      background-color: #2a2a2a;
-      color: #666;
-    }
-  }
-
   .avatar-hint {
     font-size: 12px;
     color: #999;
     text-align: center;
     margin-top: 5px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .avatar-hint {
-      color: #666;
-    }
   }
 
   .form-section {
@@ -159,12 +115,6 @@
     padding: 0 4px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .form-row label {
-      color: #999;
-    }
-  }
-
   .form-row input,
   .form-row textarea {
     width: 100%;
@@ -181,15 +131,6 @@
     min-height: 50px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .form-row input,
-    .form-row textarea {
-      background-color: #1e1e1e;
-      border-color: #333;
-      color: #fff;
-    }
-  }
-
   .form-row textarea {
     resize: vertical;
     min-height: 100px;
@@ -200,13 +141,6 @@
     color: #a6a6a6;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .form-row input::placeholder,
-    .form-row textarea::placeholder {
-      color: #666;
-    }
-  }
-
   .form-row input:focus + label,
   .form-row input:not(:placeholder-shown) + label,
   .form-row textarea:focus + label,
@@ -215,16 +149,6 @@
     font: 12px;
     background-color: #fafafa;
     border-color: #717171;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .form-row input:focus + label,
-    .form-row input:not(:placeholder-shown) + label,
-    .form-row textarea:focus + label,
-    .form-row textarea:not(:placeholder-shown) + label {
-      background-color: #1e1e1e;
-      border-color: #555;
-    }
   }
 
   .file-upload-row {
@@ -339,7 +263,7 @@
         </div>
 
         <%= f.submit "Update Profile", class: "btn-block" %>
-        <%= link_to "Cancel", my_profile_path, class: "btn-cancel" %>
+        <%= link_to "Cancel", account_path(current_account), class: "btn-cancel" %>
       <% end %>
     </div>
   </div>
