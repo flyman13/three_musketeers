@@ -34,8 +34,6 @@
 
           <%# Опис (BIO) %>
           <div class="profile-bio">
-            <%# Використовуємо username замість full_name, щоб не було помилок %>
-            <div class="fw-bold"><%= @account.username %></div>
             <p class="text-dark mt-1"><%= @account.description %></p>
           </div>
         </div>
@@ -77,12 +75,15 @@
       <% if @tab == 'posts' %>
         <div class="profile-posts-grid d-flex flex-wrap gap-1">
           <% @posts.each do |post| %>
-            <div class="grid-item">
+            <div class="grid-item position-relative">
               <% if post.image.attached? %>
                 <%= link_to post_path(post) do %>
                   <%= image_tag post.image, class: "grid-image" %>
                 <% end %>
               <% end %>
+              <div class="grid-item-overlay">
+                <%= button_to "Delete", post_path(post), method: :delete, form_class: "grid-delete-form", class: "btn btn-sm btn-danger", data: { confirm: "Are you sure?" } %>
+              </div>
             </div>
           <% end %>
         </div>

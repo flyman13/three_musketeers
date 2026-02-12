@@ -9,9 +9,15 @@ class CommentsController < ApplicationController
     @comment.account = current_account
 
     if @comment.save
-      redirect_to @post, notice: 'Коментар додано!'
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @post, notice: 'Коментар додано!' }
+      end
     else
-      redirect_to @post, alert: 'Коментар не може бути порожнім.'
+      respond_to do |format|
+        format.turbo_stream { render :create, status: :unprocessable_entity }
+        format.html { redirect_to @post, alert: 'Коментар не може бути порожнім.' }
+      end
     end
   end
 

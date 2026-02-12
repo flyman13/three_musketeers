@@ -185,12 +185,14 @@
 
       /* Login/Registration pages dark mode */
       .dark-mode .sessions__panel,
-      .dark-mode .accounts__panel {
+      .dark-mode .accounts__panel,
+      .dark-mode .profiles__panel {
         background: var(--bg) !important;
       }
 
       .dark-mode .sessions__panel form::before,
-      .dark-mode .accounts__panel form::before {
+      .dark-mode .accounts__panel form::before,
+      .dark-mode .profiles__panel form::before {
         color: var(--text) !important;
         border-color: var(--border-color) !important;
       }
@@ -211,11 +213,36 @@
         color: #999 !important;
       }
 
-      .dark-mode .toggle-password {
+      /* Profile page specific dark mode */
+      .dark-mode .avatar-preview img,
+      .dark-mode .avatar-preview .placeholder {
+        border-color: var(--border-color) !important;
+      }
+
+      .dark-mode .avatar-preview .placeholder {
+        background: var(--sidebar-bg) !important;
         color: #999 !important;
       }
 
-      .dark-mode .toggle-password:hover {
+      .dark-mode .avatar-hint {
+        color: #999 !important;
+      }
+
+      .dark-mode .form-row textarea {
+        background: var(--sidebar-bg) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text) !important;
+      }
+
+      .dark-mode .form-row textarea::placeholder {
+        color: #999 !important;
+      }
+
+      .dark-mode .form-row input:focus + label,
+      .dark-mode .form-row input:not(:placeholder-shown) + label,
+      .dark-mode .form-row textarea:focus + label,
+      .dark-mode .form-row textarea:not(:placeholder-shown) + label {
+        background: var(--sidebar-bg) !important;
         color: var(--text) !important;
       }
 
