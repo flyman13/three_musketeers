@@ -59,69 +59,137 @@
     </div>
   </header>
 
-  <!-- Posts Feed -->
-  <div class="account-profile-content">
-    <div class="account-posts-feed">
-      <% if @posts.any? %>
-        <% @posts.each do |post| %>
-          <div class="account-post-card">
-            <!-- Post Header -->
-            <div class="account-post-header">
-              <div class="account-post-user">
-                <div class="account-post-avatar">
-                  <span class="account-avatar-small"><%= post.account.username.first.upcase %></span>
-                </div>
-                <div class="account-post-user-info">
-                  <%= link_to post.account.username, account_path(post.account), class: "account-post-username" %>
-                  <span class="account-post-time"><%= time_ago_in_words(post.created_at) %> ago</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Post Image -->
-            <% if post.image.attached? %>
-              <div class="account-post-image">
-                <%= image_tag post.image, class: "account-image" %>
-              </div>
+  <!-- Tabs Navigation -->
+  <div class="account-tabs-section">
+    <div class="account-tabs-container">
+      <nav class="account-profile-tabs">
+        <div class="nav nav-tabs justify-content-center gap-5">
+          <%= link_to account_path(@account, tab: 'posts'), class: "nav-link "+(@tab == 'posts' ? 'active' : '') do %>
+            <i class="bi bi-grid text-dark fs-4" aria-hidden="true"></i>
+          <% end %>
+          <% if current_account == @account %>
+            <%= link_to account_path(@account, tab: 'saved'), class: "nav-link "+(@tab == 'saved' ? 'active' : '') do %>
+              <i class="bi bi-bookmark text-dark fs-4"></i>
             <% end %>
+            <%= link_to account_path(@account, tab: 'liked'), class: "nav-link "+(@tab == 'liked' ? 'active' : '') do %>
+              <i class="bi bi-heart text-danger fs-4"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </nav>
+    </div>
+  </div>
 
-            <!-- Post Body -->
-            <div class="account-post-body">
-              <p class="account-post-text">
-                <strong><%= link_to post.account.username, account_path(post.account), class: "account-post-username-link" %></strong>
-                <%= post.body %>
-              </p>
-            </div>
-
-            <!-- Post Actions -->
-            <div class="account-post-actions">
-              <%= render "posts/post_actions", post: post %>
-            </div>
-
-            <!-- Comments Preview -->
-            <% if post.comments.any? %>
-              <div class="account-post-comments-preview">
-                <% post.comments.limit(1).each do |comment| %>
-                  <div class="account-comment-preview">
-                    <strong><%= link_to comment.account.username, account_path(comment.account), class: "account-comment-username" %></strong>
-                    <span class="account-comment-text"><%= comment.body %></span>
-                  </div>
-                <% end %>
-                <% if post.comments.count > 1 %>
-                  <div class="account-view-more-comments">
-                    <%= link_to "Переглянути всі #{post.comments.count} коментарів", post_path(post), class: "account-view-all-link" %>
-                  </div>
-                <% end %>
-              </div>
+  <!-- Tab Content -->
+  <div class="account-profile-content">
+    <% if @tab == 'posts' %>
+      <div class="account-posts-grid d-flex flex-wrap gap-1">
+        <% @posts.each do |post| %>
+          <div class="grid-item">
+            <% if post.image.attached? %>
+              <%= link_to post_path(post) do %>
+                <%= image_tag post.image, class: "grid-image" %>
+              <% end %>
             <% end %>
           </div>
         <% end %>
-      <% else %>
-        <div class="account-empty-posts">
-          <p>Немає постів</p>
-        </div>
-      <% end %>
-    </div>
+      </div>
+    <% elsif @tab == 'saved' %>
+      <div class="account-saved-grid d-flex flex-wrap gap-1">
+        <% if @saved_posts.any? %>
+          <% @saved_posts.each do |post| %>
+            <div class="grid-item">
+              <% if post.image.attached? %>
+                <%= link_to post_path(post) do %>
+                  <%= image_tag post.image, class: "grid-image" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="text-muted text-center">You haven't saved any posts yet.</p>
+        <% end %>
+      </div>
+    <% elsif @tab == 'liked' %>
+      <div class="account-liked-grid d-flex flex-wrap gap-1">
+        <% if @liked_posts.any? %>
+          <% @liked_posts.each do |post| %>
+            <div class="grid-item">
+              <% if post.image.attached? %>
+                <%= link_to post_path(post) do %>
+                  <%= image_tag post.image, class: "grid-image" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="text-muted text-center">You haven't liked any posts yet.</p>
+        <% end %>
+      </div>
+    <% else %>
+      <!-- Default posts feed if no tab specified -->
+      <div class="account-posts-feed">
+        <% if @posts.any? %>
+          <% @posts.each do |post| %>
+            <div class="account-post-card">
+              <!-- Post Header -->
+              <div class="account-post-header">
+                <div class="account-post-user">
+                  <div class="account-post-avatar">
+                    <span class="account-avatar-small"><%= post.account.username.first.upcase %></span>
+                  </div>
+                  <div class="account-post-user-info">
+                    <%= link_to post.account.username, account_path(post.account), class: "account-post-username" %>
+                    <span class="account-post-time"><%= time_ago_in_words(post.created_at) %> ago</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Post Image -->
+              <% if post.image.attached? %>
+                <div class="account-post-image">
+                  <%= image_tag post.image, class: "account-image" %>
+                </div>
+              <% end %>
+
+              <!-- Post Body -->
+              <div class="account-post-body">
+                <p class="account-post-text">
+                  <strong><%= link_to post.account.username, account_path(post.account), class: "account-post-username-link" %></strong>
+                  <%= post.body %>
+                </p>
+              </div>
+
+              <!-- Post Actions -->
+              <div class="account-post-actions">
+                <%= render "posts/post_actions", post: post %>
+              </div>
+
+              <!-- Comments Preview -->
+              <% if post.comments.any? %>
+                <div class="account-post-comments-preview">
+                  <% post.comments.limit(1).each do |comment| %>
+                    <div class="account-comment-preview">
+                      <strong><%= link_to comment.account.username, account_path(comment.account), class: "account-comment-username" %></strong>
+                      <span class="account-comment-text"><%= comment.body %></span>
+                    </div>
+                  <% end %>
+                  <% if post.comments.count > 1 %>
+                    <div class="account-view-more-comments">
+                      <%= link_to "Переглянути всі #{post.comments.count} коментарів", post_path(post), class: "account-view-all-link" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="account-empty-posts">
+            <p>Немає постів</p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -456,6 +524,70 @@
     padding: 60px 20px;
     color: #999;
     font-size: 16px;
+  }
+
+  /* Tabs and Grid Styles */
+  .account-tabs-section {
+    background: white;
+    border-bottom: 1px solid #dbdbdb;
+  }
+
+  .account-tabs-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .account-profile-tabs .nav-tabs {
+    border-bottom: none;
+  }
+
+  .account-profile-tabs .nav-link {
+    border: none;
+    background: none;
+    padding: 20px 0;
+    color: #8e8e8e;
+    transition: color 0.2s ease;
+  }
+
+  .account-profile-tabs .nav-link:hover {
+    color: #000;
+  }
+
+  .account-profile-tabs .nav-link.active {
+    border: none;
+    border-bottom: 2px solid #000;
+    color: #000;
+    background: none;
+  }
+
+  .grid-item {
+    flex: 0 0 calc(33.333% - 0.67rem);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
+
+  .grid-item:hover .grid-image {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .grid-item {
+      flex: 0 0 calc(50% - 0.5rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid-item {
+      flex: 0 0 100%;
+    }
   }
 
   @media (max-width: 768px) {
