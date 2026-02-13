@@ -344,12 +344,18 @@
   .post-avatar {
     width: 44px;
     height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    max-width: 44px;
+    max-height: 44px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    flex-shrink: 0;
+    box-sizing: border-box;
   }
 
   .avatar-image {
@@ -357,12 +363,16 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
   }
 
   .avatar-placeholder {
     color: white;
     font-weight: 700;
     font-size: 18px;
+    line-height: 1;
+    text-align: center;
   }
 
   .post-user-details {
