@@ -5,7 +5,11 @@
     <div class="account-profile-header-content">
       <div class="account-profile-avatar-section">
         <div class="account-profile-avatar">
-          <%= image_tag @account.avatar, class: "rounded-circle profile-avatar-img" %>
+          <% if @account.avatar.attached? %>
+            <%= image_tag @account.avatar, class: "rounded-circle profile-avatar-img" %>
+          <% else %>
+            <div class="rounded-circle bg-light me-3" style="width: 45px; height: 45px; border: 1px solid #dbdbdb;"></div>
+          <% end %>
         </div>
       </div>
 
