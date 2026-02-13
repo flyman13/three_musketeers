@@ -58,7 +58,7 @@
               </div>
             </div>
             <% if current_account == post.account %>
-              <%= link_to "•••", post_path(post), data: { turbo_method: :delete }, class: "post-menu", title: "Delete post" %>
+              <%= button_to "Delete", post_path(post), method: :delete, form_class: "post-delete-form", class: "btn btn-sm btn-outline-danger", data: { confirm: "Are you sure?" } %>
             <% end %>
           </div>
 
@@ -88,7 +88,7 @@
 
           <!-- Comments Section -->
           <% if post.comments.any? %>
-            <div class="post-comments-section">
+            <div class="post-comments-section" id="post_comments_<%= post.id %>">
               <% post.comments.limit(2).each do |comment| %>
                 <%= render "comments/comment", comment: comment %>
               <% end %>
@@ -98,15 +98,19 @@
                 </div>
               <% end %>
             </div>
+          <% else %>
+            <div class="post-comments-section" id="post_comments_<%= post.id %>"></div>
           <% end %>
 
           <!-- Comment Input -->
           <% if current_account %>
             <div class="comment-input-section">
-              <%= form_with model: [post, Comment.new], local: true, class: "comment-form" do |f| %>
-                <%= f.text_field :body, placeholder: "Add a comment...", class: "comment-input" %>
-                <%= f.submit "Post", class: "comment-submit" %>
-              <% end %>
+              <div id="post_comment_form_<%= post.id %>">
+                <%= form_with model: [post, Comment.new], local: true, class: "comment-form" do |f| %>
+                  <%= f.text_field :body, placeholder: "Add a comment...", class: "comment-input" %>
+                  <%= f.submit "Post", class: "comment-submit" %>
+                <% end %>
+              </div>
             </div>
           <% end %>
         </div>
@@ -395,6 +399,25 @@
   .post-menu:hover {
     color: var(--text);
     background: var(--sidebar-bg);
+  }
+
+  .post-delete-form {
+    margin: 0;
+  }
+
+  .post-delete-form .btn-outline-danger {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border-color: #e74c3c;
+    color: #e74c3c;
+    transition: all 0.2s ease;
+  }
+
+  .post-delete-form .btn-outline-danger:hover {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
   }
 
   /* Post Image */

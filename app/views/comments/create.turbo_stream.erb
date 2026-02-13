@@ -1,0 +1,9 @@
+<%= turbo_stream.prepend "post_comments_#{@post.id}" do %>
+  <%= render "comments/comment", comment: @comment %>
+<% end %>
+<%= turbo_stream.update "post_comment_form_#{@post.id}" do %>
+  <%= form_with model: [@post, Comment.new], local: true, class: "comment-form" do |f| %>
+    <%= f.text_field :body, placeholder: "Add a comment...", class: "comment-input", autofocus: true %>
+    <%= f.submit "Post", class: "comment-submit" %>
+  <% end %>
+<% end %>
