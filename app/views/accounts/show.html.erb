@@ -195,14 +195,14 @@
 
 <style>
   .account-profile-wrapper {
-    background: #fafafa;
+    background: var(--bg);
     min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   }
 
   .account-profile-header {
-    background: white;
-    border-bottom: 1px solid #dbdbdb;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border-color);
   }
 
   .account-profile-header-content {
@@ -251,7 +251,7 @@
     font-size: 32px;
     font-weight: 700;
     margin: 0;
-    color: #000;
+    color: var(--text);
   }
 
   .account-profile-actions {
@@ -274,12 +274,13 @@
   }
 
   .btn-edit-account {
-    background: #f0f0f0;
-    color: #000;
+    background: var(--sidebar-bg);
+    color: var(--text);
+    border: 1px solid var(--border-color);
   }
 
   .btn-edit-account:hover {
-    background: #e0e0e0;
+    background: var(--nav-item-hover);
   }
 
   .btn-follow {
@@ -293,13 +294,13 @@
   }
 
   .btn-following {
-    background: white;
+    background: var(--bg);
     color: #0095f6;
     border: 1px solid #0095f6;
   }
 
   .btn-following:hover {
-    background: #f0f8ff;
+    background: var(--nav-item-hover);
   }
 
   .account-profile-stats {
@@ -319,7 +320,7 @@
   .stat-number {
     font-size: 20px;
     font-weight: 700;
-    color: #000;
+    color: var(--text);
     display: block;
   }
 
@@ -353,13 +354,13 @@
   .bio-name {
     margin: 0 0 8px 0;
     font-weight: 600;
-    color: #000;
+    color: var(--text);
     font-size: 14px;
   }
 
   .bio-text {
     margin: 0;
-    color: #666;
+    color: #999;
     font-size: 14px;
     line-height: 1.5;
   }
@@ -377,8 +378,8 @@
   }
 
   .account-post-card {
-    background: white;
-    border: 1px solid #dbdbdb;
+    background: var(--bg);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     overflow: hidden;
@@ -391,7 +392,7 @@
 
   .account-post-header {
     padding: 12px 16px;
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .account-post-user {
@@ -424,7 +425,7 @@
 
   .account-post-username {
     font-weight: 600;
-    color: #000;
+    color: var(--text);
     text-decoration: none;
     font-size: 14px;
   }
@@ -442,7 +443,7 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    background: #f0f0f0;
+    background: var(--sidebar-bg);
   }
 
   .account-image {
@@ -463,7 +464,7 @@
   }
 
   .account-post-username-link {
-    color: #000;
+    color: var(--text);
     text-decoration: none;
     font-weight: 600;
   }
@@ -476,8 +477,8 @@
     padding: 12px 16px;
     display: flex;
     gap: 16px;
-    border-top: 1px solid #efefef;
-    border-bottom: 1px solid #efefef;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
   }
 
   .account-post-comments-preview {
@@ -490,7 +491,7 @@
   }
 
   .account-comment-username {
-    color: #000;
+    color: var(--text);
     text-decoration: none;
     font-weight: 600;
   }
@@ -500,7 +501,7 @@
   }
 
   .account-comment-text {
-    color: #666;
+    color: #999;
     margin-left: 6px;
   }
 
@@ -516,7 +517,7 @@
   }
 
   .account-view-all-link:hover {
-    color: #000;
+    color: var(--text);
   }
 
   .account-empty-posts {
@@ -528,8 +529,8 @@
 
   /* Tabs and Grid Styles */
   .account-tabs-section {
-    background: white;
-    border-bottom: 1px solid #dbdbdb;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border-color);
   }
 
   .account-tabs-container {
@@ -551,14 +552,28 @@
   }
 
   .account-profile-tabs .nav-link:hover {
-    color: #000;
+    color: var(--text);
   }
 
   .account-profile-tabs .nav-link.active {
     border: none;
-    border-bottom: 2px solid #000;
-    color: #000;
+    border-bottom: 2px solid var(--text);
+    color: var(--text);
     background: none;
+  }
+
+  /* Dark mode fixes */
+  .dark-mode .account-profile-header {
+    background: var(--sidebar-bg) !important;
+  }
+
+  .dark-mode .btn-follow {
+    background: #0095f6 !important;
+    color: white !important;
+  }
+
+  .dark-mode .account-tabs-section {
+    background: var(--sidebar-bg) !important;
   }
 
   .grid-item {
