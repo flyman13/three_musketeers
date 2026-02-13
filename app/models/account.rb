@@ -8,6 +8,9 @@ class Account < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
   has_many :saved_posts, dependent: :destroy
   has_many :saved, through: :saved_posts, source: :post
+  
+  # For liked posts (reactions where target is a post)
+  has_many :liked_posts, -> { where(reactions: { target_type: 'Post' }) }, through: :reactions, source: :target, source_type: 'Post'
 
   # Validations now live here because the Profile table was removed
   validates :username, presence: true, uniqueness: true

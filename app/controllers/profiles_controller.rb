@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
   # Update account information
   def update
     if @account.update(account_params)
-      redirect_to my_profile_path, notice: 'Profile updated successfully.'
+      redirect_to account_path(@account), notice: 'Profile updated successfully.'
     else
       render :edit, status: :unprocessable_entity
     end

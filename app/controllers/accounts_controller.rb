@@ -19,6 +19,17 @@ class AccountsController < ApplicationController
     # Find the account by ID from the URL params
     @account = Account.find(params[:id])
     @posts = @account.posts.order(created_at: :desc)
+    
+    # Handle tab parameter
+    @tab = params[:tab] || 'posts'
+    
+    # Load data for different tabs
+    case @tab
+    when 'saved'
+      @saved_posts = current_account.saved.order(created_at: :desc) if current_account == @account
+    when 'liked'
+      @liked_posts = current_account.liked_posts.order(created_at: :desc) if current_account == @account
+    end
 
     # English comment: Loading user data and their posts for the show view
   end
