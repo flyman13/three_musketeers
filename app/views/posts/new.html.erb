@@ -8,7 +8,7 @@
 
   <div class="create-post-content">
     <div class="create-post-form">
-      <%= form_with model: @post, local: true, class: "post-form" do |form| %>
+      <%= form_with model: @post, class: "post-form" do |form| %>
         <!-- Post Text Area -->
         <div class="form-group">
           <%= form.label :body, "Що у вас на думці? (опціонально)", class: "form-label" %>
@@ -382,37 +382,67 @@
 </style>
 
 <script>
+  document.addEventListener('turbo:load', function() {
+    initializeImagePreview();
+  });
+
   document.addEventListener('DOMContentLoaded', function() {
+    initializeImagePreview();
+  });
+
+  function initializeImagePreview() {
+    console.log('Initializing image preview...');
+    
     const fileInput = document.getElementById('image-input');
     const fileUploadBox = document.querySelector('.file-upload-box');
     const imagePreviewField = document.getElementById('image-preview-field');
     const previewImg = document.getElementById('preview-img');
     const removeImageBtn = document.getElementById('remove-image-btn');
 
+    console.log('Elements found:', {
+      fileInput: !!fileInput,
+      fileUploadBox: !!fileUploadBox,
+      imagePreviewField: !!imagePreviewField,
+      previewImg: !!previewImg,
+      removeImageBtn: !!removeImageBtn
+    });
+
+    if (!fileInput || !fileUploadBox || !imagePreviewField || !previewImg || !removeImageBtn) {
+      console.error('Some elements are missing');
+      return;
+    }
+
     // Handle click on upload box
     fileUploadBox.addEventListener('click', function() {
+      console.log('Upload box clicked');
       fileInput.click();
     });
 
     // Handle file selection
     fileInput.addEventListener('change', function(e) {
+      console.log('File input changed', e.target.files);
       const file = e.target.files[0];
       if (file && file.type.startsWith('image/')) {
+        console.log('Image file selected:', file.name);
         const reader = new FileReader();
         reader.onload = function(event) {
+          console.log('File loaded, setting preview');
           previewImg.src = event.target.result;
           imagePreviewField.style.display = 'block';
         };
         reader.readAsDataURL(file);
+      } else {
+        console.log('No valid image file selected');
       }
     });
 
     // Remove image
     removeImageBtn.addEventListener('click', function(e) {
+      console.log('Remove image clicked');
       e.preventDefault();
       fileInput.value = '';
       imagePreviewField.style.display = 'none';
       previewImg.src = '';
     });
-  });
+  }
 </script>
