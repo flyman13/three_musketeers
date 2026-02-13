@@ -1,49 +1,75 @@
 # ⚔️ Three Musketeers (Social Network Engine)
 
-A modern social network platform built with **Ruby on Rails 7**, focusing on clean architecture, scalability, and high test coverage.
+A high-performance social networking engine built with **Ruby on Rails 7**. Designed with a focus on Clean Architecture, Service Objects, and TDD (Test-Driven Development).
 
-## 🚀 Getting Started
+---
 
-### Prerequisites
-- **Ruby:** 3.3.0
-- **PostgreSQL:** 14+
+## 🏗 System Architecture
 
-### Installation
-1. **Clone the repository:**
-   git clone [https://github.com/flyman13/three_musketeers.git](https://github.com/flyman13/three_musketeers.git)
-   cd three_musketeers
-Install dependencies:
+We strictly follow the **Separation of Concerns** principle to keep the codebase maintainable:
+
+- **Services (`app/services`)**: Dedicated objects for business logic (e.g., creating posts, processing media).
+- **Interactors (`app/interactors`)**: Encapsulates actions that involve multiple steps or state toggling (e.g., `TogglePostLike`).
+- **Query Objects (`app/queries`)**: Optimized SQL queries isolated from models to handle complex data fetching (e.g., Personalized Feeds).
+- **Scopes**: Model-level filters for common database queries.
+
+---
+
+## 📊 Database Schema
+
+### Core Entities:
+- **Accounts**: User profiles, authentication (Devise), and identity.
+- **Posts**: Content creation with body text and timestamps.
+- **Reactions**: Polymorphic-ready system for likes and interactions.
+- **Comments**: Hierarchical or flat interaction on posts.
+- **Relationships**: Follower/Followed system for social graph.
+- **MediaAssets**: Polymorphic storage for images and videos.
+
+---
+
+## 🧪 Testing Suite
+
+Quality is ensured via **RSpec**. We maintain high coverage across all layers.
+
+- **Unit Tests**: Validations, associations, and custom model logic.
+- **Service Specs**: Testing business rules in isolation.
+- **Database Integrity**: Testing uniqueness constraints and `dependent: :destroy` behavior.
+
+**Run the test suite:**
+bundle exec rspec
+🚀 Installation & Setup
+Prerequisites
+Ruby 3.3.0
+
+PostgreSQL 14+
+
+Redis (for background processing)
+
+Setup Steps
+Clone & Install:
 
 
+git clone [https://github.com/flyman13/three_musketeers.git](https://github.com/flyman13/three_musketeers.git)
+cd three_musketeers
 bundle install
-Database setup:
+Configuration:
+Copy the example env file and fill in your details:
+
+
+cp .env.example .env
+Database Initialization:
 
 
 bin/rails db:prepare
-Run the server:
+Start the Engine:
 
 
 bin/rails s
-🧪 Testing
-We use RSpec to ensure code reliability. Writing tests is mandatory for every new feature.
+🤝 Development Workflow
+Pull latest changes: git pull origin main
 
-Run all tests:
+Create feature branch: git checkout -b feature/your-feature
 
+Verify code quality: Run bundle exec rspec before committing.
 
-bundle exec rspec
-What we test:
-
-Model validations (including DB-level ActiveRecord::RecordNotUnique).
-
-Associations (dependent: :destroy).
-
-Logic of Query Objects and Scopes.
-
-🏗 Architecture
-We follow the Separation of Concerns principle:
-
-Services: Business logic implementation (app/services).
-
-Interactors: Complex actions with toggle or step-by-step logic (app/interactors).
-
-Query Objects: Complex SQL queries isolated for performance and testability (app/queries).
+Submit PR: Open a Pull Request for code review.
