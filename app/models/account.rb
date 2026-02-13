@@ -32,4 +32,7 @@ class Account < ApplicationRecord
   def following?(other_account)
     following.include?(other_account)
   end
+
+  scope :active, -> { where.not(username: nil) }
+  scope :inactive, -> { where(username: nil) }
 end
