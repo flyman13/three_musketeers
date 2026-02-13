@@ -4,8 +4,14 @@
       <b><%= link_to (comment.account&.username || "Anon"), account_path(comment.account), class: "text-dark text-decoration-none" %>:</b>
       <%= comment.body %>
     </p>
-    <% if current_account == comment.account %>
-      <%= button_to post_comment_path(comment.post, comment), method: :delete, class: "btn btn-sm btn-outline-danger", form: { class: "d-inline" } do %>
+    
+    <%# Додано перевірку persisted?, щоб уникнути помилки маршрутизації для незбережених коментарів %>
+    <% if comment.persisted? && current_account == comment.account %>
+      <%= button_to post_comment_path(comment.post, comment), 
+                     method: :delete, 
+                     class: "btn btn-sm btn-outline-danger", 
+                     form: { class: "d-inline" },
+                     data: { turbo_confirm: "Ви впевнені, що хочете видалити цей коментар?" } do %>
         <i class="bi bi-trash" aria-hidden="true"></i>
       <% end %>
     <% end %>
