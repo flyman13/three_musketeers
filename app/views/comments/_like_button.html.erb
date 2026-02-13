@@ -1,15 +1,18 @@
-<div id="like_comment_<%= comment.id %>" class="comment-actions d-flex align-items-center gap-2 mt-1">
-  <% if current_account %>
-    <% comment_reaction = comment.comment_reactions.find_by(account: current_account) %>
-    <% if comment_reaction %>
-      <%= button_to unlike_post_comment_path(post, comment), method: :delete, class: "btn-comment-like btn btn-link p-0", form: { data: { turbo: true } } do %>
-        <i class="bi bi-heart-fill text-danger small"></i>
-      <% end %>
-    <% else %>
-      <%= button_to like_post_comment_path(post, comment), method: :post, class: "btn-comment-like btn btn-link p-0", form: { data: { turbo: true } } do %>
-        <i class="bi bi-heart text-muted small"></i>
+<% if comment.persisted? %>
+  <div id="like_comment_<%= comment.id %>" class="comment-actions d-flex align-items-center gap-2 mt-1">
+    <% if current_account %>
+      <% comment_reaction = comment.comment_reactions.find_by(account: current_account) %>
+      <% if comment_reaction %>
+        <%= button_to unlike_post_comment_path(post, comment), method: :delete, class: "btn-comment-like btn btn-link p-0", form: { data: { turbo: true } } do %>
+          <i class="bi bi-heart-fill text-danger small"></i>
+        <% end %>
+      <% else %>
+        <%# Цей рядок викликав помилку, тепер він захищений перевіркою persisted? %>
+        <%= button_to like_post_comment_path(post, comment), method: :post, class: "btn-comment-like btn btn-link p-0", form: { data: { turbo: true } } do %>
+          <i class="bi bi-heart text-muted small"></i>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <span class="text-muted small"><%= comment.comment_reactions.count %></span>
-</div>
+    <span class="text-muted small"><%= comment.comment_reactions.count %></span>
+  </div>
+<% end %>
