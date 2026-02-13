@@ -5,7 +5,7 @@
     <div class="account-profile-header-content">
       <div class="account-profile-avatar-section">
         <div class="account-profile-avatar">
-          <span class="account-avatar-letter"><%= @account.username.first.upcase %></span>
+          <%= image_tag @account.avatar, class: "rounded-circle profile-avatar-img" %>
         </div>
       </div>
 
