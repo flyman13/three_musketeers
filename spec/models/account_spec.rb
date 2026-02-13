@@ -18,6 +18,26 @@ RSpec.describe Account, type: :model do
     end
   end
 
+
+describe 'scopes' do
+    describe '.active' do
+    let!(:active_user) { create(:account, username: 'artem_top') }
+    let!(:inactive_user) do
+        user = build(:account, username: nil)
+        user.save(validate: false) 
+        user
+    end
+
+    it 'повертає лише користувачів із заповненим юзернеймом' do
+        result = Account.active
+
+        expect(result).to include(active_user)
+        expect(result).not_to include(inactive_user)
+    end
+  end
+end
+  
+
   describe 'асоціації' do
     let!(:account) { create(:account) }
     let!(:post) { create(:post, account: account) }
